@@ -15,7 +15,7 @@ const courses = [
     duration: '6 Months',
     rating: 4.8,
     reviews: 120,
-    image: 'https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?q=80&w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'digital marketing',
   },
   {
@@ -25,7 +25,7 @@ const courses = [
     duration: '3 Months',
     rating: 4.9,
     reviews: 250,
-    image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'project management',
   },
   {
@@ -35,7 +35,7 @@ const courses = [
     duration: '4 Months',
     rating: 4.7,
     reviews: 95,
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'graphic design',
   },
   {
@@ -45,7 +45,7 @@ const courses = [
     duration: '8 Months',
     rating: 4.9,
     reviews: 450,
-    image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'web development',
   },
   {
@@ -55,7 +55,7 @@ const courses = [
     duration: '5 Months',
     rating: 4.8,
     reviews: 310,
-    image: 'https://images.unsplash.com/photo-1573495627361-d9b87960b12d?q=80&w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'data science',
   },
   {
@@ -65,7 +65,7 @@ const courses = [
     duration: '6 Months',
     rating: 4.6,
     reviews: 88,
-    image: 'https://images.unsplash.com/photo-1554224155-8d04421cd6e2?q=80&w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1628260638379-a704b4c73295?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'finance accounting',
   },
 ];

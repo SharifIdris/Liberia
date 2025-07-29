@@ -89,18 +89,13 @@ export default function Home() {
             </div>
             <div className="relative">
               <Image
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&h=400&fit=crop"
+                src="https://images.unsplash.com/photo-1665686306574-1ace09918530?q=80&w=600&h=400&fit=crop"
                 alt="Student learning online"
                 width={600}
                 height={400}
                 className="rounded-lg shadow-2xl w-full"
                 data-ai-hint="smiling student online"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Button variant="ghost" size="icon" className="w-20 h-20 bg-primary/50 rounded-full hover:bg-primary/70">
-                   <PlayCircle className="w-12 h-12 text-white" />
-                </Button>
-              </div>
             </div>
           </div>
         </section>

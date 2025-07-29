@@ -13,7 +13,7 @@ const course = {
   id: '1',
   title: 'Web Development Certificate',
   description: 'Gain essential skills in front-end and back-end web development through our comprehensive online certificate program.',
-  image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&h=400&fit=crop',
+  image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&h=400&fit=crop',
   dataAiHint: 'smiling student online',
   duration: '6 Months',
   type: 'Certificate',
@@ -28,13 +28,13 @@ const course = {
     {
       name: 'Maria Chen',
       title: 'Senior Software Engineer',
-      image: 'https://images.unsplash.com/photo-1580894742597-87bc8789db3d?q=80&w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1594825167519-53b3815a5ab6?q=80&w=150&h=150&fit=crop&crop=faces',
       dataAiHint: 'woman software engineer',
     },
     {
       name: 'James Smith',
       title: 'Full Stack Developer',
-      image: 'https://images.unsplash.com/photo-1613959953633-d642aff2a19b?q=80&w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1610632380536-e7f08b345f19?q=80&w=150&h=150&fit=crop&crop=faces',
       dataAiHint: 'man developer',
     },
   ],
@@ -84,11 +84,6 @@ export default function CourseDetailsPage({ params }: { params: { id: string } }
               className="rounded-lg shadow-2xl w-full"
               data-ai-hint={course.dataAiHint}
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <Button variant="ghost" size="icon" className="w-20 h-20 bg-primary/50 rounded-full hover:bg-primary/70">
-                <PlayCircle className="w-12 h-12 text-white" />
-              </Button>
-            </div>
           </div>
         </section>
         
