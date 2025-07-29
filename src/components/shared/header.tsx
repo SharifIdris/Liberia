@@ -7,8 +7,6 @@ import { Logo } from "@/components/icons";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Programs" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
   { href: "/admin", label: "Admin" },
   { href: "/teacher", label: "Teacher" },
   { href: "/dashboard", label: "Student" },
@@ -64,6 +62,8 @@ export function Header() {
                       {link.label}
                     </Link>
                   ))}
+                  <Link href="/about" className="text-lg hover:text-white/80">About</Link>
+                  <Link href="/contact" className="text-lg hover:text-white/80">Contact</Link>
                 </nav>
               </SheetContent>
             </Sheet>
