@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -6,69 +7,8 @@ import { ArrowRight, Star, Clock } from 'lucide-react';
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
 import { Badge } from '@/components/ui/badge';
+import { courses } from '@/lib/mock-data';
 
-const courses = [
-  {
-    id: '1',
-    title: 'Diploma in Digital Marketing',
-    category: 'Marketing',
-    duration: '6 Months',
-    rating: 4.8,
-    reviews: 120,
-    image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=600&h=400&fit=crop',
-    dataAiHint: 'digital marketing',
-  },
-  {
-    id: '2',
-    title: 'Certificate in Project Management',
-    category: 'Business',
-    duration: '3 Months',
-    rating: 4.9,
-    reviews: 250,
-    image: 'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?q=80&w=600&h=400&fit=crop',
-    dataAiHint: 'project management',
-  },
-  {
-    id: '3',
-    title: 'Professional Graphic Design',
-    category: 'Design',
-    duration: '4 Months',
-    rating: 4.7,
-    reviews: 95,
-    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&h=400&fit=crop',
-    dataAiHint: 'graphic design',
-  },
-  {
-    id: '4',
-    title: 'Web Development Bootcamp',
-    category: 'Technology',
-    duration: '8 Months',
-    rating: 4.9,
-    reviews: 450,
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&h=400&fit=crop',
-    dataAiHint: 'web development',
-  },
-  {
-    id: '5',
-    title: 'Introduction to Data Science',
-    category: 'Data Science',
-    duration: '5 Months',
-    rating: 4.8,
-    reviews: 310,
-    image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=600&h=400&fit=crop',
-    dataAiHint: 'data science',
-  },
-  {
-    id: '6',
-    title: 'Advanced Financial Accounting',
-    category: 'Finance',
-    duration: '6 Months',
-    rating: 4.6,
-    reviews: 88,
-    image: 'https://images.unsplash.com/photo-1628260638379-a704b4c73295?q=80&w=600&h=400&fit=crop',
-    dataAiHint: 'finance accounting',
-  },
-];
 
 export default function CoursesPage() {
   return (

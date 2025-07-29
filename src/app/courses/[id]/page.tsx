@@ -8,54 +8,27 @@ import { Footer } from '@/components/shared/footer';
 import { Check, ChevronRight, Award } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-
-
-const course = {
-  id: '1',
-  title: 'Web Development Certificate',
-  description: 'Gain essential skills in front-end and back-end web development through our comprehensive online certificate program.',
-  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=600&h=400&fit=crop',
-  dataAiHint: 'smiling student online',
-  duration: '6 Months',
-  type: 'Certificate',
-  overview: 'This flexible program will cover how-to relevant two component cover comprehensive HTML, CSS-JavaScript, and server side programming. This will cover responsive websites to build interactive websites on a code.',
-  whatYouWillLearn: [
-    'Build dynamic websites using HTML, CSS, and Javascripts',
-    'Develop back and applications with Node.js and Express',
-    'Manage databases with MongoDB',
-    'Implement responsive design principles',
-  ],
-  instructors: [
-    {
-      name: 'Bisi Adewale',
-      title: 'Senior Software Engineer',
-      image: 'https://images.unsplash.com/photo-1528901166007-3784c7dd3653?q=80&w=150&h=150&fit=crop&crop=faces',
-      dataAiHint: 'man software engineer',
-    },
-    {
-      name: 'Chiamaka Nwosu',
-      title: 'Full Stack Developer',
-      image: 'https://images.unsplash.com/photo-1530785602389-075941b8b691?q=80&w=150&h=150&fit=crop&crop=faces',
-      dataAiHint: 'woman developer',
-    },
-  ],
-  faq: [
-    {
-      question: 'What are the prerequisites for this program?',
-      answer: 'There are no strict prerequisites for this program. However, a basic understanding of computer literacy is recommended. Our introductory modules are designed to bring everyone up to speed.',
-    },
-    {
-      question: 'How are the courses delivered?',
-      answer: 'The courses are delivered through a mix of pre-recorded video lectures, live online sessions with instructors, hands-on assignments, and peer-to-peer discussions. You can learn at your own pace.',
-    },
-    {
-      question: 'Can I switch to a different program later?',
-      answer: 'Yes, you can switch to a different program within the first two weeks of starting the course. Please contact our support team for assistance with the process.',
-    },
-  ],
-};
+import { courses } from '@/lib/mock-data';
 
 export default function CourseDetailsPage({ params }: { params: { id: string } }) {
+  const course = courses.find((c) => c.id === params.id);
+
+  if (!course) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow container mx-auto px-4 py-12 text-center">
+          <h1 className="text-4xl font-bold">Course not found</h1>
+          <p className="text-muted-foreground mt-4">The course you are looking for does not exist.</p>
+          <Button asChild className="mt-8">
+            <Link href="/courses">Back to Courses</Link>
+          </Button>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
