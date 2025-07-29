@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import {
   Book,
@@ -104,7 +105,9 @@ export default function TeacherLayout({
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Evelyn Carter</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/teacher/profile">Edit Profile</Link>
+              </DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
                <DropdownMenuItem asChild>
