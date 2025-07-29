@@ -24,6 +24,7 @@ const initialTeacherData = [
   { name: 'Alex Johnson', email: 'alex.johnson@example.com', status: 'Approved' },
   { name: 'Sarah Williams', email: 'sarah.williams@example.com', status: 'Approved' },
   { name: 'Mark Davis', email: 'mark.davis@example.com', status: 'Pending' },
+  { name: 'Jennifer Lee', email: 'jennifer.lee@example.com', status: 'Pending' },
 ];
 
 const courseManagementData = [
@@ -59,10 +60,10 @@ export default function AdminDashboard() {
   const [teacherData, setTeacherData] = useState(initialTeacherData);
 
   const handleTeacherStatusChange = (email: string, newStatus: 'Approved' | 'Rejected') => {
-    setTeacherData(teacherData.map(teacher => 
-      teacher.email === email ? { ...teacher, status: newStatus } : teacher
-    ));
+    setTeacherData(teacherData.filter(teacher => teacher.email !== email));
   };
+
+  const pendingTeachers = teacherData.filter(t => t.status === 'Pending');
 
 
   return (
@@ -115,11 +116,11 @@ export default function AdminDashboard() {
         </Card>
          <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium">Pending Approvals</CardTitle>
+            <CardTitle className="text-sm font-medium">Pending Applications</CardTitle>
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{teacherData.filter(t => t.status === 'Pending').length}</div>
+            <div className="text-2xl font-bold">{pendingTeachers.length}</div>
           </CardContent>
         </Card>
       </div>
@@ -127,36 +128,35 @@ export default function AdminDashboard() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle>Teacher Management</CardTitle>
+            <CardTitle>Teacher Applications</CardTitle>
+            <CardDescription>Review and approve new teacher applications.</CardDescription>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {teacherData.map((teacher, index) => (
-                  <TableRow key={index}>
-                    <TableCell>{teacher.name}</TableCell>
-                    <TableCell>{teacher.email}</TableCell>
-                    <TableCell>
-                      {teacher.status === 'Pending' ? (
-                        <div className="flex gap-2">
-                          <Button size="sm" onClick={() => handleTeacherStatusChange(teacher.email, 'Approved')}>Approve</Button>
-                          <Button size="sm" variant="destructive" onClick={() => handleTeacherStatusChange(teacher.email, 'Rejected')}>Reject</Button>
-                        </div>
-                      ) : (
-                         <Badge variant={teacher.status === 'Approved' ? 'default' : 'destructive'}>{teacher.status}</Badge>
-                      )}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+             {pendingTeachers.length > 0 ? (
+                <Table>
+                <TableHeader>
+                    <TableRow>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Actions</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {pendingTeachers.map((teacher, index) => (
+                    <TableRow key={index}>
+                        <TableCell>{teacher.name}</TableCell>
+                        <TableCell>
+                            <div className="flex gap-2">
+                            <Button size="sm" onClick={() => handleTeacherStatusChange(teacher.email, 'Approved')}>Approve</Button>
+                            <Button size="sm" variant="destructive" onClick={() => handleTeacherStatusChange(teacher.email, 'Rejected')}>Reject</Button>
+                            </div>
+                        </TableCell>
+                    </TableRow>
+                    ))}
+                </TableBody>
+                </Table>
+            ) : (
+                <p className="text-sm text-muted-foreground">No pending applications.</p>
+            )}
           </CardContent>
         </Card>
 

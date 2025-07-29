@@ -17,6 +17,7 @@ export function Footer() {
             <Link href="/contact" className="hover:text-white">Contact</Link>
             <Link href="/privacy" className="hover:text-white">Privacy</Link>
             <Link href="/terms" className="hover:text-white">Terms</Link>
+            <Link href="/apply/teacher" className="hover:text-white">Teach with Us</Link>
           </nav>
         </div>
         <div className="text-center text-sm text-white/60 mt-4 pt-4 border-t border-slate-700">

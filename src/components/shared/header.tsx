@@ -13,6 +13,7 @@ import {
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Programs" },
+  { href: "/apply/teacher", label: "Teach with Us" },
 ];
 
 export function Header() {
