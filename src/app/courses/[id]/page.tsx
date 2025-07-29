@@ -14,7 +14,7 @@ const course = {
   id: '1',
   title: 'Web Development Certificate',
   description: 'Gain essential skills in front-end and back-end web development through our comprehensive online certificate program.',
-  image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&h=400&fit=crop',
+  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=600&h=400&fit=crop',
   dataAiHint: 'smiling student online',
   duration: '6 Months',
   type: 'Certificate',
@@ -27,16 +27,16 @@ const course = {
   ],
   instructors: [
     {
-      name: 'Maria Chen',
+      name: 'Bisi Adewale',
       title: 'Senior Software Engineer',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&fit=crop&crop=faces',
-      dataAiHint: 'woman software engineer',
+      image: 'https://images.unsplash.com/photo-1528901166007-3784c7dd3653?q=80&w=150&h=150&fit=crop&crop=faces',
+      dataAiHint: 'man software engineer',
     },
     {
-      name: 'James Smith',
+      name: 'Chiamaka Nwosu',
       title: 'Full Stack Developer',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&fit=crop&crop=faces',
-      dataAiHint: 'man developer',
+      image: 'https://images.unsplash.com/photo-1530785602389-075941b8b691?q=80&w=150&h=150&fit=crop&crop=faces',
+      dataAiHint: 'woman developer',
     },
   ],
   faq: [
