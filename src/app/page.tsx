@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -88,7 +89,7 @@ export default function Home() {
             </div>
             <div className="relative">
               <Image
-                src="https://images.unsplash.com/photo-1611214298194-27e1b21a7127?q=80&w=600&h=400&fit=crop"
+                src="https://images.unsplash.com/photo-1618494957973-69a4c5f0f4b1?q=80&w=600&h=400&fit=crop"
                 alt="Student learning online"
                 width={600}
                 height={400}
