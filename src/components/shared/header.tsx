@@ -16,7 +16,7 @@ const navLinks = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-slate-900 text-white">
       <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
@@ -30,7 +30,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
+                className="transition-colors hover:text-white/80 text-white/60"
               >
                 {link.label}
               </Link>
@@ -48,19 +48,19 @@ export function Header() {
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="hover:bg-slate-800 hover:text-white">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Toggle Menu</span>
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left">
+              <SheetContent side="left" className="bg-slate-900 text-white border-r-slate-700">
                 <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
                   <Logo className="h-8 w-8 text-primary" />
                   <span className="font-bold font-headline">eSchola Liberia</span>
                 </Link>
                 <nav className="flex flex-col space-y-4">
                   {navLinks.map(link => (
-                    <Link key={link.href} href={link.href} className="text-lg">
+                    <Link key={link.href} href={link.href} className="text-lg hover:text-white/80">
                       {link.label}
                     </Link>
                   ))}
@@ -69,7 +69,7 @@ export function Header() {
             </Sheet>
           </div>
           <nav className="hidden md:flex items-center gap-2">
-            <Button asChild variant="ghost">
+            <Button asChild variant="ghost" className="hover:bg-slate-800 hover:text-white">
               <Link href="/login">Log in</Link>
             </Button>
             <Button asChild>
