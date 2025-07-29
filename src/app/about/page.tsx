@@ -9,19 +9,19 @@ const teamMembers = [
   {
     name: 'Aaisha Nyandoro',
     role: 'Community Coordinator',
-    image: 'https://placehold.co/150x150.png',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=150&h=150&fit=crop&crop=faces',
     dataAiHint: 'woman community coordinator',
   },
   {
     name: 'Dr. Koffi Mensah',
     role: 'Curriculum Lead',
-    image: 'https://placehold.co/150x150.png',
+    image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=150&h=150&fit=crop&crop=faces',
     dataAiHint: 'man curriculum lead',
   },
   {
     name: 'Alsha Nyandoro',
     role: 'Community Coordinator',
-    image: 'https://placehold.co/150x150.png',
+    image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=150&h=150&fit=crop&crop=faces',
     dataAiHint: 'woman community coordinator smiling',
   },
 ];
@@ -58,7 +58,7 @@ export default function AboutPage() {
         <section className="relative bg-secondary py-20 md:py-32">
            <div className="absolute inset-0">
                 <Image
-                    src="https://placehold.co/1200x600.png"
+                    src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&h=600&fit=crop"
                     alt="Students learning"
                     layout="fill"
                     objectFit="cover"

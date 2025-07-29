@@ -39,7 +39,7 @@ export default function CommunityPage() {
         <section className="relative bg-secondary py-20 md:py-32">
            <div className="absolute inset-0">
                 <Image
-                    src="https://placehold.co/1200x600.png"
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&h=600&fit=crop"
                     alt="Community of learners"
                     layout="fill"
                     objectFit="cover"
@@ -95,7 +95,7 @@ export default function CommunityPage() {
                     </div>
                     <div className="flex justify-center">
                         <Image 
-                            src="https://placehold.co/500x400.png"
+                            src="https://images.unsplash.com/photo-1529070412935-6f21c5806585?q=80&w=500&h=400&fit=crop"
                             alt="Community guidelines"
                             width={500}
                             height={400}

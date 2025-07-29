@@ -88,7 +88,7 @@ export default function Home() {
             </div>
             <div className="relative">
               <Image
-                src="https://placehold.co/600x400.png"
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=600&h=400&fit=crop"
                 alt="Student learning online"
                 width={600}
                 height={400}

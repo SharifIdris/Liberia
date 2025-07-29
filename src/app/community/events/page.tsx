@@ -12,7 +12,7 @@ const events = [
         date: 'July 25, 2024', 
         time: '2:00 PM - 4:00 PM', 
         location: 'Online (Zoom)', 
-        image: 'https://placehold.co/600x400.png',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=600&h=400&fit=crop',
         dataAiHint: 'UI UX design'
     },
     { 
@@ -21,7 +21,7 @@ const events = [
         date: 'August 5, 2024', 
         time: '6:00 PM - 7:00 PM', 
         location: 'Online (Jitsi)', 
-        image: 'https://placehold.co/600x400.png',
+        image: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=600&h=400&fit=crop',
         dataAiHint: 'online meeting'
     },
     { 
@@ -30,7 +30,7 @@ const events = [
         date: 'August 15, 2024', 
         time: '5:00 PM onwards', 
         location: 'Monrovia Campus', 
-        image: 'https://placehold.co/600x400.png',
+        image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&h=400&fit=crop',
         dataAiHint: 'students networking'
     },
 ];

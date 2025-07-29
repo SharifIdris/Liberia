@@ -27,7 +27,7 @@ export default function StudentProfilePage() {
           <form className="space-y-6">
             <div className="flex items-center gap-6">
               <Avatar className="w-24 h-24">
-                <AvatarImage src="https://placehold.co/150x150.png" alt="Jane Doe" data-ai-hint="student woman" />
+                <AvatarImage src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&h=150&fit=crop&crop=faces" alt="Jane Doe" data-ai-hint="student woman" />
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
               <div className="flex-1">

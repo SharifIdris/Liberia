@@ -15,7 +15,7 @@ const courses = [
     duration: '6 Months',
     rating: 4.8,
     reviews: 120,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'digital marketing',
   },
   {
@@ -25,7 +25,7 @@ const courses = [
     duration: '3 Months',
     rating: 4.9,
     reviews: 250,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'project management',
   },
   {
@@ -35,7 +35,7 @@ const courses = [
     duration: '4 Months',
     rating: 4.7,
     reviews: 95,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'graphic design',
   },
   {
@@ -45,7 +45,7 @@ const courses = [
     duration: '8 Months',
     rating: 4.9,
     reviews: 450,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'web development',
   },
   {
@@ -55,7 +55,7 @@ const courses = [
     duration: '5 Months',
     rating: 4.8,
     reviews: 310,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'data science',
   },
   {
@@ -65,7 +65,7 @@ const courses = [
     duration: '6 Months',
     rating: 4.6,
     reviews: 88,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'finance accounting',
   },
 ];

@@ -24,7 +24,7 @@ export default function CertificatesPage() {
                         <CardDescription>Issued on {cert.date}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <Image src="https://placehold.co/400x250.png" alt="Certificate Preview" data-ai-hint="certificate document" width={400} height={250} className="rounded-md border-2 border-dashed" />
+                        <Image src="https://images.unsplash.com/photo-1593340099839-65a1e34a3833?q=80&w=400&h=250&fit=crop" alt="Certificate Preview" data-ai-hint="certificate document" width={400} height={250} className="rounded-md border-2 border-dashed" />
                     </CardContent>
                     <CardFooter>
                         <Button className="w-full">

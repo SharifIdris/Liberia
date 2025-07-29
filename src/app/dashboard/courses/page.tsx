@@ -9,14 +9,14 @@ const enrolledCourses = [
     id: 1,
     title: 'Intro to Machine Learning',
     progress: 75,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'machine learning',
   },
   {
     id: 2,
     title: 'Data Visualization',
     progress: 45,
-    image: 'https://placehold.co/600x400.png',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'data visualization',
   },
 ];

@@ -17,7 +17,7 @@ export default function ChatPage() {
                    {/* Chat messages would go here */}
                     <div className="flex items-start gap-3">
                         <Avatar>
-                            <AvatarImage src="https://placehold.co/40x40.png" data-ai-hint="teacher woman" />
+                            <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=40&h=40&fit=crop&crop=faces" data-ai-hint="teacher woman" />
                             <AvatarFallback>EC</AvatarFallback>
                         </Avatar>
                         <div className="bg-muted p-3 rounded-lg max-w-[80%]">
@@ -31,7 +31,7 @@ export default function ChatPage() {
                             <p className="text-sm">Thanks for the reminder! I'll be sure to submit it.</p>
                         </div>
                         <Avatar>
-                            <AvatarImage src="https://placehold.co/40x40.png" data-ai-hint="student woman" />
+                            <AvatarImage src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=40&h=40&fit=crop&crop=faces" data-ai-hint="student woman" />
                             <AvatarFallback>JD</AvatarFallback>
                         </Avatar>
                     </div>
