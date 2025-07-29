@@ -9,6 +9,9 @@ const navLinks = [
   { href: "/courses", label: "Programs" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+  { href: "/admin", label: "Admin" },
+  { href: "/teacher", label: "Teacher" },
+  { href: "/dashboard", label: "Student" },
 ];
 
 export function Header() {

@@ -7,10 +7,10 @@ import { MessageSquare, FileText, Receipt } from 'lucide-react';
 import Image from 'next/image';
 
 const myCourses = [
-  { id: 1, title: 'Intro to Machine Learning', inProgress: true },
-  { id: 2, title: 'Data Visualization', inProgress: false },
-  { id: 3, title: 'Neural Networks', inProgress: false },
-  { id: 4, title: 'Python for AI', inProgress: false },
+  { id: 1, title: 'Intro to Machine Learning', inProgress: true, href: '/dashboard/courses' },
+  { id: 2, title: 'Data Visualization', inProgress: false, href: '/dashboard/courses' },
+  { id: 3, title: 'Neural Networks', inProgress: false, href: '/dashboard/courses' },
+  { id: 4, title: 'Python for AI', inProgress: false, href: '/dashboard/courses' },
 ];
 
 export default function DashboardPage() {
@@ -25,7 +25,9 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
              <Image src="https://placehold.co/600x400.png" data-ai-hint="online course video" alt="Course" width={600} height={400} className="rounded-lg aspect-video mb-4"/>
-            <Button className="w-full">Enroll Course</Button>
+            <Button className="w-full" asChild>
+              <Link href="/courses">Enroll Course</Link>
+            </Button>
           </CardContent>
         </Card>
         <Card className="flex items-center justify-center p-6">
@@ -39,9 +41,8 @@ export default function DashboardPage() {
                 <CardTitle>Assignments</CardTitle>
             </CardHeader>
             <CardContent>
-                <Button variant="outline" className="w-full">
-                    <FileText className="mr-2"/>
-                    Download Certificate
+                <Button variant="outline" className="w-full" asChild>
+                    <Link href="/dashboard/assignments"><FileText className="mr-2"/>Download Certificate</Link>
                 </Button>
             </CardContent>
         </Card>
@@ -50,9 +51,8 @@ export default function DashboardPage() {
                 <CardTitle>Payments</CardTitle>
             </CardHeader>
             <CardContent>
-                <Button className="w-full">
-                    <Receipt className="mr-2"/>
-                    Make Payment
+                <Button className="w-full" asChild>
+                   <Link href="/dashboard/payments"> <Receipt className="mr-2"/>Make Payment</Link>
                 </Button>
             </CardContent>
         </Card>
@@ -68,7 +68,7 @@ export default function DashboardPage() {
                 {myCourses.map((course) => (
                     <div key={course.id} className="flex items-center justify-between p-3 rounded-md border">
                         <span className="font-medium">{course.title}</span>
-                        {course.inProgress && <Button size="sm">Resume</Button>}
+                        {course.inProgress && <Button size="sm" asChild><Link href={course.href}>Resume</Link></Button>}
                     </div>
                 ))}
             </CardContent>
@@ -100,7 +100,7 @@ export default function DashboardPage() {
                 <p className="text-sm text-muted-foreground">Teacher</p>
             </CardContent>
             <CardFooter>
-                <Button variant="outline" className="w-full">View Profile</Button>
+                <Button variant="outline" className="w-full" asChild><Link href="/teacher">View Profile</Link></Button>
             </CardFooter>
         </Card>
          <Card>
@@ -113,7 +113,9 @@ export default function DashboardPage() {
                         <p className="font-medium">Next Payment</p>
                         <p className="text-sm text-muted-foreground">Amount $150.00</p>
                     </div>
-                    <p className="text-lg font-bold">$150</p>
+                     <Link href="/dashboard/payments">
+                        <p className="text-lg font-bold">$150</p>
+                     </Link>
                 </div>
             </CardContent>
         </Card>

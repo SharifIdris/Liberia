@@ -15,17 +15,17 @@ import Link from 'next/link';
 import React from 'react';
 
 const courseContent = [
-    { id: 1, title: 'Intro to Machine Learning' },
-    { id: 2, title: 'Data Visualization' },
-    { id: 3, title: 'Neural Networks' },
-    { id: 4, title: 'Deep Learning Fundamentals' },
-    { id: 5, title: 'Python for AI' },
+    { id: 1, title: 'Intro to Machine Learning', href: "/teacher/courses" },
+    { id: 2, title: 'Data Visualization', href: "/teacher/courses" },
+    { id: 3, title: 'Neural Networks', href: "/teacher/courses" },
+    { id: 4, title: 'Deep Learning Fundamentals', href: "/teacher/courses" },
+    { id: 5, title: 'Python for AI', href: "/teacher/courses" },
 ];
 
 const assignments = [
-    { id: 1, title: 'Assignment 1', submissions: 9 },
-    { id: 2, title: 'Assignment 2', submissions: 8 },
-    { id: 3, title: 'Assignment 3', submissions: 12 },
+    { id: 1, title: 'Assignment 1', submissions: 9, href: "/teacher/assignments" },
+    { id: 2, title: 'Assignment 2', submissions: 8, href: "/teacher/assignments" },
+    { id: 3, title: 'Assignment 3', submissions: 12, href: "/teacher/assignments" },
 ];
 
 
@@ -43,9 +43,11 @@ export default function TeacherDashboard() {
             <div className="bg-muted rounded-lg aspect-video flex items-center justify-center">
                 <Video className="w-16 h-16 text-muted-foreground" />
             </div>
-            <Button className="w-full">
-              <Video className="mr-2" />
-              Record Video
+            <Button className="w-full" asChild>
+                <Link href="/teacher/sessions">
+                    <Video className="mr-2" />
+                    Record Video
+                </Link>
             </Button>
             <Button variant="outline" className="w-full">
               <Upload className="mr-2" />
@@ -72,12 +74,16 @@ export default function TeacherDashboard() {
                 <div className="bg-muted/50 p-4 rounded-lg">
                     <div className="flex justify-between items-center">
                         <p className="font-semibold">Zoom - Intro to Machine Learning</p>
-                        <Button size="sm" variant="ghost">Edit</Button>
+                        <Button size="sm" variant="ghost" asChild>
+                            <Link href="/teacher/sessions">Edit</Link>
+                        </Button>
                     </div>
                     <p className="text-sm text-muted-foreground">April 28, 2024</p>
                     <p className="text-sm text-muted-foreground">4:00 PM - 5:00 PM</p>
                 </div>
-                 <Button variant="link" className="w-full p-0">Edit</Button>
+                 <Button variant="link" className="w-full p-0" asChild>
+                    <Link href="/teacher/sessions">Edit</Link>
+                </Button>
             </CardContent>
         </Card>
       </div>
@@ -94,7 +100,7 @@ export default function TeacherDashboard() {
                         <div className="flex items-center justify-between p-2 rounded-md hover:bg-muted">
                             <span className="font-medium">{item.title}</span>
                             <Button variant="ghost" size="sm" asChild>
-                                <Link href="#">Edit <ChevronRight className="ml-2 h-4 w-4"/></Link>
+                                <Link href={item.href}>Edit <ChevronRight className="ml-2 h-4 w-4"/></Link>
                             </Button>
                         </div>
                         {index < courseContent.length - 1 && <Separator />}
@@ -111,14 +117,16 @@ export default function TeacherDashboard() {
                 <CardTitle>Upload Assignment</CardTitle>
             </CardHeader>
             <CardContent>
-                <Button variant="outline" className="w-full mb-4">
+                <Button variant="outline" className="w-full mb-4" asChild>
+                   <Link href="/teacher/assignments">
                     <Plus className="mr-2" />
                     Add Assignment
+                   </Link>
                 </Button>
                 <div className="space-y-2">
                      {assignments.map((assignment, index) => (
                         <React.Fragment key={assignment.id}>
-                            <Link href="#" className="flex items-center justify-between p-2 rounded-md hover:bg-muted">
+                            <Link href={assignment.href} className="flex items-center justify-between p-2 rounded-md hover:bg-muted">
                                 <div>
                                     <p className="font-medium">{assignment.title}</p>
                                     <p className="text-sm text-muted-foreground">{assignment.submissions} Submissions</p>
