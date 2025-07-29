@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 
 const GoogleIcon = () => (
-    <svg className="w-5 h-5" viewBox="0 0 48 48">
+    <svg className="w-6 h-6" viewBox="0 0 48 48">
         <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"></path>
         <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"></path>
         <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.222 0-9.519-3.317-11.284-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path>
@@ -16,15 +16,9 @@ const GoogleIcon = () => (
 );
 
 const FacebookIcon = () => (
-    <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
+    <svg className="w-6 h-6" fill="#1877F2" viewBox="0 0 24 24">
         <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06c0 5.52 4.5 10.02 10 10.02c5.5 0 10-4.5 10-10.02C22 6.53 17.5 2.04 12 2.04zM16.5 8.25h-2.25c-.28 0-.5.22-.5.5v1.5h2.75l-.35 2.5h-2.4v7.5H11v-7.5H8.5V9.25H11V7.5c0-1.38 1.12-2.5 2.5-2.5h3v3.25z"></path>
     </svg>
-);
-
-const MtnIcon = () => (
-    <div className="w-5 h-5 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold text-xs">
-        MTN
-    </div>
 );
 
 
@@ -70,18 +64,14 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            <div className="grid gap-3">
-                <Button variant="outline" className="w-full h-12 text-md justify-start hover:bg-secondary">
+            <div className="flex justify-center gap-4">
+                <Button variant="outline" size="icon" className="rounded-full h-12 w-12 hover:bg-secondary">
                     <GoogleIcon />
-                    <span className="flex-1 text-center">Continue with Google</span>
+                    <span className="sr-only">Continue with Google</span>
                 </Button>
-                 <Button variant="outline" className="w-full h-12 text-md justify-start hover:bg-secondary">
+                 <Button variant="outline" size="icon" className="rounded-full h-12 w-12 hover:bg-secondary">
                     <FacebookIcon />
-                    <span className="flex-1 text-center">Continue with Facebook</span>
-                </Button>
-                 <Button variant="outline" className="w-full h-12 text-md justify-start hover:bg-secondary">
-                    <MtnIcon />
-                    <span className="flex-1 text-center">Continue with MTN</span>
+                    <span className="sr-only">Continue with Facebook</span>
                 </Button>
             </div>
           </form>
