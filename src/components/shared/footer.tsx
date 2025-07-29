@@ -10,11 +10,14 @@ export function Footer() {
             <Logo className="h-8 w-8 mr-2 text-primary" />
             <span className="font-bold text-lg font-headline">eSchola Liberia</span>
           </div>
-          <nav className="flex gap-4 mb-4 md:mb-0 text-sm text-white/60">
+          <nav className="flex gap-4 mb-4 md:mb-0 text-sm text-white/60 flex-wrap justify-center">
             <Link href="/courses" className="hover:text-white">Programs</Link>
             <Link href="/about" className="hover:text-white">About</Link>
+            <Link href="/community" className="hover:text-white">Community</Link>
+            <Link href="/support" className="hover:text-white">Support</Link>
             <Link href="/contact" className="hover:text-white">Contact</Link>
-            <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/privacy" className="hover:text-white">Privacy</Link>
+            <Link href="/terms" className="hover:text-white">Terms</Link>
           </nav>
         </div>
         <div className="text-center text-sm text-white/60 mt-4 pt-4 border-t border-slate-700">
