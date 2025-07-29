@@ -1,8 +1,14 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Logo } from "@/components/icons";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -30,6 +36,26 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+             {/* Dev-only Dashboard Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="hover:bg-slate-800 hover:text-white text-white/60 hover:text-white/80 transition-colors">
+                  Dashboards
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <Link href="/dashboard">Student</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/teacher">Teacher</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/admin">Admin</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </nav>
         </div>
 
@@ -61,6 +87,9 @@ export function Header() {
                   ))}
                   <Link href="/about" className="text-lg hover:text-white/80">About</Link>
                   <Link href="/contact" className="text-lg hover:text-white/80">Contact</Link>
+                   <Link href="/dashboard" className="text-lg hover:text-white/80">Student Dashboard</Link>
+                   <Link href="/teacher" className="text-lg hover:text-white/80">Teacher Dashboard</Link>
+                   <Link href="/admin" className="text-lg hover:text-white/80">Admin Dashboard</Link>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -68,9 +97,6 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-2">
             <Button asChild variant="ghost" className="hover:bg-slate-800 hover:text-white">
               <Link href="/login">Log in</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/register">Register</Link>
             </Button>
           </nav>
         </div>
