@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import {
   BookOpen,
@@ -10,6 +11,7 @@ import {
   Award,
   MessageSquare,
   Bell,
+  Trophy,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -31,6 +33,7 @@ const navLinks = [
   { href: '/dashboard/assignments', label: 'Assignments', icon: <FileText className="h-5 w-5" /> },
   { href: '/dashboard/recordings', label: 'Recordings', icon: <Video className="h-5 w-5" /> },
   { href: '/dashboard/certificates', label: 'Certificates', icon: <Award className="h-5 w-5" /> },
+  { href: '/dashboard/badges', label: 'My Badges', icon: <Trophy className="h-5 w-5" /> },
   { href: '/dashboard/chat', label: 'Chat', icon: <MessageSquare className="h-5 w-5" /> },
 ];
 
