@@ -1,29 +1,31 @@
 import Link from 'next/link';
 import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarFooter,
-  SidebarTrigger,
-  SidebarInset,
-} from '@/components/ui/sidebar';
-import {
-  LayoutDashboard,
   BookOpen,
+  Calendar,
   CreditCard,
+  FileText,
+  PanelLeft,
   User,
-  Settings,
-  LogOut,
-  ChevronDown
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
+const navLinks = [
+  { href: '/dashboard/courses', label: 'Courses', icon: <BookOpen className="h-5 w-5" /> },
+  { href: '/dashboard/payments', label: 'Payments', icon: <CreditCard className="h-5 w-5" /> },
+  { href: '/dashboard/calendar', label: 'Calendar', icon: <Calendar className="h-5 w-5" /> },
+  { href: '/dashboard/assignments', label: 'Assignments', icon: <FileText className="h-5 w-5" /> },
+];
 
 export default function DashboardLayout({
   children,
@@ -31,77 +33,88 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <SidebarProvider>
-      <Sidebar>
-        <SidebarHeader className="border-b">
-          <div className="flex items-center gap-2">
-             <Logo className="w-6 h-6 text-primary" />
-             <h1 className="text-lg font-semibold font-headline">EduLiberia</h1>
+    <div className="flex min-h-screen w-full flex-col">
+      <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+          <Link
+            href="/dashboard"
+            className="flex items-center gap-2 text-lg font-semibold md:text-base"
+          >
+            <Logo className="h-6 w-6 text-primary" />
+            <span className="font-headline">STUDENT</span>
+          </Link>
+          {navLinks.map((link) => (
+             <Link
+                key={link.href}
+                href={link.href}
+                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.icon}
+                {link.label}
+              </Link>
+          ))}
+        </nav>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="shrink-0 md:hidden"
+            >
+              <PanelLeft className="h-5 w-5" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="grid gap-6 text-lg font-medium">
+               <Link
+                href="/dashboard"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
+                <Logo className="h-6 w-6 text-primary" />
+                <span className="font-headline">STUDENT</span>
+              </Link>
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                >
+                  {link.icon}
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+           <div className="ml-auto flex-1 sm:flex-initial">
+             {/* Future search bar can go here */}
           </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton href="/dashboard" isActive>
-                <LayoutDashboard />
-                <span>Dashboard</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton href="/dashboard/courses">
-                <BookOpen />
-                <span>My Courses</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-            <SidebarMenuItem>
-              <SidebarMenuButton href="/dashboard/payments">
-                <CreditCard />
-                <span>Payments</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-             <SidebarMenuItem>
-              <SidebarMenuButton href="/dashboard/profile">
-                <User />
-                <span>Profile</span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarContent>
-        <SidebarFooter>
-          <DropdownMenu>
+           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="w-full justify-start gap-2 px-2">
-                 <Avatar className="w-8 h-8">
-                  <AvatarImage src="https://placehold.co/40x40.png" alt="User" data-ai-hint="person face" />
+              <Button variant="secondary" size="icon" className="rounded-full">
+                <Avatar>
+                  <AvatarImage src="https://placehold.co/40x40.png" alt="Jane Doe" data-ai-hint="student woman" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
-                <div className="text-left">
-                  <p className="text-sm font-medium">Jane Doe</p>
-                  <p className="text-xs text-muted-foreground">jane.doe@example.com</p>
-                </div>
-                <ChevronDown className="ml-auto h-4 w-4" />
+                <span className="sr-only">Toggle user menu</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56 mb-2" align="end" side="top">
-                <DropdownMenuItem>
-                    <Settings className="mr-2 h-4 w-4" />
-                    <span>Settings</span>
-                </DropdownMenuItem>
-                 <DropdownMenuItem>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                </DropdownMenuItem>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>Jane Doe</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Settings</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Logout</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </SidebarFooter>
-      </Sidebar>
-      <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
-           <SidebarTrigger className="md:hidden" />
-           <h2 className="text-xl font-semibold font-headline">Dashboard</h2>
-        </header>
-        <main className="flex-1 p-4 sm:p-6">{children}</main>
-      </SidebarInset>
-    </SidebarProvider>
+        </div>
+      </header>
+      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 bg-muted/40">
+        {children}
+      </main>
+    </div>
   );
 }
