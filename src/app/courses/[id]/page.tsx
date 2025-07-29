@@ -1,0 +1,168 @@
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Header } from '@/components/shared/header';
+import { Footer } from '@/components/shared/footer';
+import { Check, PlayCircle, ChevronRight, Award } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
+
+const course = {
+  id: '1',
+  title: 'Web Development Certificate',
+  description: 'Gain essential skills in front-end and back-end web development through our comprehensive online certificate program.',
+  image: 'https://placehold.co/600x400.png',
+  dataAiHint: 'smiling student online',
+  duration: '6 Months',
+  type: 'Certificate',
+  overview: 'This flexible program will cover how-to relevant two component cover comprehensive HTML, CSS-JavaScript, and server side programming. This will cover responsive websites to build interactive websites on a code.',
+  whatYouWillLearn: [
+    'Build dynamic websites using HTML, CSS, and Javascripts',
+    'Develop back and applications with Node.js and Express',
+    'Manage databases with MongoDB',
+    'Implement responsive design principles',
+  ],
+  instructors: [
+    {
+      name: 'Maria Chen',
+      title: 'Senior Software Engineer',
+      image: 'https://placehold.co/150x150.png',
+      dataAiHint: 'woman software engineer',
+    },
+    {
+      name: 'James Smith',
+      title: 'Full Stack Developer',
+      image: 'https://placehold.co/150x150.png',
+      dataAiHint: 'man developer',
+    },
+  ],
+  faq: [
+    {
+      question: 'What are the prerequisites for this program?',
+      answer: 'There are no strict prerequisites for this program. However, a basic understanding of computer literacy is recommended. Our introductory modules are designed to bring everyone up to speed.',
+    },
+    {
+      question: 'How are the courses delivered?',
+      answer: 'The courses are delivered through a mix of pre-recorded video lectures, live online sessions with instructors, hands-on assignments, and peer-to-peer discussions. You can learn at your own pace.',
+    },
+    {
+      question: 'Can I switch to a different program later?',
+      answer: 'Yes, you can switch to a different program within the first two weeks of starting the course. Please contact our support team for assistance with the process.',
+    },
+  ],
+};
+
+export default function CourseDetailsPage({ params }: { params: { id: string } }) {
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <main className="flex-grow container mx-auto px-4 py-12">
+        {/* Hero Section */}
+        <section className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          <div className="text-left">
+            <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">
+              {course.title}
+            </h1>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl">
+              {course.description}
+            </p>
+            <div className="flex flex-col items-start gap-4">
+                <Button asChild size="lg">
+                    <Link href="/register">Enroll Now</Link>
+                </Button>
+                <p className="text-sm text-muted-foreground">Flexible payment options available</p>
+            </div>
+          </div>
+          <div className="relative">
+            <Image
+              src={course.image}
+              alt={course.title}
+              width={600}
+              height={400}
+              className="rounded-lg shadow-2xl w-full"
+              data-ai-hint={course.dataAiHint}
+            />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Button variant="ghost" size="icon" className="w-20 h-20 bg-primary/50 rounded-full hover:bg-primary/70">
+                <PlayCircle className="w-12 h-12 text-white" />
+              </Button>
+            </div>
+          </div>
+        </section>
+        
+        {/* Details Bar */}
+        <div className="bg-secondary rounded-lg p-6 flex flex-col md:flex-row justify-between items-center gap-4 mb-16">
+            <div className="flex items-center gap-4">
+                <Award className="w-10 h-10 text-primary"/>
+                <div>
+                    <p className="text-muted-foreground">{course.type}</p>
+                    <p className="font-bold text-lg">{course.duration}</p>
+                </div>
+            </div>
+            <Button asChild>
+                <Link href="/register">Enroll Now</Link>
+            </Button>
+        </div>
+
+        {/* Main Content */}
+        <div className="grid md:grid-cols-3 gap-12">
+            <div className="md:col-span-2">
+                <section id="overview" className="mb-12">
+                    <h2 className="text-3xl font-bold font-headline mb-4">Overview</h2>
+                    <p className="text-muted-foreground leading-relaxed">{course.overview}</p>
+                </section>
+
+                <section id="instructors" className="mb-12">
+                    <h2 className="text-3xl font-bold font-headline mb-6">Instructors</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    {course.instructors.map((instructor) => (
+                        <Card key={instructor.name} className="bg-secondary border-border/50 text-center p-6">
+                            <Avatar className="w-24 h-24 mx-auto mb-4">
+                                <AvatarImage src={instructor.image} data-ai-hint={instructor.dataAiHint} />
+                                <AvatarFallback>{instructor.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <h3 className="font-bold text-lg">{instructor.name}</h3>
+                            <p className="text-muted-foreground">{instructor.title}</p>
+                        </Card>
+                    ))}
+                    </div>
+                </section>
+            </div>
+
+            <div className="md:col-span-1">
+                <section id="what-you-will-learn" className="bg-secondary p-6 rounded-lg mb-8">
+                    <h3 className="text-2xl font-bold font-headline mb-4">What You Will Learn</h3>
+                    <ul className="space-y-3">
+                        {course.whatYouWillLearn.map((item, index) => (
+                        <li key={index} className="flex items-start">
+                            <Check className="w-5 h-5 mr-3 mt-1 text-primary flex-shrink-0" />
+                            <span>{item}</span>
+                        </li>
+                        ))}
+                    </ul>
+                </section>
+
+                <section id="faq">
+                    <h3 className="text-2xl font-bold font-headline mb-4">Frequently Asked Questions</h3>
+                    <Accordion type="single" collapsible className="w-full">
+                        {course.faq.map((item, index) => (
+                        <AccordionItem value={`item-${index}`} key={index} className="bg-secondary rounded-lg mb-2 px-4">
+                            <AccordionTrigger className="hover:no-underline text-left">
+                                {item.question}
+                            </AccordionTrigger>
+                            <AccordionContent className="text-muted-foreground">
+                                {item.answer}
+                            </AccordionContent>
+                        </AccordionItem>
+                        ))}
+                    </Accordion>
+                </section>
+            </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+}
