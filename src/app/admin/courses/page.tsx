@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -109,11 +110,13 @@ export default function AdminCoursesPage() {
                 Export
               </span>
             </Button>
-            <Button size="sm" className="h-8 gap-1">
-              <PlusCircle className="h-3.5 w-3.5" />
-              <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-                Add Course
-              </span>
+            <Button asChild size="sm" className="h-8 gap-1">
+              <Link href="/admin/courses/new">
+                <PlusCircle className="h-3.5 w-3.5" />
+                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
+                  Add Course
+                </span>
+              </Link>
             </Button>
           </div>
         </div>
