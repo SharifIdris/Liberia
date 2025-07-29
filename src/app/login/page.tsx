@@ -3,47 +3,87 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Logo } from '@/components/icons';
+import { Checkbox } from '@/components/ui/checkbox';
+
+const GoogleIcon = () => (
+    <svg className="w-5 h-5" viewBox="0 0 48 48">
+        <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"></path>
+        <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691z"></path>
+        <path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238C29.211 35.091 26.715 36 24 36c-5.222 0-9.519-3.317-11.284-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"></path>
+        <path fill="#1976D2" d="M43.611 20.083H24v8h11.303c-.792 2.237-2.231 4.166-4.087 5.571l6.19 5.238C42.012 36.49 44 30.823 44 24c0-1.341-.138-2.65-.389-3.917z"></path>
+    </svg>
+);
+
+const FacebookIcon = () => (
+    <svg className="w-5 h-5" fill="#1877F2" viewBox="0 0 24 24">
+        <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06c0 5.52 4.5 10.02 10 10.02c5.5 0 10-4.5 10-10.02C22 6.53 17.5 2.04 12 2.04zM16.5 8.25h-2.25c-.28 0-.5.22-.5.5v1.5h2.75l-.35 2.5h-2.4v7.5H11v-7.5H8.5V9.25H11V7.5c0-1.38 1.12-2.5 2.5-2.5h3v3.25z"></path>
+    </svg>
+);
+
+const MtnIcon = () => (
+    <div className="w-5 h-5 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold text-xs">
+        WHPI
+    </div>
+);
+
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background">
-      <Card className="w-full max-w-sm border-border/60">
+    <div className="flex items-center justify-center min-h-screen bg-background p-4">
+      <Card className="w-full max-w-md border-border/30 bg-card/80 backdrop-blur-sm">
         <CardHeader className="text-center">
-          <Link href="/" className="flex justify-center items-center mb-4">
-            <Logo className="h-8 w-8 text-primary" />
-          </Link>
-          <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
-          <CardDescription>Enter your credentials to access your account.</CardDescription>
+          <CardTitle className="text-3xl font-bold text-accent">Welcome Back</CardTitle>
+          <CardDescription>Continue your learning journey with Online School</CardDescription>
         </CardHeader>
         <CardContent>
-          <form className="grid gap-4">
+          <form className="grid gap-6">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="student@example.com" required />
+              <Input id="email" type="email" placeholder="you@example.com" required className="bg-secondary/50 border-border/50 h-12"/>
             </div>
-            <div className="grid gap-2">
-              <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
-                <Link href="#" className="ml-auto inline-block text-sm underline hover:text-primary">
-                  Forgot your password?
+            <div className="grid gap-2 relative">
+               <Input id="password" type="password" placeholder="Password" required className="bg-secondary/50 border-border/50 h-12 pr-16"/>
+               <Button variant="ghost" className="absolute right-1 top-1/2 -translate-y-1/2 h-auto py-1 px-3 text-muted-foreground hover:bg-transparent hover:text-accent">Show</Button>
+            </div>
+            <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                    <Checkbox id="remember-me" className="border-muted-foreground data-[state=checked]:bg-accent data-[state=checked]:text-black"/>
+                    <Label htmlFor="remember-me" className="text-sm text-muted-foreground">Remember me</Label>
+                </div>
+                 <Link href="#" className="text-sm text-accent hover:underline">
+                  Forgot password?
                 </Link>
-              </div>
-              <Input id="password" type="password" required />
             </div>
-            <Button type="submit" className="w-full">
-              Log In
+
+            <Button type="submit" className="w-full h-12 text-lg bg-accent text-accent-foreground hover:bg-accent/90">
+              Sign In
             </Button>
-            <Button variant="outline" className="w-full" asChild>
-              <Link href="#">Login with Google</Link>
-            </Button>
+            
+            <div className="relative my-2">
+                <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t border-border/50" />
+                </div>
+                <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">
+                    or
+                    </span>
+                </div>
+            </div>
+
+            <div className="grid gap-3">
+                <Button variant="outline" className="w-full h-12 text-md justify-start bg-secondary/50 border-border/50 hover:bg-secondary">
+                    <GoogleIcon />
+                    <span className="flex-1 text-center">Continue with Google</span>
+                </Button>
+                 <Button variant="outline" className="w-full h-12 text-md justify-start bg-secondary/50 border-border/50 hover:bg-secondary">
+                    <FacebookIcon />
+                    <span className="flex-1 text-center">Continue with Facebook</span>
+                </Button>
+                 <Button variant="outline" className="w-full h-12 text-md justify-start bg-secondary/50 border-border/50 hover:bg-secondary">
+                    <MtnIcon />
+                    <span className="flex-1 text-center">Continue with MTN</span>
+                </Button>
+            </div>
           </form>
-          <div className="mt-4 text-center text-sm">
-            Don't have an account?{' '}
-            <Link href="/register" className="underline hover:text-primary">
-              Sign up
-            </Link>
-          </div>
         </CardContent>
       </Card>
     </div>
