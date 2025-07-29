@@ -159,7 +159,7 @@ export default function AdminCoursesPage() {
                           alt="Course image"
                           className="aspect-square rounded-md object-cover"
                           height="64"
-                          src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=64&h=64&fit=crop"
+                          src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?q=80&w=64&h=64&fit=crop"
                           data-ai-hint="online course"
                           width="64"
                         />

@@ -28,13 +28,13 @@ const course = {
     {
       name: 'Maria Chen',
       title: 'Senior Software Engineer',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1580894742597-87bc8789db3d?q=80&w=150&h=150&fit=crop&crop=faces',
       dataAiHint: 'woman software engineer',
     },
     {
       name: 'James Smith',
       title: 'Full Stack Developer',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1613959953633-d642aff2a19b?q=80&w=150&h=150&fit=crop&crop=faces',
       dataAiHint: 'man developer',
     },
   ],

@@ -109,7 +109,7 @@ export default function TeacherLayout({
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full bg-slate-800 hover:bg-slate-700">
                 <Avatar>
-                  <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=40&h=40&fit=crop&crop=faces" alt="Evelyn Carter" data-ai-hint="teacher woman" />
+                  <AvatarImage src="https://images.unsplash.com/photo-1580894742597-87bc8789db3d?q=80&w=40&h=40&fit=crop&crop=faces" alt="Evelyn Carter" data-ai-hint="teacher woman" />
                   <AvatarFallback>EC</AvatarFallback>
                 </Avatar>
                 <span className="sr-only">Toggle user menu</span>

@@ -16,7 +16,7 @@ const enrolledCourses = [
     id: 2,
     title: 'Data Visualization',
     progress: 45,
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1573495627361-d9b87960b12d?q=80&w=600&h=400&fit=crop',
     dataAiHint: 'data visualization',
   },
 ];

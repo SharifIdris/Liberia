@@ -23,7 +23,7 @@ export default function TeacherProfilePage() {
           <form className="space-y-6">
             <div className="flex items-center gap-6">
               <Avatar className="w-24 h-24">
-                <AvatarImage src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&fit=crop&crop=faces" alt="Evelyn Carter" data-ai-hint="teacher woman" />
+                <AvatarImage src="https://images.unsplash.com/photo-1580894742597-87bc8789db3d?q=80&w=150&h=150&fit=crop&crop=faces" alt="Evelyn Carter" data-ai-hint="teacher woman" />
                 <AvatarFallback>EC</AvatarFallback>
               </Avatar>
               <div className="flex-1">
