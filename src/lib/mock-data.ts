@@ -96,9 +96,15 @@ export const courses = [
       {
         name: 'Zainab Diallo',
         title: 'Art Director',
-        image: 'https://images.unsplash.com/photo-1613959953633-d642aff2a19b?q=80&w=150&h=150&fit=crop&crop=faces&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.0.3',
+        image: 'https://images.unsplash.com/photo-1541692434799-2708383a1523?q=80&w=150&h=150&fit=crop&crop=faces',
         dataAiHint: 'creative african woman',
       },
+       {
+        name: 'Kwame Osei',
+        title: 'UI/UX Designer',
+        image: 'https://images.unsplash.com/photo-1604904612715-47bf9d9bc670?q=80&w=150&h=150&fit=crop&crop=faces',
+        dataAiHint: 'man ui designer',
+      }
     ],
     faq: [
       { question: 'Do I need a powerful computer?', answer: 'Yes, a computer capable of running Adobe Creative Suite smoothly is required for this course.' },
@@ -167,6 +173,12 @@ export const courses = [
         image: 'https://images.unsplash.com/photo-1613959953633-d642aff2a19b?q=80&w=150&h=150&fit=crop&crop=faces&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.0.3',
         dataAiHint: 'african man data scientist',
       },
+      {
+        name: 'Ifunanya Okoro',
+        title: 'Machine Learning Engineer',
+        image: 'https://images.unsplash.com/photo-1580894742597-87bc8789db3d?q=80&w=150&h=150&fit=crop&crop=faces',
+        dataAiHint: 'woman machine learning engineer',
+      }
     ],
     faq: [
       { question: 'Is this course heavy on math?', answer: 'A basic understanding of statistics and linear algebra is helpful but not required. We cover the necessary concepts in the course.' },
@@ -197,6 +209,12 @@ export const courses = [
         title: 'Chartered Accountant',
         image: 'https://images.unsplash.com/photo-1664575196412-ed801e83348c?q=80&w=150&h=150&fit=crop&crop=faces&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.0.3',
         dataAiHint: 'professional african woman smiling',
+      },
+      {
+        name: 'Sekou Traore',
+        title: 'Forensic Accountant',
+        image: 'https://images.unsplash.com/photo-1590650213165-c2618f44c56d?q=80&w=150&h=150&fit=crop&crop=faces',
+        dataAiHint: 'man forensic accountant',
       },
     ],
     faq: [
