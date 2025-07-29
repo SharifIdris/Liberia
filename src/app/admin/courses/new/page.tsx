@@ -12,6 +12,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Upload } from 'lucide-react';
 
 export default function AdminAddCoursePage() {
@@ -43,7 +45,7 @@ export default function AdminAddCoursePage() {
                   placeholder="A comprehensive course covering..."
                 />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="grid gap-3">
                     <Label htmlFor="category">Category</Label>
                     <Input
@@ -57,6 +59,34 @@ export default function AdminAddCoursePage() {
                     <Input id="price" type="number" placeholder="e.g. 500.00" />
                 </div>
                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid gap-3">
+                        <Label htmlFor="teacher">Assign Teacher</Label>
+                        <Select>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select a teacher" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="alex-johnson">Alex Johnson</SelectItem>
+                                <SelectItem value="sarah-williams">Sarah Williams</SelectItem>
+                                <SelectItem value="emily-white">Emily White</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                     <div className="grid gap-3">
+                        <Label>Payment Structure</Label>
+                        <RadioGroup defaultValue="full" className="flex items-center gap-4 pt-2">
+                            <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="full" id="r1" />
+                                <Label htmlFor="r1">Full Payment Only</Label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="installments" id="r2" />
+                                <Label htmlFor="r2">Allow Installments</Label>
+                            </div>
+                        </RadioGroup>
+                    </div>
+                </div>
                <div className="grid gap-3">
                 <Label>Course Image</Label>
                 <Card className="border-2 border-dashed">
