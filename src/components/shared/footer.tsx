@@ -11,7 +11,6 @@ export function Footer() {
             <span className="font-bold text-lg font-headline">eSchola Liberia</span>
           </div>
           <nav className="flex gap-4 mb-4 md:mb-0 text-sm text-white/60 flex-wrap justify-center">
-            <Link href="/courses" className="hover:text-white">Programs</Link>
             <Link href="/about" className="hover:text-white">About</Link>
             <Link href="/community" className="hover:text-white">Community</Link>
             <Link href="/support" className="hover:text-white">Support</Link>
