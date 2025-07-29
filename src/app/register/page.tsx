@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,6 +25,8 @@ const LiberiaFlag = () => (
 
 
 export default function RegisterPage() {
+    const [showPassword, setShowPassword] = useState(false);
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
       <Card className="w-full max-w-md">
@@ -58,8 +63,11 @@ export default function RegisterPage() {
                 </Select>
                 <Input id="mobile-number" placeholder="Mobile Number" required className="h-12 flex-1"/>
             </div>
-            <div className="grid gap-2">
-              <Input id="password" type="password" placeholder="Password" required className="h-12" />
+            <div className="grid gap-2 relative">
+                <Input id="password" type={showPassword ? "text" : "password"} placeholder="Password" required className="h-12 pr-16" />
+                <Button type="button" variant="ghost" className="absolute right-1 top-1/2 -translate-y-1/2 h-auto py-1 px-3 text-muted-foreground hover:bg-transparent hover:text-accent" onClick={() => setShowPassword(!showPassword)}>
+                    {showPassword ? "Hide" : "Show"}
+                </Button>
             </div>
             <div className="flex items-center space-x-2">
                 <Checkbox id="terms" className="border-muted-foreground data-[state=checked]:bg-primary data-[state=checked]:text-white"/>
@@ -67,8 +75,8 @@ export default function RegisterPage() {
                 I agree to the <Link href="/privacy" className="underline text-accent hover:text-accent/80">Terms and Conditions</Link>
                 </Label>
             </div>
-            <Button type="submit" className="w-full h-12 text-lg">
-              Register
+            <Button asChild type="submit" className="w-full h-12 text-lg">
+                <Link href="/dashboard">Register</Link>
             </Button>
           </form>
           <div className="mt-4 text-center text-sm text-muted-foreground">

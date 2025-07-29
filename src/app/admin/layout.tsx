@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import {
   Bell,
@@ -30,6 +31,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 const navLinks = [
     { href: "/admin", label: "Dashboard", icon: Home },
     { href: "/admin/courses", label: "Courses", icon: Book },
+    { href: "/admin/enrollments", label: "Enrollments", icon: FileText },
     { href: "/admin/teachers", label: "Teachers", icon: User },
     { href: "/admin/students", label: "Students", icon: Users },
     { href: "/admin/payments", label: "Payments", icon: CreditCard },

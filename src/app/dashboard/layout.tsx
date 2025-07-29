@@ -29,6 +29,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: <BookOpen className="h-5 w-5" /> },
   { href: '/dashboard/courses', label: 'My Courses', icon: <BookOpen className="h-5 w-5" /> },
+  { href: '/dashboard/calendar', label: 'Calendar', icon: <Calendar className="h-5 w-5" /> },
   { href: '/dashboard/payments', label: 'Payments', icon: <CreditCard className="h-5 w-5" /> },
   { href: '/dashboard/assignments', label: 'Assignments', icon: <FileText className="h-5 w-5" /> },
   { href: '/dashboard/recordings', label: 'Recordings', icon: <Video className="h-5 w-5" /> },
