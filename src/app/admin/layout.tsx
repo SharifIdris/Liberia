@@ -105,15 +105,15 @@ export default function AdminLayout({
         </nav>
       </aside>
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-slate-900 text-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-slate-900 sm:px-6">
           <Sheet>
             <SheetTrigger asChild>
-              <Button size="icon" variant="outline" className="sm:hidden">
+              <Button size="icon" variant="outline" className="sm:hidden text-slate-900">
                 <PanelLeft className="h-5 w-5" />
                 <span className="sr-only">Toggle Menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="sm:max-w-xs">
+            <SheetContent side="left" className="sm:max-w-xs bg-slate-900 text-white border-r-slate-700">
               <nav className="grid gap-6 text-lg font-medium">
                 <Link
                   href="#"
@@ -124,35 +124,35 @@ export default function AdminLayout({
                 </Link>
                 <Link
                   href="/admin"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
                 >
                   <Home className="h-5 w-5" />
                   Dashboard
                 </Link>
                 <Link
                   href="/admin/courses"
-                  className="flex items-center gap-4 px-2.5 text-foreground"
+                  className="flex items-center gap-4 px-2.5 text-white"
                 >
                   <Book className="h-5 w-5" />
                   Courses
                 </Link>
                 <Link
                   href="/admin/teachers"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
                 >
                   <User className="h-5 w-5" />
                   Teachers
                 </Link>
                 <Link
                   href="/admin/enrollments"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
                 >
                   <Users className="h-5 w-5" />
                   Enrollments
                 </Link>
                 <Link
                   href="/admin/reports"
-                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
                 >
                   <BarChart3 className="h-5 w-5" />
                   Reports
@@ -166,14 +166,14 @@ export default function AdminLayout({
           <Button
             variant="outline"
             size="icon"
-            className="overflow-hidden rounded-full"
+            className="overflow-hidden rounded-full bg-transparent text-white hover:bg-slate-800 hover:text-white border-slate-700"
           >
            <Bell className="h-5 w-5" />
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <User className="h-5 w-5" />
+              <Button variant="secondary" size="icon" className="rounded-full bg-slate-800 hover:bg-slate-700">
+                <User className="h-5 w-5 text-white" />
                 <span className="sr-only">Toggle user menu</span>
               </Button>
             </DropdownMenuTrigger>

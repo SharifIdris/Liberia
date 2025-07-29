@@ -34,7 +34,7 @@ export default function TeacherLayout({
 }) {
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+      <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-slate-900 text-white px-4 md:px-6">
         <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
           <Link
             href="/teacher"
@@ -47,7 +47,7 @@ export default function TeacherLayout({
              <Link
                 key={link.href}
                 href={link.href}
-                className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                className="flex items-center gap-2 text-white/70 transition-colors hover:text-white"
               >
                 {link.icon}
                 {link.label}
@@ -59,13 +59,13 @@ export default function TeacherLayout({
             <Button
               variant="outline"
               size="icon"
-              className="shrink-0 md:hidden"
+              className="shrink-0 md:hidden text-slate-900"
             >
               <PanelLeft className="h-5 w-5" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left">
+          <SheetContent side="left" className="bg-slate-900 text-white border-r-slate-700">
             <nav className="grid gap-6 text-lg font-medium">
                <Link
                 href="/teacher"
@@ -78,7 +78,7 @@ export default function TeacherLayout({
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/70 transition-all hover:text-white"
                 >
                   {link.icon}
                   {link.label}
@@ -93,7 +93,7 @@ export default function TeacherLayout({
           </div>
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
+              <Button variant="secondary" size="icon" className="rounded-full bg-slate-800 hover:bg-slate-700">
                 <Avatar>
                   <AvatarImage src="https://placehold.co/40x40.png" alt="Evelyn Carter" data-ai-hint="teacher woman" />
                   <AvatarFallback>EC</AvatarFallback>
