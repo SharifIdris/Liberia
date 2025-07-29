@@ -6,6 +6,10 @@ import {
   FileText,
   PanelLeft,
   User,
+  Video,
+  Award,
+  MessageSquare,
+  Bell,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,10 +25,13 @@ import { Logo } from '@/components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const navLinks = [
-  { href: '/dashboard/courses', label: 'Courses', icon: <BookOpen className="h-5 w-5" /> },
+  { href: '/dashboard', label: 'Dashboard', icon: <BookOpen className="h-5 w-5" /> },
+  { href: '/dashboard/courses', label: 'My Courses', icon: <BookOpen className="h-5 w-5" /> },
   { href: '/dashboard/payments', label: 'Payments', icon: <CreditCard className="h-5 w-5" /> },
-  { href: '/dashboard/calendar', label: 'Calendar', icon: <Calendar className="h-5 w-5" /> },
   { href: '/dashboard/assignments', label: 'Assignments', icon: <FileText className="h-5 w-5" /> },
+  { href: '/dashboard/recordings', label: 'Recordings', icon: <Video className="h-5 w-5" /> },
+  { href: '/dashboard/certificates', label: 'Certificates', icon: <Award className="h-5 w-5" /> },
+  { href: '/dashboard/chat', label: 'Chat', icon: <MessageSquare className="h-5 w-5" /> },
 ];
 
 export default function DashboardLayout({
@@ -91,6 +98,14 @@ export default function DashboardLayout({
            <div className="ml-auto flex-1 sm:flex-initial">
              {/* Future search bar can go here */}
           </div>
+           <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full text-white/70 hover:text-white hover:bg-slate-800"
+          >
+            <Bell className="h-5 w-5" />
+            <span className="sr-only">Notifications</span>
+          </Button>
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full bg-slate-800 hover:bg-slate-700">
@@ -104,7 +119,7 @@ export default function DashboardLayout({
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Jane Doe</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem asChild><Link href="/dashboard/profile">Profile</Link></DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
                <DropdownMenuItem asChild>

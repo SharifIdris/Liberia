@@ -7,6 +7,9 @@ import {
   Users,
   PanelLeft,
   User,
+  UploadCloud,
+  LayoutDashboard,
+  Bell,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -22,10 +25,12 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 const navLinks = [
-  { href: '/teacher/courses', label: 'Courses', icon: <Book className="h-5 w-5" /> },
+  { href: '/teacher', label: 'Dashboard', icon: <LayoutDashboard className="h-5 w-5" /> },
+  { href: '/teacher/courses', label: 'My Courses', icon: <Book className="h-5 w-5" /> },
+  { href: '/teacher/uploads', label: 'Uploads', icon: <UploadCloud className="h-5 w-5" /> },
   { href: '/teacher/assignments', label: 'Assignments', icon: <FileText className="h-5 w-5" /> },
-  { href: '/teacher/sessions', label: 'Live Sessions', icon: <Clapperboard className="h-5 w-5" /> },
-  { href: '/teacher/submissions', label: 'Submissions', icon: <Users className="h-5 w-5" /> },
+  { href: '/teacher/sessions', label: 'Live Classes', icon: <Clapperboard className="h-5 w-5" /> },
+  { href: '/teacher/students', label: 'Students', icon: <Users className="h-5 w-5" /> },
 ];
 
 export default function TeacherLayout({
@@ -92,6 +97,14 @@ export default function TeacherLayout({
            <div className="ml-auto flex-1 sm:flex-initial">
              {/* Future search bar can go here */}
           </div>
+           <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full text-white/70 hover:text-white hover:bg-slate-800"
+          >
+            <Bell className="h-5 w-5" />
+            <span className="sr-only">Notifications</span>
+          </Button>
            <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full bg-slate-800 hover:bg-slate-700">
@@ -106,7 +119,7 @@ export default function TeacherLayout({
               <DropdownMenuLabel>Evelyn Carter</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
-                <Link href="/teacher/profile">Edit Profile</Link>
+                <Link href="/teacher/profile">Profile</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />

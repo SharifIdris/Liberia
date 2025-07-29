@@ -3,120 +3,108 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { MessageSquare, FileText, Receipt } from 'lucide-react';
-import Image from 'next/image';
+import { MessageSquare, FileText, Receipt, ArrowRight, Video, AlertCircle } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
 
 const myCourses = [
-  { id: 1, title: 'Intro to Machine Learning', inProgress: true, href: '/dashboard/courses' },
-  { id: 2, title: 'Data Visualization', inProgress: false, href: '/dashboard/courses' },
-  { id: 3, title: 'Neural Networks', inProgress: false, href: '/dashboard/courses' },
-  { id: 4, title: 'Python for AI', inProgress: false, href: '/dashboard/courses' },
+  { id: 1, title: 'Intro to Machine Learning', progress: 75, href: '/dashboard/courses/1' },
+  { id: 2, title: 'Data Visualization', progress: 45, href: '/dashboard/courses/2' },
 ];
+
+const upcomingSessions = [
+    { title: 'Data Visualization Live Q&A', date: 'April 25, 2024', time: '10:00 AM' },
+    { title: 'Machine Learning Workshop', date: 'April 28, 2024', time: '2:00 PM' },
+]
 
 export default function DashboardPage() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
-      {/* Column 1 */}
-      <div className="flex flex-col gap-6 xl:col-span-1">
+      {/* Left Column */}
+      <div className="lg:col-span-2 space-y-6">
         <Card>
-          <CardHeader>
-            <CardTitle>Register for Course</CardTitle>
-          </CardHeader>
-          <CardContent>
-             <Image src="https://placehold.co/600x400.png" data-ai-hint="online course video" alt="Course" width={600} height={400} className="rounded-lg aspect-video mb-4"/>
-            <Button className="w-full" asChild>
-              <Link href="/courses">Enroll Course</Link>
-            </Button>
-          </CardContent>
-        </Card>
-        <Card className="flex items-center justify-center p-6">
-            <Button variant="ghost" className="text-lg">
-                <MessageSquare className="mr-2"/>
-                Chat
-            </Button>
-        </Card>
-        <Card>
-            <CardHeader>
-                <CardTitle>Assignments</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Button variant="outline" className="w-full" asChild>
-                    <Link href="/dashboard/assignments"><FileText className="mr-2"/>Download Certificate</Link>
-                </Button>
-            </CardContent>
-        </Card>
-        <Card>
-            <CardHeader>
-                <CardTitle>Payments</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <Button className="w-full" asChild>
-                   <Link href="/dashboard/payments"> <Receipt className="mr-2"/>Make Payment</Link>
-                </Button>
-            </CardContent>
-        </Card>
-      </div>
-
-      {/* Column 2 & 3 */}
-      <div className="lg:col-span-2 xl:col-span-2 space-y-6">
-         <Card className="h-full">
             <CardHeader>
                 <CardTitle>My Courses</CardTitle>
+                <CardDescription>Continue your learning journey.</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-2">
+            <CardContent className="space-y-4">
                 {myCourses.map((course) => (
-                    <div key={course.id} className="flex items-center justify-between p-3 rounded-md border">
-                        <span className="font-medium">{course.title}</span>
-                        {course.inProgress && <Button size="sm" asChild><Link href={course.href}>Resume</Link></Button>}
+                    <Card key={course.id} className="p-4 flex items-center justify-between">
+                        <div>
+                            <h3 className="font-bold">{course.title}</h3>
+                            <div className="flex items-center gap-2 mt-2">
+                                <Progress value={course.progress} className="w-32" />
+                                <span className="text-sm text-muted-foreground">{course.progress}%</span>
+                            </div>
+                        </div>
+                        <Button asChild size="sm">
+                            <Link href={course.href}>Resume <ArrowRight className="ml-2 h-4 w-4"/></Link>
+                        </Button>
                     </div>
                 ))}
             </CardContent>
+            <CardFooter>
+                 <Button variant="outline" className="w-full" asChild>
+                    <Link href="/courses">Explore More Courses</Link>
+                </Button>
+            </CardFooter>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Upcoming Live Sessions</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+               {upcomingSessions.map(session => (
+                 <div key={session.title} className="flex items-center justify-between p-3 rounded-md bg-muted/50">
+                    <div>
+                        <p className="font-semibold">{session.title}</p>
+                        <p className="text-sm text-muted-foreground">{session.date} at {session.time}</p>
+                    </div>
+                    <Button variant="secondary" size="sm"><Video className="mr-2 h-4 w-4"/>Join</Button>
+                 </div>
+               ))}
+            </CardContent>
         </Card>
       </div>
       
-      {/* Column 4 */}
-      <div className="flex flex-col gap-6 xl:col-span-1">
-        <Card>
+      {/* Right Column */}
+      <div className="space-y-6">
+         <Card className="bg-primary text-primary-foreground">
             <CardHeader>
-                <CardTitle>Upcoming Live Session</CardTitle>
+                <CardTitle className="flex items-center gap-2"><AlertCircle/>Payment Due</CardTitle>
             </CardHeader>
-            <CardContent className="bg-muted/50 p-4 rounded-lg text-center">
-                <p className="font-semibold text-lg">Data Visualization</p>
-                <p className="text-sm text-muted-foreground">April 25, 2024</p>
-                <p className="text-sm text-muted-foreground">10:00 AM - 11:00 AM</p>
-            </CardContent>
-        </Card>
-        <Card className="text-center">
-            <CardHeader>
-                <CardTitle>Teacher</CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-col items-center gap-2">
-                 <Avatar className="w-24 h-24 mb-2">
-                    <AvatarImage src="https://placehold.co/96x96.png" data-ai-hint="teacher woman"/>
-                    <AvatarFallback>EC</AvatarFallback>
-                </Avatar>
-                <p className="font-bold text-lg">Evelyn Carter</p>
-                <p className="text-sm text-muted-foreground">Teacher</p>
+            <CardContent>
+                <p className="text-3xl font-bold">$150.00</p>
+                <p className="text-primary-foreground/80">Next installment for Intro to ML is due on May 1, 2024.</p>
             </CardContent>
             <CardFooter>
-                <Button variant="outline" className="w-full" asChild><Link href="/teacher">View Profile</Link></Button>
+                 <Button variant="secondary" className="w-full" asChild><Link href="/dashboard/payments">Pay Now</Link></Button>
             </CardFooter>
         </Card>
          <Card>
             <CardHeader>
-                <CardTitle>Payments</CardTitle>
+                <CardTitle>Recent Assignments</CardTitle>
             </CardHeader>
             <CardContent>
-                <div className="flex justify-between items-center">
-                    <div>
-                        <p className="font-medium">Next Payment</p>
-                        <p className="text-sm text-muted-foreground">Amount $150.00</p>
-                    </div>
-                     <Link href="/dashboard/payments">
-                        <p className="text-lg font-bold">$150</p>
-                     </Link>
-                </div>
+                <ul className="space-y-2 text-sm">
+                    <li className="flex justify-between"><span>Project Proposal</span> <span className="font-bold text-green-600">Graded: A</span></li>
+                    <li className="flex justify-between"><span>Data Analysis Report</span> <span className="text-muted-foreground">Pending</span></li>
+                </ul>
+            </CardContent>
+             <CardFooter>
+                <Button variant="outline" className="w-full" asChild>
+                    <Link href="/dashboard/assignments">View All Assignments</Link>
+                </Button>
+            </CardFooter>
+        </Card>
+        <Card>
+            <CardHeader>
+                <CardTitle>Need Help?</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Button className="w-full" asChild>
+                   <Link href="/dashboard/chat"> <MessageSquare className="mr-2"/>Chat with Support</Link>
+                </Button>
             </CardContent>
         </Card>
       </div>

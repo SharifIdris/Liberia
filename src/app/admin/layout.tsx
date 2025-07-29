@@ -9,6 +9,9 @@ import {
   CreditCard,
   BarChart3,
   PanelLeft,
+  Settings,
+  BellRing,
+  Award,
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -23,6 +26,18 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
+const navLinks = [
+    { href: "/admin", label: "Dashboard", icon: Home },
+    { href: "/admin/courses", label: "Courses", icon: Book },
+    { href: "/admin/teachers", label: "Teachers", icon: User },
+    { href: "/admin/students", label: "Students", icon: Users },
+    { href: "/admin/payments", label: "Payments", icon: CreditCard },
+    { href: "/admin/reports", label: "Reports", icon: BarChart3 },
+    { href: "/admin/notifications", label: "Notifications", icon: BellRing },
+    { href: "/admin/certificates", label: "Certificates", icon: Award },
+    { href: "/admin/settings", label: "Settings", icon: Settings },
+];
 
 export default function AdminLayout({
   children,
@@ -41,66 +56,20 @@ export default function AdminLayout({
             <span className="sr-only">eSchola Liberia</span>
           </Link>
           <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/admin"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Home className="h-5 w-5" />
-                  <span className="sr-only">Dashboard</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Dashboard</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/admin/courses"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Book className="h-5 w-5" />
-                  <span className="sr-only">Courses</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Courses</TooltipContent>
-            </Tooltip>
-             <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/admin/teachers"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <User className="h-5 w-5" />
-                  <span className="sr-only">Teachers</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Teachers</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/admin/enrollments"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <Users className="h-5 w-5" />
-                  <span className="sr-only">Enrollments</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Enrollments</TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  href="/admin/reports"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <BarChart3 className="h-5 w-5" />
-                  <span className="sr-only">Reports</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">Reports</TooltipContent>
-            </Tooltip>
+            {navLinks.map(link => (
+                <Tooltip key={link.href}>
+                    <TooltipTrigger asChild>
+                        <Link
+                        href={link.href}
+                        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                        >
+                        <link.icon className="h-5 w-5" />
+                        <span className="sr-only">{link.label}</span>
+                        </Link>
+                    </TooltipTrigger>
+                    <TooltipContent side="right">{link.label}</TooltipContent>
+                </Tooltip>
+            ))}
           </TooltipProvider>
         </nav>
       </aside>
@@ -116,47 +85,22 @@ export default function AdminLayout({
             <SheetContent side="left" className="sm:max-w-xs bg-slate-900 text-white border-r-slate-700">
               <nav className="grid gap-6 text-lg font-medium">
                 <Link
-                  href="#"
+                  href="/"
                   className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
                 >
                   <Logo className="h-5 w-5 transition-all group-hover:scale-110" />
                   <span className="sr-only">eSchola Liberia</span>
                 </Link>
-                <Link
-                  href="/admin"
-                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
-                >
-                  <Home className="h-5 w-5" />
-                  Dashboard
-                </Link>
-                <Link
-                  href="/admin/courses"
-                  className="flex items-center gap-4 px-2.5 text-white"
-                >
-                  <Book className="h-5 w-5" />
-                  Courses
-                </Link>
-                <Link
-                  href="/admin/teachers"
-                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
-                >
-                  <User className="h-5 w-5" />
-                  Teachers
-                </Link>
-                <Link
-                  href="/admin/enrollments"
-                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
-                >
-                  <Users className="h-5 w-5" />
-                  Enrollments
-                </Link>
-                <Link
-                  href="/admin/reports"
-                  className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
-                >
-                  <BarChart3 className="h-5 w-5" />
-                  Reports
-                </Link>
+                {navLinks.map(link => (
+                     <Link
+                        key={link.href}
+                        href={link.href}
+                        className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
+                    >
+                        <link.icon className="h-5 w-5" />
+                        {link.label}
+                    </Link>
+                ))}
               </nav>
             </SheetContent>
           </Sheet>
