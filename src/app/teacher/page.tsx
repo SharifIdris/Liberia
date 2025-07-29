@@ -12,6 +12,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Video, Upload, Paperclip, Plus, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import React from 'react';
 
 const courseContent = [
     { id: 1, title: 'Intro to Machine Learning' },
