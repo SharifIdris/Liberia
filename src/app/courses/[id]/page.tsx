@@ -89,7 +89,7 @@ export default function CourseDetailsPage({ params }: { params: { id: string } }
                     {course.instructors.map((instructor) => (
                         <Card key={instructor.name} className="bg-secondary border-border/50 text-center p-6">
                             <Avatar className="w-24 h-24 mx-auto mb-4">
-                                <AvatarImage src={instructor.image} data-ai-hint={instructor.dataAiHint} />
+                                <AvatarImage src={instructor.image} alt={instructor.name} data-ai-hint={instructor.dataAiHint} />
                                 <AvatarFallback>{instructor.name.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <h3 className="font-bold text-lg">{instructor.name}</h3>
