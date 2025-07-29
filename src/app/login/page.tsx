@@ -21,6 +21,12 @@ const FacebookIcon = () => (
     </svg>
 );
 
+const GithubIcon = () => (
+    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.72c0 .27.18.58.69.48C19.13 20.17 22 16.42 22 12c0-5.52-4.48-10-10-10z"></path>
+    </svg>
+);
+
 
 export default function LoginPage() {
   return (
@@ -72,6 +78,10 @@ export default function LoginPage() {
                  <Button variant="outline" size="icon" className="rounded-full h-12 w-12 hover:bg-secondary">
                     <FacebookIcon />
                     <span className="sr-only">Continue with Facebook</span>
+                </Button>
+                 <Button variant="outline" size="icon" className="rounded-full h-12 w-12 hover:bg-secondary">
+                    <GithubIcon />
+                    <span className="sr-only">Continue with Github</span>
                 </Button>
             </div>
           </form>
