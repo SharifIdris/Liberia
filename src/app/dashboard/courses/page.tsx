@@ -2,6 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const enrolledCourses = [
   {
@@ -38,7 +39,9 @@ export default function StudentCoursesPage() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="w-full">Continue Learning</Button>
+              <Button className="w-full" asChild>
+                <Link href={`/dashboard/courses/${course.id}`}>Continue Learning</Link>
+              </Button>
             </CardFooter>
           </Card>
         ))}
