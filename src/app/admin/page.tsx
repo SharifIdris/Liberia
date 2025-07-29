@@ -1,5 +1,5 @@
 'use client';
-
+import React, { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -20,7 +20,7 @@ import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { DollarSign, Users, BookOpen, UserCheck, ArrowUp, Activity } from 'lucide-react';
 
-const teacherData = [
+const initialTeacherData = [
   { name: 'Alex Johnson', email: 'alex.johnson@example.com', status: 'Approved' },
   { name: 'Sarah Williams', email: 'sarah.williams@example.com', status: 'Approved' },
   { name: 'Mark Davis', email: 'mark.davis@example.com', status: 'Pending' },
@@ -56,6 +56,15 @@ const enrollmentsData = [
 
 
 export default function AdminDashboard() {
+  const [teacherData, setTeacherData] = useState(initialTeacherData);
+
+  const handleTeacherStatusChange = (email: string, newStatus: 'Approved' | 'Rejected') => {
+    setTeacherData(teacherData.map(teacher => 
+      teacher.email === email ? { ...teacher, status: newStatus } : teacher
+    ));
+  };
+
+
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6">
@@ -110,7 +119,7 @@ export default function AdminDashboard() {
             <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">5</div>
+            <div className="text-2xl font-bold">{teacherData.filter(t => t.status === 'Pending').length}</div>
           </CardContent>
         </Card>
       </div>
@@ -135,13 +144,13 @@ export default function AdminDashboard() {
                     <TableCell>{teacher.name}</TableCell>
                     <TableCell>{teacher.email}</TableCell>
                     <TableCell>
-                      {teacher.status === 'Approved' ? (
-                        <Badge variant="secondary">Approved</Badge>
-                      ) : (
+                      {teacher.status === 'Pending' ? (
                         <div className="flex gap-2">
-                          <Button size="sm">Approve</Button>
-                          <Button size="sm" variant="destructive">Reject</Button>
+                          <Button size="sm" onClick={() => handleTeacherStatusChange(teacher.email, 'Approved')}>Approve</Button>
+                          <Button size="sm" variant="destructive" onClick={() => handleTeacherStatusChange(teacher.email, 'Rejected')}>Reject</Button>
                         </div>
+                      ) : (
+                         <Badge variant={teacher.status === 'Approved' ? 'default' : 'destructive'}>{teacher.status}</Badge>
                       )}
                     </TableCell>
                   </TableRow>
