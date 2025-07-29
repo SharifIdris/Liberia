@@ -55,8 +55,8 @@ export default function LoginPage() {
                 </Link>
             </div>
 
-            <Button type="submit" className="w-full h-12 text-lg">
-              Sign In
+            <Button asChild type="submit" className="w-full h-12 text-lg">
+              <Link href="/dashboard">Sign In</Link>
             </Button>
             
             <div className="relative my-2">
