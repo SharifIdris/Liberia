@@ -94,7 +94,7 @@ export default function AdminReportsPage() {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip contentStyle={{ backgroundColor: 'hsl(var(--background))', border: '1px solid hsl(var(--border))' }}/>
                     <Legend />
                 </PieChart>
                 </ResponsiveContainer>
@@ -126,7 +126,7 @@ export default function AdminReportsPage() {
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="date" />
                     <YAxis />
-                    <Tooltip />
+                    <Tooltip contentStyle={{ backgroundColor: 'hsl(var(--background))', border: '1px solid hsl(var(--border))' }}/>
                     <Legend />
                     <Line type="monotone" dataKey="count" stroke="hsl(var(--primary))" name="New Enrollments" />
                 </LineChart>
