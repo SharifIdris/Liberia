@@ -25,7 +25,7 @@ export default function RegisterPage() {
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-accent">Join Online School</CardTitle>
+          <CardTitle className="text-3xl font-bold text-accent">Join eSchola Liberia</CardTitle>
           <CardDescription>Start learning today - it's free to register!</CardDescription>
         </CardHeader>
         <CardContent>

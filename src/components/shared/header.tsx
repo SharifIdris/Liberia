@@ -20,9 +20,9 @@ export function Header() {
       <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Logo className="h-6 w-6 text-primary" />
+            <Logo className="h-8 w-8 text-primary" />
             <span className="hidden font-bold sm:inline-block font-headline">
-              Online School
+              eSchola Liberia
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -41,8 +41,8 @@ export function Header() {
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
            <div className="flex-1 md:hidden">
              <Link href="/" className="flex items-center space-x-2">
-                <Logo className="h-6 w-6 text-primary" />
-                <span className="font-bold font-headline">Online School</span>
+                <Logo className="h-8 w-8 text-primary" />
+                <span className="font-bold font-headline">eSchola Liberia</span>
             </Link>
            </div>
           <div className="md:hidden">
@@ -55,8 +55,8 @@ export function Header() {
               </SheetTrigger>
               <SheetContent side="left">
                 <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
-                  <Logo className="h-6 w-6 text-primary" />
-                  <span className="font-bold font-headline">Online School</span>
+                  <Logo className="h-8 w-8 text-primary" />
+                  <span className="font-bold font-headline">eSchola Liberia</span>
                 </Link>
                 <nav className="flex flex-col space-y-4">
                   {navLinks.map(link => (

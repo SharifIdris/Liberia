@@ -33,7 +33,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold text-accent">Welcome Back</CardTitle>
-          <CardDescription>Continue your learning journey with Online School</CardDescription>
+          <CardDescription>Continue your learning journey with eSchola Liberia</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="grid gap-6">
