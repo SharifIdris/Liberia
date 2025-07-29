@@ -1,10 +1,11 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
-import { Check, PlayCircle, ChevronRight, Award } from 'lucide-react';
+import { Check, ChevronRight, Award } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
@@ -28,13 +29,13 @@ const course = {
     {
       name: 'Maria Chen',
       title: 'Senior Software Engineer',
-      image: 'https://images.unsplash.com/photo-1594825167519-53b3815a5ab6?q=80&w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&h=150&fit=crop&crop=faces',
       dataAiHint: 'woman software engineer',
     },
     {
       name: 'James Smith',
       title: 'Full Stack Developer',
-      image: 'https://images.unsplash.com/photo-1610632380536-e7f08b345f19?q=80&w=150&h=150&fit=crop&crop=faces',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&h=150&fit=crop&crop=faces',
       dataAiHint: 'man developer',
     },
   ],
