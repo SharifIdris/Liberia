@@ -4,27 +4,28 @@ import { Footer } from '@/components/shared/footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, Calendar, MessageSquare, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 
 const communityFeatures = [
     {
         icon: <MessageSquare className="w-12 h-12 text-primary" />,
         title: 'Community Forum',
         description: 'Ask questions, share knowledge, and connect with fellow learners and instructors in our dedicated forum.',
-        link: '#',
+        link: '/community/forum',
         linkLabel: 'Go to Forum',
     },
     {
         icon: <Calendar className="w-12 h-12 text-primary" />,
         title: 'Upcoming Events',
         description: 'Join virtual workshops, Q&A sessions, and networking events. See what’s happening this month.',
-        link: '#',
+        link: '/community/events',
         linkLabel: 'View Events',
     },
     {
         icon: <Users className="w-12 h-12 text-primary" />,
         title: 'Study Groups',
         description: 'Form or join study groups for your courses to collaborate on projects and prepare for exams together.',
-        link: '#',
+        link: '/community/groups',
         linkLabel: 'Find a Group',
     },
 ];
@@ -70,7 +71,7 @@ export default function CommunityPage() {
                         <h3 className="text-2xl font-bold font-headline mb-3">{feature.title}</h3>
                         <p className="text-muted-foreground flex-grow mb-6">{feature.description}</p>
                         <Button asChild variant="outline">
-                            <a href={feature.link}>{feature.linkLabel} <ArrowRight className="ml-2 w-4 h-4" /></a>
+                            <Link href={feature.link}>{feature.linkLabel} <ArrowRight className="ml-2 w-4 h-4" /></Link>
                         </Button>
                     </Card>
                    ))}
