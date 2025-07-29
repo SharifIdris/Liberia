@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/courses", label: "Courses" },
   { href: "/admin", label: "Admin" },
   { href: "/dashboard", label: "Dashboard" },
+  { href: "/teacher", label: "Teacher" },
 ];
 
 export function Header() {
