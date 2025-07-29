@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,7 +23,7 @@ const FacebookIcon = () => (
 
 const MtnIcon = () => (
     <div className="w-5 h-5 rounded-full bg-yellow-400 flex items-center justify-center text-black font-bold text-xs">
-        WHPI
+        MTN
     </div>
 );
 
@@ -89,3 +90,4 @@ export default function LoginPage() {
     </div>
   );
 }
+
