@@ -89,7 +89,7 @@ export default function Home() {
             </div>
             <div className="relative">
               <Image
-                src="https://images.unsplash.com/photo-1618494957973-69a4c5f0f4b1?q=80&w=600&h=400&fit=crop"
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=600&h=400&fit=crop"
                 alt="Student learning online"
                 width={600}
                 height={400}
