@@ -33,7 +33,7 @@ export default function LoginPage() {
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-accent">Welcome Back</CardTitle>
+          <CardTitle className="text-3xl font-bold text-primary">Welcome Back</CardTitle>
           <CardDescription>Continue your learning journey with eSchola Liberia</CardDescription>
         </CardHeader>
         <CardContent>
@@ -55,7 +55,7 @@ export default function LoginPage() {
                 </Link>
             </div>
 
-            <Button type="submit" className="w-full h-12 text-lg bg-accent text-accent-foreground hover:bg-accent/90">
+            <Button type="submit" className="w-full h-12 text-lg">
               Sign In
             </Button>
             
@@ -90,4 +90,3 @@ export default function LoginPage() {
     </div>
   );
 }
-

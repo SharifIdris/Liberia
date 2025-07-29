@@ -26,7 +26,7 @@ export default function RegisterPage() {
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold text-accent">Join eSchola Liberia</CardTitle>
+          <CardTitle className="text-3xl font-bold text-primary">Join eSchola Liberia</CardTitle>
           <CardDescription>Start learning today - it's free to register!</CardDescription>
         </CardHeader>
         <CardContent>
@@ -67,7 +67,7 @@ export default function RegisterPage() {
                 I agree to the <Link href="/privacy" className="underline text-accent hover:text-accent/80">Terms and Conditions</Link>
                 </Label>
             </div>
-            <Button type="submit" className="w-full h-12 text-lg bg-primary hover:bg-primary/90">
+            <Button type="submit" className="w-full h-12 text-lg">
               Register
             </Button>
           </form>
@@ -82,4 +82,3 @@ export default function RegisterPage() {
     </div>
   );
 }
-
