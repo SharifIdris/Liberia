@@ -7,9 +7,6 @@ import { Logo } from "@/components/icons";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/courses", label: "Programs" },
-  { href: "/admin", label: "Admin" },
-  { href: "/teacher", label: "Teacher" },
-  { href: "/dashboard", label: "Student" },
 ];
 
 export function Header() {
