@@ -7,14 +7,14 @@ import { Logo } from '@/components/icons';
 
 export default function RegisterPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-secondary">
-      <Card className="w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <Card className="w-full max-w-sm border-border/60">
         <CardHeader className="text-center">
           <Link href="/" className="flex justify-center items-center mb-4">
             <Logo className="h-8 w-8 text-primary" />
           </Link>
           <CardTitle className="text-2xl font-headline">Create an Account</CardTitle>
-          <CardDescription>Join EduLiberia and start learning today.</CardDescription>
+          <CardDescription>Join Online School and start learning today.</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="grid gap-4">
@@ -39,7 +39,7 @@ export default function RegisterPage() {
           </form>
           <div className="mt-4 text-center text-sm">
             Already have an account?{' '}
-            <Link href="/login" className="underline">
+            <Link href="/login" className="underline hover:text-primary">
               Log in
             </Link>
           </div>

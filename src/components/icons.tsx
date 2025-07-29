@@ -4,6 +4,8 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -12,8 +14,12 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       strokeLinejoin="round"
       {...props}
     >
-      <path d="M22 9L12 5 2 9l10 4 10-4v6" />
-      <path d="M6 10.5V16c0 4.5 6 4 6-2v-4" />
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M7 3v18" />
+      <path d="M12.5 3v18" />
+      <path d="M18 7.5h-4" />
+      <path d="M18 12.5h-4" />
+      <path d="M18 17.5h-4" />
     </svg>
   );
 }

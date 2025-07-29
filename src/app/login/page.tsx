@@ -7,8 +7,8 @@ import { Logo } from '@/components/icons';
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-secondary">
-      <Card className="w-full max-w-sm">
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <Card className="w-full max-w-sm border-border/60">
         <CardHeader className="text-center">
           <Link href="/" className="flex justify-center items-center mb-4">
             <Logo className="h-8 w-8 text-primary" />
@@ -25,7 +25,7 @@ export default function LoginPage() {
             <div className="grid gap-2">
               <div className="flex items-center">
                 <Label htmlFor="password">Password</Label>
-                <Link href="#" className="ml-auto inline-block text-sm underline">
+                <Link href="#" className="ml-auto inline-block text-sm underline hover:text-primary">
                   Forgot your password?
                 </Link>
               </div>
@@ -40,7 +40,7 @@ export default function LoginPage() {
           </form>
           <div className="mt-4 text-center text-sm">
             Don't have an account?{' '}
-            <Link href="/register" className="underline">
+            <Link href="/register" className="underline hover:text-primary">
               Sign up
             </Link>
           </div>

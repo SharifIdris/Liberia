@@ -1,25 +1,25 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, GraduationCap } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Logo } from "@/components/icons";
 
 const navLinks = [
-  { href: "/courses", label: "Courses" },
-  { href: "/admin", label: "Admin" },
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/teacher", label: "Teacher" },
+  { href: "/", label: "Home" },
+  { href: "/courses", label: "Programs" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Logo className="h-6 w-6 text-primary" />
             <span className="hidden font-bold sm:inline-block font-headline">
-              EduLiberia
+              Online School
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -36,6 +36,12 @@ export function Header() {
         </div>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+           <div className="flex-1 md:hidden">
+             <Link href="/" className="flex items-center space-x-2">
+                <Logo className="h-6 w-6 text-primary" />
+                <span className="font-bold font-headline">Online School</span>
+            </Link>
+           </div>
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
@@ -47,7 +53,7 @@ export function Header() {
               <SheetContent side="left">
                 <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
                   <Logo className="h-6 w-6 text-primary" />
-                  <span className="font-bold font-headline">EduLiberia</span>
+                  <span className="font-bold font-headline">Online School</span>
                 </Link>
                 <nav className="flex flex-col space-y-4">
                   {navLinks.map(link => (
@@ -59,12 +65,12 @@ export function Header() {
               </SheetContent>
             </Sheet>
           </div>
-          <nav className="flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-2">
             <Button asChild variant="ghost">
-              <Link href="/login">Login</Link>
+              <Link href="/login">Log in</Link>
             </Button>
-            <Button asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
-              <Link href="/register">Sign Up</Link>
+            <Button asChild>
+              <Link href="/register">Register</Link>
             </Button>
           </nav>
         </div>
