@@ -40,7 +40,7 @@ export default function DashboardPage() {
                         <Button asChild size="sm">
                             <Link href={course.href}>Resume <ArrowRight className="ml-2 h-4 w-4"/></Link>
                         </Button>
-                    </div>
+                    </Card>
                 ))}
             </CardContent>
             <CardFooter>
