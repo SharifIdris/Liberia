@@ -23,7 +23,7 @@ const LiberiaFlag = () => (
 export default function RegisterPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
-      <Card className="w-full max-w-md border-border/30 bg-card/80 backdrop-blur-sm">
+      <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold text-accent">Join Online School</CardTitle>
           <CardDescription>Start learning today - it's free to register!</CardDescription>
@@ -31,14 +31,14 @@ export default function RegisterPage() {
         <CardContent>
           <form className="grid gap-4">
             <div className="grid gap-2">
-              <Input id="full-name" placeholder="Full Name" required  className="bg-secondary/50 border-border/50 h-12"/>
+              <Input id="full-name" placeholder="Full Name" required  className="h-12"/>
             </div>
             <div className="grid gap-2">
-              <Input id="email" type="email" placeholder="Email Address" required className="bg-secondary/50 border-border/50 h-12" />
+              <Input id="email" type="email" placeholder="Email Address" required className="h-12" />
             </div>
             <div className="flex gap-2">
                  <Select defaultValue="+231">
-                    <SelectTrigger className="w-[120px] bg-secondary/50 border-border/50 h-12">
+                    <SelectTrigger className="w-[120px] h-12">
                         <SelectValue>
                             <div className="flex items-center">
                                 <LiberiaFlag />
@@ -55,10 +55,10 @@ export default function RegisterPage() {
                         </SelectItem>
                     </SelectContent>
                 </Select>
-                <Input id="mobile-number" placeholder="Mobile Number" required className="bg-secondary/50 border-border/50 h-12 flex-1"/>
+                <Input id="mobile-number" placeholder="Mobile Number" required className="h-12 flex-1"/>
             </div>
             <div className="grid gap-2">
-              <Input id="password" type="password" placeholder="Password" required className="bg-secondary/50 border-border/50 h-12" />
+              <Input id="password" type="password" placeholder="Password" required className="h-12" />
             </div>
             <div className="flex items-center space-x-2">
                 <Checkbox id="terms" className="border-muted-foreground data-[state=checked]:bg-primary data-[state=checked]:text-white"/>

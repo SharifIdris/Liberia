@@ -30,7 +30,7 @@ const MtnIcon = () => (
 export default function LoginPage() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
-      <Card className="w-full max-w-md border-border/30 bg-card/80 backdrop-blur-sm">
+      <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold text-accent">Welcome Back</CardTitle>
           <CardDescription>Continue your learning journey with Online School</CardDescription>
@@ -38,15 +38,15 @@ export default function LoginPage() {
         <CardContent>
           <form className="grid gap-6">
             <div className="grid gap-2">
-              <Input id="email" type="email" placeholder="you@example.com" required className="bg-secondary/50 border-border/50 h-12"/>
+              <Input id="email" type="email" placeholder="you@example.com" required className="h-12"/>
             </div>
             <div className="grid gap-2 relative">
-               <Input id="password" type="password" placeholder="Password" required className="bg-secondary/50 border-border/50 h-12 pr-16"/>
+               <Input id="password" type="password" placeholder="Password" required className="h-12 pr-16"/>
                <Button variant="ghost" className="absolute right-1 top-1/2 -translate-y-1/2 h-auto py-1 px-3 text-muted-foreground hover:bg-transparent hover:text-accent">Show</Button>
             </div>
             <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                    <Checkbox id="remember-me" className="border-muted-foreground data-[state=checked]:bg-accent data-[state=checked]:text-black"/>
+                    <Checkbox id="remember-me" className="border-muted-foreground data-[state=checked]:bg-accent data-[state=checked]:text-white"/>
                     <Label htmlFor="remember-me" className="text-sm text-muted-foreground">Remember me</Label>
                 </div>
                  <Link href="#" className="text-sm text-accent hover:underline">
@@ -60,7 +60,7 @@ export default function LoginPage() {
             
             <div className="relative my-2">
                 <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t border-border/50" />
+                    <span className="w-full border-t" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
                     <span className="bg-card px-2 text-muted-foreground">
@@ -70,15 +70,15 @@ export default function LoginPage() {
             </div>
 
             <div className="grid gap-3">
-                <Button variant="outline" className="w-full h-12 text-md justify-start bg-secondary/50 border-border/50 hover:bg-secondary">
+                <Button variant="outline" className="w-full h-12 text-md justify-start hover:bg-secondary">
                     <GoogleIcon />
                     <span className="flex-1 text-center">Continue with Google</span>
                 </Button>
-                 <Button variant="outline" className="w-full h-12 text-md justify-start bg-secondary/50 border-border/50 hover:bg-secondary">
+                 <Button variant="outline" className="w-full h-12 text-md justify-start hover:bg-secondary">
                     <FacebookIcon />
                     <span className="flex-1 text-center">Continue with Facebook</span>
                 </Button>
-                 <Button variant="outline" className="w-full h-12 text-md justify-start bg-secondary/50 border-border/50 hover:bg-secondary">
+                 <Button variant="outline" className="w-full h-12 text-md justify-start hover:bg-secondary">
                     <MtnIcon />
                     <span className="flex-1 text-center">Continue with MTN</span>
                 </Button>
