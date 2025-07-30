@@ -1,12 +1,13 @@
 
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@/lib/supabase/server';
 
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
 ) {
   const { id } = params;
+  const supabase = createClient();
 
   try {
     const { data: course, error } = await supabase
@@ -17,7 +18,7 @@ export async function GET(
 
     if (error) {
       console.error('Supabase error:', error);
-      if (error.code === 'PGRST116') { // "pgrst_count_exact" error when no rows are found
+      if (error.code === 'PGRST116') { 
         return NextResponse.json({ error: 'Course not found' }, { status: 404 });
       }
       throw error;
