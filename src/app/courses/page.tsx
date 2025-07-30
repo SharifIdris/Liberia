@@ -7,10 +7,39 @@ import { ArrowRight, Star, Clock } from 'lucide-react';
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
 import { Badge } from '@/components/ui/badge';
-import { courses } from '@/lib/mock-data';
+
+// Define the Course type based on your database schema
+interface Course {
+  id: string;
+  title: string;
+  category: string;
+  duration: string;
+  type: string;
+  rating: number;
+  reviews: number;
+  image: string;
+  dataAiHint: string;
+}
+
+async function getCourses() {
+    // In a real application, you would fetch from your API
+    // For now, we will use the mock data.
+    // To switch to a real API, you'd do something like this:
+    // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses`);
+    // if (!res.ok) {
+    //   throw new Error('Failed to fetch courses');
+    // }
+    // return res.json();
+    
+    // Using mock data for now
+    const { courses } = await import('@/lib/mock-data');
+    return courses;
+}
 
 
-export default function CoursesPage() {
+export default async function CoursesPage() {
+  const courses: Course[] = await getCourses();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />

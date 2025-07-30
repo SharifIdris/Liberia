@@ -1,4 +1,5 @@
 
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -8,10 +9,43 @@ import { Footer } from '@/components/shared/footer';
 import { Check, ChevronRight, Award } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { courses } from '@/lib/mock-data';
+import { courses as allCourses } from '@/lib/mock-data';
 
-export default function CourseDetailsPage({ params }: { params: { id: string } }) {
-  const course = courses.find((c) => c.id === params.id);
+// Define your types
+interface Instructor {
+  name: string;
+  title: string;
+  image: string;
+  dataAiHint: string;
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Course {
+  id: string;
+  title: string;
+  description: string;
+  overview: string;
+  image: string;
+  dataAiHint: string;
+  type: string;
+  duration: string;
+  whatYouWillLearn: string[];
+  instructors: Instructor[];
+  faq: FAQ[];
+}
+
+async function getCourseById(id: string): Promise<Course | undefined> {
+  // In a real app, you'd fetch from `/api/courses/${id}`
+  return allCourses.find((c) => c.id === id);
+}
+
+
+export default async function CourseDetailsPage({ params }: { params: { id: string } }) {
+  const course = await getCourseById(params.id);
 
   if (!course) {
     return (
