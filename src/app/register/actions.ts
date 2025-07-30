@@ -3,6 +3,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
 export async function signup(formData: FormData): Promise<string | void> {
   const supabase = createClient()
@@ -25,4 +26,6 @@ export async function signup(formData: FormData): Promise<string | void> {
   }
 
   revalidatePath('/', 'layout')
+  // Redirect to a page that tells the user to check their email
+  redirect('/login?message=Check-email-to-continue-signing-up');
 }
