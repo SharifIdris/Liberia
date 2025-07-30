@@ -28,6 +28,8 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { logout } from '@/app/login/actions';
+import { createClient } from '@/lib/supabase/server';
+import { redirect } from 'next/navigation';
 
 const navLinks = [
     { href: "/admin", label: "Dashboard", icon: Home },
@@ -42,11 +44,17 @@ const navLinks = [
     { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
        <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">

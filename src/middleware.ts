@@ -18,7 +18,6 @@ export async function middleware(request: NextRequest) {
           return request.cookies.get(name)?.value
         },
         set(name: string, value: string, options: CookieOptions) {
-          // If the cookie is set, update the request's cookies.
           request.cookies.set({
             name,
             value,
@@ -29,7 +28,6 @@ export async function middleware(request: NextRequest) {
               headers: request.headers,
             },
           })
-          // Also update the response's cookies.
           response.cookies.set({
             name,
             value,
@@ -37,7 +35,6 @@ export async function middleware(request: NextRequest) {
           })
         },
         remove(name: string, options: CookieOptions) {
-          // If the cookie is removed, update the request's cookies.
           request.cookies.set({
             name,
             value: '',
@@ -48,7 +45,6 @@ export async function middleware(request: NextRequest) {
               headers: request.headers,
             },
           })
-          // Also update the response's cookies.
           response.cookies.set({
             name,
             value: '',
@@ -59,20 +55,6 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const { pathname } = request.nextUrl
-
-  // Define protected routes
-  const protectedRoutes = ['/dashboard', '/teacher', '/admin']
-  const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route))
-
-  if (isProtectedRoute && !user) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
-  
   // Refresh session if expired - important for server components
   await supabase.auth.getSession()
 
