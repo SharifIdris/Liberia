@@ -1,4 +1,5 @@
 
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -21,19 +22,14 @@ interface Course {
   dataAiHint: string;
 }
 
-async function getCourses() {
+async function getCourses(): Promise<Course[]> {
     // In a real application, you would fetch from your API
-    // For now, we will use the mock data.
-    // To switch to a real API, you'd do something like this:
-    // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses`);
-    // if (!res.ok) {
-    //   throw new Error('Failed to fetch courses');
-    // }
-    // return res.json();
-    
-    // Using mock data for now
-    const { courses } = await import('@/lib/mock-data');
-    return courses;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses`, { cache: 'no-store' });
+    if (!res.ok) {
+      // This will activate the closest `error.js` Error Boundary
+      throw new Error('Failed to fetch courses');
+    }
+    return res.json();
 }
 
 

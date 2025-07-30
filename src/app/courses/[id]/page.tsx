@@ -9,7 +9,6 @@ import { Footer } from '@/components/shared/footer';
 import { Check, ChevronRight, Award } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { courses as allCourses } from '@/lib/mock-data';
 
 // Define your types
 interface Instructor {
@@ -40,7 +39,16 @@ interface Course {
 
 async function getCourseById(id: string): Promise<Course | undefined> {
   // In a real app, you'd fetch from `/api/courses/${id}`
-  return allCourses.find((c) => c.id === id);
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses/${id}`, { cache: 'no-store' });
+    if (!res.ok) {
+        return undefined;
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Failed to fetch course", error);
+    return undefined;
+  }
 }
 
 
