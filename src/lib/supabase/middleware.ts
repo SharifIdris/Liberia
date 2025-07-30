@@ -1,6 +1,9 @@
 
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import dotenv from 'dotenv';
+
+dotenv.config({ path: '.env.local' });
 
 export function createClient(request: NextRequest) {
   // Create an unmodified response
