@@ -27,6 +27,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { logout } from '@/app/login/actions';
 
 const navLinks = [
     { href: "/admin", label: "Dashboard", icon: Home },
@@ -129,8 +130,10 @@ export default function AdminLayout({
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
-               <DropdownMenuItem asChild>
-                <Link href="/login">Logout</Link>
+               <DropdownMenuItem>
+                 <form action={logout}>
+                  <button type="submit" className="w-full text-left">Logout</button>
+                </form>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

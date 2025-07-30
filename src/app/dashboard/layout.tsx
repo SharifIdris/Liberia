@@ -25,6 +25,8 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { logout } from '@/app/login/actions';
+
 
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: <BookOpen className="h-5 w-5" /> },
@@ -126,8 +128,10 @@ export default function DashboardLayout({
               <DropdownMenuItem asChild><Link href="/dashboard/profile">Profile</Link></DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
-               <DropdownMenuItem asChild>
-                <Link href="/login">Logout</Link>
+              <DropdownMenuItem>
+                <form action={logout}>
+                  <button type="submit" className="w-full text-left">Logout</button>
+                </form>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

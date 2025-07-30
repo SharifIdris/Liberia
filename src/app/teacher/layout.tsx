@@ -23,6 +23,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { logout } from '@/app/login/actions';
 
 const navLinks = [
   { href: '/teacher', label: 'Dashboard', icon: <LayoutDashboard className="h-5 w-5" /> },
@@ -123,9 +124,11 @@ export default function TeacherLayout({
               </DropdownMenuItem>
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
-               <DropdownMenuItem asChild>
-                <Link href="/login">Logout</Link>
-              </DropdownMenuItem>
+               <DropdownMenuItem>
+                <form action={logout}>
+                  <button type="submit" className="w-full text-left">Logout</button>
+                </form>
+               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
