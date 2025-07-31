@@ -40,7 +40,7 @@ export default function CommunityPage() {
         <section className="relative bg-secondary py-20 md:py-32">
            <div className="absolute inset-0">
                 <Image
-                    src="https://images.unsplash.com/photo-1594497643195-f823a3134377?q=80&w=1200&h=600&fit=crop"
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&h=600&fit=crop"
                     alt="Community of learners"
                     layout="fill"
                     objectFit="cover"
@@ -96,7 +96,7 @@ export default function CommunityPage() {
                     </div>
                     <div className="flex justify-center">
                         <Image 
-                            src="https://images.unsplash.com/photo-1522881451255-f59ad836fdfb?q=80&w=500&h=400&fit=crop"
+                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=500&h=400&fit=crop"
                             alt="Community guidelines"
                             width={500}
                             height={400}

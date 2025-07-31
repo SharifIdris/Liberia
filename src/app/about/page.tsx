@@ -84,25 +84,37 @@ export default function AboutPage() {
         {/* Mission and Vision */}
         <section className="py-16 md:py-24">
             <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-8">
-                    <Card className="p-8 bg-secondary border-border/50">
-                        <div className="flex items-start gap-6">
-                            <Handshake className="w-12 h-12 text-primary flex-shrink-0" />
-                            <div>
-                                <h2 className="text-3xl font-bold font-headline mb-3">Our Mission</h2>
-                                <p className="text-muted-foreground">Make high-quality, tech-driven education accessible to all, using flexible tools and local payment systems.</p>
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="space-y-8">
+                        <Card className="p-8 bg-secondary border-border/50">
+                            <div className="flex items-start gap-6">
+                                <Handshake className="w-12 h-12 text-primary flex-shrink-0" />
+                                <div>
+                                    <h2 className="text-3xl font-bold font-headline mb-3">Our Mission</h2>
+                                    <p className="text-muted-foreground">Make high-quality, tech-driven education accessible to all, using flexible tools and local payment systems.</p>
+                                </div>
                             </div>
-                        </div>
-                    </Card>
-                     <Card className="p-8 bg-secondary border-border/50">
-                        <div className="flex items-start gap-6">
-                            <Eye className="w-12 h-12 text-primary flex-shrink-0" />
-                            <div>
-                                <h2 className="text-3xl font-bold font-headline mb-3">Our Vision</h2>
-                                <p className="text-muted-foreground">A future where every Liberian learner thrives in the global digital economy.</p>
+                        </Card>
+                         <Card className="p-8 bg-secondary border-border/50">
+                            <div className="flex items-start gap-6">
+                                <Eye className="w-12 h-12 text-primary flex-shrink-0" />
+                                <div>
+                                    <h2 className="text-3xl font-bold font-headline mb-3">Our Vision</h2>
+                                    <p className="text-muted-foreground">A future where every Liberian learner thrives in the global digital economy.</p>
+                                </div>
                             </div>
-                        </div>
-                    </Card>
+                        </Card>
+                    </div>
+                    <div className="hidden md:block">
+                        <Image 
+                            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&h=1000&fit=crop"
+                            alt="Happy students learning together"
+                            width={800}
+                            height={1000}
+                            className="rounded-lg shadow-lg object-cover"
+                            data-ai-hint="happy students learning"
+                        />
+                    </div>
                 </div>
             </div>
         </section>
