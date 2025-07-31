@@ -5,7 +5,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -72,8 +72,12 @@ export default function HomePage() {
                 <TabsTrigger value="sign-up">Sign Up</TabsTrigger>
             </TabsList>
             <TabsContent value="sign-in">
-                <Card className="border-none shadow-none">
-                    <CardContent className="space-y-4 pt-6">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Sign In</CardTitle>
+                        <CardDescription>Enter your credentials to access your account.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
                         <div className="grid gap-2">
                             <Label htmlFor="email-signin">Email</Label>
                             <Input id="email-signin" type="email" placeholder="m@example.com" required />
@@ -106,8 +110,12 @@ export default function HomePage() {
                 </Card>
             </TabsContent>
              <TabsContent value="sign-up">
-                <Card className="border-none shadow-none">
-                    <CardContent className="space-y-4 pt-6">
+                <Card>
+                     <CardHeader>
+                        <CardTitle>Sign Up</CardTitle>
+                        <CardDescription>Create an account to start your learning journey.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
                         <div className="grid gap-2">
                             <Label htmlFor="name-signup">Full Name</Label>
                             <Input id="name-signup" placeholder="John Doe" required />
