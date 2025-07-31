@@ -128,7 +128,9 @@ export default function HomePage() {
                             <Label htmlFor="password-signup">Password</Label>
                             <Input id="password-signup" type="password" required />
                         </div>
-                        <Button type="submit" className="w-full">Create an account</Button>
+                        <Button asChild className="w-full">
+                          <Link href="/onboarding">Create an account</Link>
+                        </Button>
                          <div className="mt-4 text-center text-xs text-muted-foreground">
                             By clicking continue, you agree to our{' '}
                             <Link href="/terms" className="underline underline-offset-2">
