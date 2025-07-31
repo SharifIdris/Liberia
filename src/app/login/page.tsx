@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Logo } from '@/components/icons';
+import React from 'react';
 
 const GoogleIcon = () => (
     <svg className="w-5 h-5" viewBox="0 0 48 48">
@@ -34,6 +35,8 @@ const LinkedInIcon = () => (
 
 
 export default function LoginPage() {
+    const [activeTab, setActiveTab] = React.useState('sign-in');
+
   return (
     <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2 xl:min-h-screen">
       <div className="relative flex-1 hidden bg-muted lg:block">
@@ -54,7 +57,7 @@ export default function LoginPage() {
                  <h1 className="text-3xl font-bold">Welcome to Liberia Learn</h1>
                  <p className="text-muted-foreground">Empowering education across Liberia</p>
             </div>
-          <Tabs defaultValue="sign-in" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2">
                 <TabsTrigger value="sign-in">Login</TabsTrigger>
                 <TabsTrigger value="sign-up">Register</TabsTrigger>
@@ -95,7 +98,7 @@ export default function LoginPage() {
                         </div>
                          <div className="mt-4 text-center text-sm">
                             Don&apos;t have an account?{" "}
-                            <span className="underline cursor-pointer">Register now</span>
+                            <button onClick={() => setActiveTab('sign-up')} className="underline cursor-pointer">Register now</button>
                         </div>
                     </CardContent>
                 </Card>
@@ -118,7 +121,7 @@ export default function LoginPage() {
                         <Button asChild className="w-full">
                           <Link href="/onboarding">Create an account</Link>
                         </Button>
-                         <div className="mt-4 text-center text-xs text-muted-foreground">
+                         <div className="mt-4 text-xs text-muted-foreground text-center">
                             By clicking continue, you agree to our{' '}
                             <Link href="/terms" className="underline underline-offset-2">
                             Terms of Service
