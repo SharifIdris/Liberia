@@ -59,12 +59,12 @@ export default function AboutPage() {
         <section className="relative bg-secondary py-20 md:py-32">
            <div className="absolute inset-0">
                 <Image
-                    src="https://images.unsplash.com/photo-1611214298194-27e1b21a7127?q=80&w=1200&h=600&fit=crop"
-                    alt="Students learning"
+                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&h=600&fit=crop"
+                    alt="African students in a graduation ceremony"
                     layout="fill"
                     objectFit="cover"
                     className="opacity-20"
-                    data-ai-hint="students learning"
+                    data-ai-hint="african students graduation"
                 />
                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
             </div>
@@ -80,12 +80,12 @@ export default function AboutPage() {
               </div>
                <div className="hidden md:block">
                   <Image 
-                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&h=600&fit=crop"
-                      alt="Students learning in a classroom"
+                      src="https://images.unsplash.com/photo-1611214298194-27e1b21a7127?q=80&w=800&h=600&fit=crop"
+                      alt="African students learning in a classroom"
                       width={800}
                       height={600}
                       className="rounded-lg shadow-lg"
-                      data-ai-hint="students classroom"
+                      data-ai-hint="african students classroom"
                   />
               </div>
             </div>
@@ -118,12 +118,12 @@ export default function AboutPage() {
                     </div>
                     <div className="hidden md:block">
                         <Image 
-                            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&h=1000&fit=crop"
-                            alt="Happy students learning together"
+                            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&h=1000&fit=crop"
+                            alt="A group of African professionals in a meeting"
                             width={800}
                             height={1000}
                             className="rounded-lg shadow-lg object-cover"
-                            data-ai-hint="happy students learning"
+                            data-ai-hint="african professionals meeting"
                         />
                     </div>
                 </div>
