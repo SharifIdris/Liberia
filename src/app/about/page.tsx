@@ -62,7 +62,7 @@ export default function AboutPage() {
               </div>
               <div className="flex justify-center">
                  <Image
-                    src="https://images.unsplash.com/photo-1611214298132-72183c50f0f5?q=80&w=600&h=400&fit=crop"
+                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&h=400&fit=crop"
                     alt="African students learning with laptops"
                     width={600}
                     height={400}
