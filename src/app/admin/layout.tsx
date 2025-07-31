@@ -26,20 +26,20 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Card, CardContent } from '@/components/ui/card';
 
 
 const navLinks = [
-    { href: "/admin", label: "Dashboard", icon: Home },
-    { href: "/admin/courses", label: "Courses", icon: Book },
-    { href: "/admin/enrollments", label: "Enrollments", icon: FileText },
-    { href: "/admin/teachers", label: "Teachers", icon: User },
-    { href: "/admin/students", label: "Students", icon: Users },
-    { href: "/admin/payments", label: "Payments", icon: CreditCard },
-    { href: "/admin/reports", label: "Reports", icon: BarChart3 },
-    { href: "/admin/notifications", label: "Notifications", icon: BellRing },
-    { href: "/admin/certificates", label: "Certificates", icon: Award },
-    { href: "/admin/settings", label: "Settings", icon: Settings },
+    { href: "/admin", label: "Dashboard", icon: <Home className="h-5 w-5" /> },
+    { href: "/admin/courses", label: "Courses", icon: <Book className="h-5 w-5" /> },
+    { href: "/admin/enrollments", label: "Enrollments", icon: <FileText className="h-5 w-5" /> },
+    { href: "/admin/teachers", label: "Teachers", icon: <User className="h-5 w-5" /> },
+    { href: "/admin/students", label: "Students", icon: <Users className="h-5 w-5" /> },
+    { href: "/admin/payments", label: "Payments", icon: <CreditCard className="h-5 w-5" /> },
+    { href: "/admin/reports", label: "Reports", icon: <BarChart3 className="h-5 w-5" /> },
+    { href: "/admin/notifications", label: "Notifications", icon: <BellRing className="h-5 w-5" /> },
+    { href: "/admin/certificates", label: "Certificates", icon: <Award className="h-5 w-5" /> },
+    { href: "/admin/settings", label: "Settings", icon: <Settings className="h-5 w-5" /> },
 ];
 
 export default async function AdminLayout({
@@ -49,76 +49,64 @@ export default async function AdminLayout({
 }) {
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-muted/40">
-       <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
-        <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-          <Link
-            href="/"
-            className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
-          >
-            <Logo className="h-5 w-5 transition-all group-hover:scale-110" />
-            <span className="sr-only">eSchola Liberia</span>
-          </Link>
-          <TooltipProvider>
-            {navLinks.map(link => (
-                <Tooltip key={link.href}>
-                    <TooltipTrigger asChild>
-                        <Link
-                        href={link.href}
-                        className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                        >
-                        <link.icon className="h-5 w-5" />
-                        <span className="sr-only">{link.label}</span>
-                        </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="right">{link.label}</TooltipContent>
-                </Tooltip>
-            ))}
-          </TooltipProvider>
-        </nav>
-      </aside>
-      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-slate-900 text-white px-4 sm:static sm:h-auto sm:border-0 sm:bg-slate-900 sm:px-6">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button size="icon" variant="outline" className="sm:hidden text-slate-900">
-                <PanelLeft className="h-5 w-5" />
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="sm:max-w-xs bg-slate-900 text-white border-r-slate-700">
-              <nav className="grid gap-6 text-lg font-medium">
+    <div className="flex min-h-screen w-full flex-col">
+      <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-slate-900 text-white px-4 md:px-6">
+         <div className="flex items-center gap-2">
+            <Link
+                href="/admin"
+                className="flex items-center gap-2 text-lg font-semibold md:text-base"
+            >
+                <Logo className="h-6 w-6 text-primary" />
+                <span className="font-headline">ADMIN PANEL</span>
+            </Link>
+         </div>
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button
+              variant="outline"
+              size="icon"
+              className="shrink-0 md:hidden text-slate-900"
+            >
+              <PanelLeft className="h-5 w-5" />
+              <span className="sr-only">Toggle navigation menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="bg-slate-900 text-white border-r-slate-700">
+            <nav className="grid gap-6 text-lg font-medium">
+               <Link
+                href="/admin"
+                className="flex items-center gap-2 text-lg font-semibold"
+              >
+                <Logo className="h-6 w-6 text-primary" />
+                <span className="font-headline">ADMIN</span>
+              </Link>
+              {navLinks.map((link) => (
                 <Link
-                  href="/"
-                  className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-white/70 transition-all hover:text-white"
                 >
-                  <Logo className="h-5 w-5 transition-all group-hover:scale-110" />
-                  <span className="sr-only">eSchola Liberia</span>
+                  {link.icon}
+                  {link.label}
                 </Link>
-                {navLinks.map(link => (
-                     <Link
-                        key={link.href}
-                        href={link.href}
-                        className="flex items-center gap-4 px-2.5 text-white/70 hover:text-white"
-                    >
-                        <link.icon className="h-5 w-5" />
-                        {link.label}
-                    </Link>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
-           <div className="w-full flex-1">
-            <h1 className="text-lg font-semibold md:text-2xl font-headline">Admin Panel</h1>
+              ))}
+            </nav>
+          </SheetContent>
+        </Sheet>
+        <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+           <div className="ml-auto flex-1 sm:flex-initial">
+             {/* Future search bar can go here */}
           </div>
-          <Button
-            variant="outline"
+           <Button
+            variant="ghost"
             size="icon"
-            className="overflow-hidden rounded-full bg-transparent text-white hover:bg-slate-800 hover:text-white border-slate-700"
+            className="rounded-full text-white/70 hover:text-white hover:bg-slate-800"
           >
-           <Bell className="h-5 w-5" />
+            <Bell className="h-5 w-5" />
+            <span className="sr-only">Notifications</span>
           </Button>
-          <DropdownMenu>
+           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full bg-slate-800 hover:bg-slate-700">
                 <User className="h-5 w-5 text-white" />
@@ -136,8 +124,28 @@ export default async function AdminLayout({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        </header>
-        <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
+        </div>
+      </header>
+       <div className="flex flex-1">
+        <aside className="hidden md:block w-64 flex-shrink-0">
+          <div className="p-4">
+            <Card>
+                <CardContent className="p-2">
+                    <nav className="flex flex-col gap-1">
+                        {navLinks.map((link) => (
+                            <Button key={link.href} variant="ghost" className="justify-start gap-2" asChild>
+                                <Link href={link.href}>
+                                    {link.icon}
+                                    {link.label}
+                                </Link>
+                            </Button>
+                        ))}
+                    </nav>
+                </CardContent>
+            </Card>
+          </div>
+        </aside>
+        <main className="flex-1 p-4 md:p-8 bg-muted/40">
           {children}
         </main>
       </div>
