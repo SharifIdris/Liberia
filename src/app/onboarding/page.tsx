@@ -1,44 +1,44 @@
 
 'use client';
 
-import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Logo } from '@/components/icons';
 import Link from 'next/link';
-import { Briefcase, Video, CreditCard, Award, BookOpen, Smartphone, ArrowRight } from 'lucide-react';
+import { Briefcase, Video, CreditCard, Award, BookOpen, Smartphone } from 'lucide-react';
 import Image from 'next/image';
 
 const features = [
     {
         icon: <BookOpen className="w-8 h-8 text-primary" />,
         title: 'Course Previews',
-        description: 'Sample any course before enrolling to ensure it meets your learning goals.'
+        description: 'Try sample lessons before enrolling to ensure a match with your goals and learning style.'
     },
     {
         icon: <CreditCard className="w-8 h-8 text-primary" />,
         title: 'Local Payment Support',
-        description: 'Pay with MTN Mobile Money, Orange Money, or local bank transfers easily and securely.'
+        description: 'Enables mobile money & local payments via providers like MobileMoney, Orange, MTN, etc.'
     },
     {
         icon: <Video className="w-8 h-8 text-primary" />,
         title: 'Live & Recorded Learning',
-        description: 'Attend live interactive classes or watch recordings anytime, anywhere.'
+        description: 'Flexible learning with both live sessions and recorded content for replay.'
     },
     {
         icon: <CreditCard className="w-8 h-8 text-primary" />,
         title: 'Installment Plans',
-        description: 'Make education affordable with flexible payment options that fit your budget.'
+        description: 'Affordability through payment flexibility — pay in phases instead of lump sums.'
     },
     {
         icon: <Award className="w-8 h-8 text-primary" />,
         title: 'Diploma Programs',
-        description: 'Earn recognized diplomas in tech and business to advance your career prospects.'
+        description: 'Structured certifications aligned with Liberian job market needs.'
     },
     {
         icon: <Smartphone className="w-8 h-8 text-primary" />,
         title: 'Low-Bandwidth Options',
-        description: 'Access course materials smoothly even with limited internet connectivity.'
+        description: 'Access course materials smoothly even with limited internet connectivity.',
+        highlighted: true,
     },
 ]
 
@@ -56,7 +56,7 @@ export default function OnboardingPage() {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     {features.map((feature, index) => (
-                        <Card key={index} className="text-center p-6 bg-card border hover:shadow-lg transition-shadow">
+                        <Card key={index} className={`text-center p-6 bg-card border hover:shadow-lg transition-shadow ${feature.highlighted ? 'bg-blue-50' : ''}`}>
                             <div className="flex justify-center mb-4">{feature.icon}</div>
                             <h3 className="text-xl font-bold font-headline mb-2">{feature.title}</h3>
                             <p className="text-muted-foreground">{feature.description}</p>
