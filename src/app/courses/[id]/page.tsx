@@ -78,7 +78,7 @@ export default async function CourseDetailsPage({ params }: { params: { id: stri
             </p>
             <div className="flex flex-col items-start gap-4">
                 <Button asChild size="lg">
-                    <Link href="/register">Enroll Now</Link>
+                    <Link href="/login">Enroll Now</Link>
                 </Button>
                 <p className="text-sm text-muted-foreground">Flexible payment options available</p>
             </div>
@@ -105,7 +105,7 @@ export default async function CourseDetailsPage({ params }: { params: { id: stri
                 </div>
             </div>
             <Button asChild>
-                <Link href="/register">Enroll Now</Link>
+                <Link href="/login">Enroll Now</Link>
             </Button>
         </div>
 

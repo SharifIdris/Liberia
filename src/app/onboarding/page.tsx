@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -73,7 +74,7 @@ export default function OnboardingPage() {
                             </p>
                             <div className="flex gap-4">
                                 <Button asChild variant="secondary" size="lg">
-                                    <Link href="/dashboard">Get Started</Link>
+                                    <Link href="/courses">Get Started</Link>
                                 </Button>
                                  <Button asChild variant="outline" size="lg" className="bg-transparent border-white text-white hover:bg-white hover:text-primary">
                                     <Link href="/">Learn More</Link>
