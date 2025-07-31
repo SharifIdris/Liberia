@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import {
   BookOpen,
@@ -25,6 +24,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
 
 
 const navLinks = [
@@ -48,25 +48,16 @@ export default async function DashboardLayout({
   return (
     <div className="flex min-h-screen w-full flex-col">
       <header className="sticky top-0 z-40 flex h-16 items-center gap-4 border-b bg-slate-900 text-white px-4 md:px-6">
-        <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
-          <Link
-            href="/dashboard"
-            className="flex items-center gap-2 text-lg font-semibold md:text-base"
-          >
-            <Logo className="h-6 w-6 text-primary" />
-            <span className="font-headline">STUDENT</span>
-          </Link>
-          {navLinks.map((link) => (
-             <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center gap-2 text-white/70 transition-colors hover:text-white"
-              >
-                {link.icon}
-                {link.label}
-              </Link>
-          ))}
-        </nav>
+         <div className="flex items-center gap-2">
+            <Link
+                href="/dashboard"
+                className="flex items-center gap-2 text-lg font-semibold md:text-base"
+            >
+                <Logo className="h-6 w-6 text-primary" />
+                <span className="font-headline">STUDENT DASHBOARD</span>
+            </Link>
+         </div>
+
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -135,9 +126,29 @@ export default async function DashboardLayout({
           </DropdownMenu>
         </div>
       </header>
-      <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8 bg-muted/40">
-        {children}
-      </main>
+      <div className="flex flex-1">
+        <aside className="hidden md:block w-64 flex-shrink-0">
+          <div className="p-4">
+            <Card>
+                <CardContent className="p-2">
+                    <nav className="flex flex-col gap-1">
+                        {navLinks.map((link) => (
+                            <Button key={link.href} variant="ghost" className="justify-start gap-2" asChild>
+                                <Link href={link.href}>
+                                    {link.icon}
+                                    {link.label}
+                                </Link>
+                            </Button>
+                        ))}
+                    </nav>
+                </CardContent>
+            </Card>
+          </div>
+        </aside>
+        <main className="flex-1 p-4 md:p-8 bg-muted/40">
+            {children}
+        </main>
+      </div>
     </div>
   );
 }
