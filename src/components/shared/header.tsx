@@ -8,6 +8,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "../ui/input";
@@ -32,17 +33,6 @@ export function Header() {
               Liberia Learn
             </span>
           </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
-            {navLinks.map(link => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="transition-colors hover:text-foreground/80 text-foreground/60"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
         </div>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -90,6 +80,14 @@ export function Header() {
                       </DropdownMenuContent>
                     </DropdownMenu>
                 </nav>
+                 <div className="mt-6 pt-6 border-t">
+                    <Button asChild className="w-full mb-2">
+                        <Link href="/login">Join Now</Link>
+                    </Button>
+                    <Button asChild variant="outline" className="w-full">
+                        <Link href="/login">Sign In</Link>
+                    </Button>
+                </div>
               </SheetContent>
             </Sheet>
           </div>
@@ -98,19 +96,51 @@ export function Header() {
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/>
                 <Input placeholder="Search" className="w-full md:w-[200px] lg:w-[300px] pl-9" />
             </div>
-            <nav className="hidden md:flex items-center gap-2">
-                <Button asChild variant="outline">
-                    <Link href="/login">Sign In</Link>
+             <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="hidden md:inline-flex">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Toggle Menu</span>
                 </Button>
-                <Button asChild>
-                    <Link href="/login">Join Now</Link>
-                </Button>
-            </nav>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                     <DropdownMenuItem asChild>
+                        <Link href="/login">Sign In</Link>
+                    </DropdownMenuItem>
+                     <DropdownMenuItem asChild>
+                        <Link href="/login">Join Now</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    {navLinks.map(link => (
+                        <DropdownMenuItem key={link.href} asChild>
+                            <Link href={link.href}>{link.label}</Link>
+                        </DropdownMenuItem>
+                    ))}
+                    <DropdownMenuSeparator />
+                     <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                             <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                                Dashboards <ChevronDown className="ml-auto h-4 w-4" />
+                            </DropdownMenuItem>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent sideOffset={8} alignOffset={-5}>
+                            <DropdownMenuItem asChild>
+                            <Link href="/dashboard">Student</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                            <Link href="/teacher">Teacher</Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
+                            <Link href="/admin">Admin</Link>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
+                </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </div>
     </header>
   );
 }
-
-    

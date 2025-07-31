@@ -29,6 +29,7 @@ export function Footer() {
                 <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
                      <Link href="/apply/teacher" className="hover:text-primary">Teach with Us</Link>
                     <Link href="/teacher" className="hover:text-primary">Teacher Login</Link>
+                    <Link href="/login" className="hover:text-primary">Student Login</Link>
                 </nav>
              </div>
               <div>
