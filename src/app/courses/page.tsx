@@ -8,6 +8,7 @@ import { ArrowRight, Star, Clock } from 'lucide-react';
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
 import { Badge } from '@/components/ui/badge';
+import { courses as allCourses } from '@/lib/mock-data';
 
 // Define the Course type based on your database schema
 interface Course {
@@ -23,13 +24,8 @@ interface Course {
 }
 
 async function getCourses(): Promise<Course[]> {
-    // In a real application, you would fetch from your API
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/courses`, { cache: 'no-store' });
-    if (!res.ok) {
-      // This will activate the closest `error.js` Error Boundary
-      throw new Error('Failed to fetch courses');
-    }
-    return res.json();
+    // Reverting to mock data
+    return allCourses;
 }
 
 

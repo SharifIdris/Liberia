@@ -10,7 +10,6 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { signup } from './actions';
 
 
 const LiberiaFlag = () => (
@@ -33,21 +32,10 @@ export default function RegisterPage() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const error = await signup(formData);
-
-        if (error) {
-          toast({
-            title: "Registration Failed",
-            description: error,
-            variant: "destructive",
+        toast({
+            title: "Registration Submitted",
+            description: "In a real app, this would create a new user.",
           });
-        } else {
-           toast({
-            title: "Registration Successful",
-            description: "Please check your email to verify your account.",
-          });
-        }
     };
 
   return (

@@ -23,9 +23,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { logout } from '@/app/login/actions';
-import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
+
 
 const navLinks = [
   { href: '/teacher', label: 'Dashboard', icon: <LayoutDashboard className="h-5 w-5" /> },
@@ -41,11 +39,6 @@ export default async function TeacherLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    redirect('/login');
-  }
 
   return (
     <div className="flex min-h-screen w-full flex-col">
@@ -133,9 +126,7 @@ export default async function TeacherLayout({
               <DropdownMenuItem>Settings</DropdownMenuItem>
               <DropdownMenuSeparator />
                <DropdownMenuItem>
-                <form action={logout}>
-                  <button type="submit" className="w-full text-left">Logout</button>
-                </form>
+                  <button className="w-full text-left">Logout</button>
                </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

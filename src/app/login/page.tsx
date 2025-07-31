@@ -1,15 +1,12 @@
 
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import { useToast } from '@/hooks/use-toast';
-import { login } from './actions';
 
 const GoogleIcon = () => (
     <svg className="w-6 h-6" viewBox="0 0 48 48">
@@ -35,24 +32,6 @@ const GithubIcon = () => (
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const { toast } = useToast();
-  const router = useRouter();
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const error = await login(formData);
-
-    if (error) {
-      toast({
-        title: "Login Failed",
-        description: error,
-        variant: "destructive",
-      });
-    } else {
-      // router.push will be handled by the server action redirect
-    }
-  };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
@@ -62,7 +41,7 @@ export default function LoginPage() {
           <CardDescription>Continue your learning journey with eSchola Liberia</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="grid gap-6">
+          <form className="grid gap-6">
             <div className="grid gap-2">
               <Input id="email" name="email" type="email" placeholder="you@example.com" required className="h-12"/>
             </div>

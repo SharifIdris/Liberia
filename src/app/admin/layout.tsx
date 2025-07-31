@@ -27,9 +27,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Logo } from '@/components/icons';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { logout } from '@/app/login/actions';
-import { createClient } from '@/lib/supabase/server';
-import { redirect } from 'next/navigation';
+
 
 const navLinks = [
     { href: "/admin", label: "Dashboard", icon: Home },
@@ -49,11 +47,6 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const supabase = createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) {
-    redirect('/login');
-  }
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -139,9 +132,7 @@ export default async function AdminLayout({
               <DropdownMenuItem>Support</DropdownMenuItem>
               <DropdownMenuSeparator />
                <DropdownMenuItem>
-                 <form action={logout}>
-                  <button type="submit" className="w-full text-left">Logout</button>
-                </form>
+                 <button className="w-full text-left">Logout</button>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
