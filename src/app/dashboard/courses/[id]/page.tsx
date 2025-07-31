@@ -2,9 +2,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
-import { Download, PlayCircle, Award, CheckCircle } from 'lucide-react';
+import { Download, PlayCircle, Award, CheckCircle, ArrowLeft } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import Link from 'next/link';
 
 const courseDetails = {
     title: "Intro to Machine Learning",
@@ -44,6 +45,9 @@ export default function StudentCourseDetailPage() {
         <div className="grid md:grid-cols-3 gap-8 items-start">
             <div className="md:col-span-2 space-y-8">
                 <div>
+                     <Button asChild variant="ghost" className="mb-4 -ml-4">
+                        <Link href="/dashboard/courses"><ArrowLeft className="mr-2 h-4 w-4"/>Back to My Courses</Link>
+                    </Button>
                     <h1 className="text-3xl font-bold font-headline mb-2">{courseDetails.title}</h1>
                     <div className="flex items-center gap-4">
                         <Progress value={courseDetails.progress} className="w-1/2" />

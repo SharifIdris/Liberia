@@ -14,11 +14,20 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Upload } from 'lucide-react';
+import { ArrowLeft, Upload } from 'lucide-react';
+import Link from 'next/link';
 
 export default function AdminAddCoursePage() {
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
+       <div className="flex items-center justify-between">
+         <Button variant="outline" asChild>
+            <Link href="/admin/courses">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Courses
+            </Link>
+         </Button>
+      </div>
       <div className="grid gap-4">
         <Card>
           <CardHeader>

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
-import { Check, ChevronRight, Award } from 'lucide-react';
+import { Check, ChevronRight, Award, ArrowLeft } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { courses } from '@/lib/mock-data';
@@ -67,6 +67,11 @@ export default async function CourseDetailsPage({ params }: { params: { id: stri
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow container mx-auto px-4 py-12">
+        <div className="mb-8">
+            <Button asChild variant="ghost" className="pl-0">
+                <Link href="/courses"><ArrowLeft className="mr-2 h-4 w-4" />Back to Courses</Link>
+            </Button>
+        </div>
         {/* Hero Section */}
         <section className="grid md:grid-cols-2 gap-12 items-center mb-16">
           <div className="text-left">
