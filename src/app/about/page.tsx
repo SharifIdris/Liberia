@@ -57,37 +57,15 @@ export default function AboutPage() {
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative bg-secondary py-20 md:py-32">
-           <div className="absolute inset-0">
-                <Image
-                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&h=600&fit=crop"
-                    alt="African students in a graduation ceremony"
-                    layout="fill"
-                    objectFit="cover"
-                    className="opacity-20"
-                    data-ai-hint="african students graduation"
-                />
-                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-            </div>
+           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
           <div className="container mx-auto px-4 relative">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="text-center md:text-left">
-                <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">
-                  Empowering Liberia Through Digital Education
-                </h1>
-                <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto md:mx-0">
-                  Bridging global knowledge with local opportunity.
-                </p>
-              </div>
-               <div className="hidden md:block">
-                  <Image 
-                      src="https://images.unsplash.com/photo-1611214298194-27e1b21a7127?q=80&w=800&h=600&fit=crop"
-                      alt="African students learning in a classroom"
-                      width={800}
-                      height={600}
-                      className="rounded-lg shadow-lg"
-                      data-ai-hint="african students classroom"
-                  />
-              </div>
+            <div className="text-center">
+              <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">
+                Empowering Liberia Through Digital Education
+              </h1>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+                Bridging global knowledge with local opportunity.
+              </p>
             </div>
           </div>
         </section>
@@ -95,37 +73,25 @@ export default function AboutPage() {
         {/* Mission and Vision */}
         <section className="py-16 md:py-24">
             <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-8">
-                        <Card className="p-8 bg-secondary border-border/50">
-                            <div className="flex items-start gap-6">
-                                <Handshake className="w-12 h-12 text-primary flex-shrink-0" />
-                                <div>
-                                    <h2 className="text-3xl font-bold font-headline mb-3">Our Mission</h2>
-                                    <p className="text-muted-foreground">Make high-quality, tech-driven education accessible to all, using flexible tools and local payment systems.</p>
-                                </div>
+                <div className="max-w-3xl mx-auto space-y-8">
+                    <Card className="p-8 bg-secondary border-border/50">
+                        <div className="flex items-start gap-6">
+                            <Handshake className="w-12 h-12 text-primary flex-shrink-0" />
+                            <div>
+                                <h2 className="text-3xl font-bold font-headline mb-3">Our Mission</h2>
+                                <p className="text-muted-foreground">Make high-quality, tech-driven education accessible to all, using flexible tools and local payment systems.</p>
                             </div>
-                        </Card>
-                         <Card className="p-8 bg-secondary border-border/50">
-                            <div className="flex items-start gap-6">
-                                <Eye className="w-12 h-12 text-primary flex-shrink-0" />
-                                <div>
-                                    <h2 className="text-3xl font-bold font-headline mb-3">Our Vision</h2>
-                                    <p className="text-muted-foreground">A future where every Liberian learner thrives in the global digital economy.</p>
-                                </div>
+                        </div>
+                    </Card>
+                     <Card className="p-8 bg-secondary border-border/50">
+                        <div className="flex items-start gap-6">
+                            <Eye className="w-12 h-12 text-primary flex-shrink-0" />
+                            <div>
+                                <h2 className="text-3xl font-bold font-headline mb-3">Our Vision</h2>
+                                <p className="text-muted-foreground">A future where every Liberian learner thrives in the global digital economy.</p>
                             </div>
-                        </Card>
-                    </div>
-                    <div className="hidden md:block">
-                        <Image 
-                            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&h=1000&fit=crop"
-                            alt="A group of African professionals in a meeting"
-                            width={800}
-                            height={1000}
-                            className="rounded-lg shadow-lg object-cover"
-                            data-ai-hint="african professionals meeting"
-                        />
-                    </div>
+                        </div>
+                    </Card>
                 </div>
             </div>
         </section>
@@ -157,11 +123,7 @@ export default function AboutPage() {
             </h2>
             <div className="flex flex-wrap justify-center gap-8 md:gap-12">
               {teamMembers.map((member) => (
-                <div key={member.name} className="text-center">
-                  <Avatar className="w-32 h-32 mx-auto mb-4 border-4 border-primary/50">
-                    <AvatarImage src={member.image} data-ai-hint={member.dataAiHint} />
-                    <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
+                <div key={member.name} className="text-center p-4 rounded-lg bg-secondary">
                   <h3 className="font-bold text-xl">{member.name}</h3>
                   <p className="text-muted-foreground">{member.role}</p>
                 </div>
