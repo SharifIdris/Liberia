@@ -1,7 +1,17 @@
+
+'use client';
+
 import Link from "next/link";
 import { Logo } from "@/components/icons";
+import { useEffect, useState } from "react";
 
 export function Footer() {
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="border-t bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -41,7 +51,7 @@ export function Footer() {
              </div>
         </div>
         <div className="text-center text-sm text-muted-foreground mt-8 pt-8 border-t">
-          © {new Date().getFullYear()} Liberia Learn. All Rights Reserved.
+          © {year} Liberia Learn. All Rights Reserved.
         </div>
       </div>
     </footer>
