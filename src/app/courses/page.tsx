@@ -72,7 +72,7 @@ export default async function CoursesPage() {
                  </div>
               </CardContent>
               <CardFooter>
-                 <Button asChild className="w-full bg-accent text-accent-foreground hover:bg-accent/90">
+                 <Button asChild className="w-full">
                   <Link href={`/courses/${course.id}`}>View Details <ArrowRight className="ml-2 w-4 h-4" /></Link>
                 </Button>
               </CardFooter>

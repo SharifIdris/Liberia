@@ -17,6 +17,7 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/community", label: "Community" },
   { href: "/contact", label: "Contact" },
+  { href: "/support", label: "Support" },
   { href: "/apply/teacher", label: "Teach with Us" },
 ];
 
@@ -70,43 +71,41 @@ export function Header() {
                       {link.label}
                     </Link>
                   ))}
-                   <Link href="/dashboard" className="text-lg hover:text-foreground/80">Student Dashboard</Link>
-                   <Link href="/teacher" className="text-lg hover:text-foreground/80">Teacher Dashboard</Link>
-                   <Link href="/admin" className="text-lg hover:text-foreground/80">Admin Dashboard</Link>
+                   <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                       <button className="text-lg hover:text-foreground/80 flex items-center">
+                          Dashboards <ChevronDown className="ml-2 h-4 w-4" />
+                       </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuItem asChild>
+                          <Link href="/dashboard">Student</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href="/teacher">Teacher</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link href="/admin">Admin</Link>
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                 </nav>
               </SheetContent>
             </Sheet>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="relative hidden md:block">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/>
                 <Input placeholder="Search" className="w-full md:w-[200px] lg:w-[300px] pl-9" />
             </div>
             <nav className="hidden md:flex items-center gap-2">
+                <Button asChild variant="outline">
+                    <Link href="/login">Sign In</Link>
+                </Button>
                 <Button asChild>
-                <Link href="/login">Login</Link>
+                    <Link href="/login">Join Now</Link>
                 </Button>
             </nav>
-             {/* Dev-only Dashboard Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">
-                  Admin Panel
-                  <ChevronDown className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem asChild>
-                  <Link href="/dashboard">Student</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/teacher">Teacher</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/admin">Admin</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
         </div>
       </div>
