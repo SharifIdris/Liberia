@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import Image from 'next/image';
@@ -121,6 +119,21 @@ export default function LoginPage() {
                         <Button asChild className="w-full">
                           <Link href="/onboarding">Create an account</Link>
                         </Button>
+                        <div className="relative my-2">
+                            <div className="absolute inset-0 flex items-center">
+                                <span className="w-full border-t" />
+                            </div>
+                            <div className="relative flex justify-center text-xs uppercase">
+                                <span className="bg-background px-2 text-muted-foreground">
+                                or register with
+                                </span>
+                            </div>
+                        </div>
+                         <div className="flex justify-center gap-4">
+                            <Button variant="outline" size="icon" className="rounded-full"><GoogleIcon/></Button>
+                            <Button variant="outline" size="icon" className="rounded-full"><FacebookIcon/></Button>
+                            <Button variant="outline" size="icon" className="rounded-full"><LinkedInIcon/></Button>
+                        </div>
                          <div className="mt-4 text-xs text-muted-foreground text-center">
                             By clicking continue, you agree to our{' '}
                             <Link href="/terms" className="underline underline-offset-2">
