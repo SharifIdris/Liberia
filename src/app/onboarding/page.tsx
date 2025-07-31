@@ -46,15 +46,29 @@ const features = [
 export default function OnboardingPage() {
     return (
         <div className="bg-background">
-            <div className="container mx-auto px-4 py-16">
-                <div className="text-center mb-12">
-                    <Logo className="h-12 w-12 text-primary mx-auto mb-4" />
-                    <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">Welcome to Liberia Learn</h1>
-                    <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            {/* Header Image Section */}
+            <section className="relative h-96 flex items-center justify-center text-center text-white">
+                <Image
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600&h=900&fit=crop"
+                    alt="Students in a modern learning environment"
+                    layout="fill"
+                    objectFit="cover"
+                    className="z-0"
+                    data-ai-hint="students learning"
+                />
+                <div className="absolute inset-0 bg-black/50 z-10" />
+                <div className="container mx-auto px-4 z-20">
+                    <Logo className="h-16 w-16 text-primary mx-auto mb-4" />
+                    <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">
+                        Welcome to Liberia Learn
+                    </h1>
+                    <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
                         Your gateway to quality education designed specifically for Liberian students.
                     </p>
                 </div>
+            </section>
 
+            <div className="container mx-auto px-4 py-16">
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     {features.map((feature, index) => (
                         <Card key={index} className={`text-center p-6 bg-card border hover:shadow-lg transition-shadow ${feature.highlighted ? 'bg-blue-50' : ''}`}>
