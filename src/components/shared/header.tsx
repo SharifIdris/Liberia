@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -11,8 +12,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const navLinks = [
-  { href: "/", label: "Home" },
   { href: "/courses", label: "Programs" },
+  { href: "/about", label: "About" },
+  { href: "/community", label: "Community" },
+  { href: "/contact", label: "Contact" },
   { href: "/apply/teacher", label: "Teach with Us" },
 ];
 
@@ -86,8 +89,6 @@ export function Header() {
                       {link.label}
                     </Link>
                   ))}
-                  <Link href="/about" className="text-lg hover:text-white/80">About</Link>
-                  <Link href="/contact" className="text-lg hover:text-white/80">Contact</Link>
                    <Link href="/dashboard" className="text-lg hover:text-white/80">Student Dashboard</Link>
                    <Link href="/teacher" className="text-lg hover:text-white/80">Teacher Dashboard</Link>
                    <Link href="/admin" className="text-lg hover:text-white/80">Admin Dashboard</Link>
@@ -96,8 +97,8 @@ export function Header() {
             </Sheet>
           </div>
           <nav className="hidden md:flex items-center gap-2">
-            <Button asChild variant="ghost" className="hover:bg-slate-800 hover:text-white">
-              <Link href="/login">Log in</Link>
+            <Button asChild>
+              <Link href="/">Sign In</Link>
             </Button>
           </nav>
         </div>
