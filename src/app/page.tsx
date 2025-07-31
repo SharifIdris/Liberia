@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import Image from 'next/image';
@@ -98,8 +99,8 @@ export default function HomePage() {
                             </div>
                         </div>
                         <div className="flex justify-center gap-4">
-                            <Button variant="outline" className="flex-1"><GoogleIcon/> <span className="ml-2">Google</span></Button>
-                            <Button variant="outline" className="flex-1"><FacebookIcon/> <span className="ml-2">Facebook</span></Button>
+                            <Button variant="outline" size="icon" className="rounded-full"><GoogleIcon/></Button>
+                            <Button variant="outline" size="icon" className="rounded-full"><FacebookIcon/></Button>
                         </div>
                     </CardContent>
                 </Card>
