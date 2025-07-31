@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
@@ -76,6 +77,16 @@ export default function AboutPage() {
                 <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto md:mx-0">
                   Bridging global knowledge with local opportunity.
                 </p>
+              </div>
+               <div className="hidden md:block">
+                  <Image 
+                      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&h=600&fit=crop"
+                      alt="Students learning in a classroom"
+                      width={800}
+                      height={600}
+                      className="rounded-lg shadow-lg"
+                      data-ai-hint="students classroom"
+                  />
               </div>
             </div>
           </div>
