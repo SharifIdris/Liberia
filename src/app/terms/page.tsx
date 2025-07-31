@@ -1,6 +1,10 @@
+
+'use client';
+
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useEffect, useState } from 'react';
 
 const termsSections = [
     {
@@ -34,6 +38,12 @@ const termsSections = [
 ]
 
 export default function TermsPage() {
+    const [lastUpdated, setLastUpdated] = useState('');
+
+    useEffect(() => {
+        setLastUpdated(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+    }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -41,7 +51,7 @@ export default function TermsPage() {
         <div className="container mx-auto px-4">
             <div className="text-center mb-12">
                 <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">Terms and Conditions</h1>
-                <p className="text-lg text-muted-foreground">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                {lastUpdated && <p className="text-lg text-muted-foreground">Last updated: {lastUpdated}</p>}
             </div>
 
             <Card className="max-w-4xl mx-auto">
