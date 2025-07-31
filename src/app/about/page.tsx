@@ -3,27 +3,20 @@ import Image from 'next/image';
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
 import { Card } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Briefcase, Smartphone, DollarSign, Globe, Eye, Handshake } from 'lucide-react';
 
 const teamMembers = [
   {
     name: 'Aaisha Nyandoro',
     role: 'Community Coordinator',
-    image: 'https://images.unsplash.com/photo-1580894742597-87bc8789db3d?q=80&w=150&h=150&fit=crop&crop=faces',
-    dataAiHint: 'woman community coordinator',
   },
   {
     name: 'Dr. Koffi Mensah',
     role: 'Curriculum Lead',
-    image: 'https://images.unsplash.com/photo-1613959953633-d642aff2a19b?q=80&w=150&h=150&fit=crop&crop=faces',
-    dataAiHint: 'man curriculum lead',
   },
   {
     name: 'Alsha Nyandoro',
     role: 'Community Coordinator',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=150&h=150&fit=crop&crop=faces',
-    dataAiHint: 'woman community coordinator smiling',
   },
 ];
 
@@ -56,16 +49,27 @@ export default function AboutPage() {
       <Header />
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative bg-secondary py-20 md:py-32">
-           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-          <div className="container mx-auto px-4 relative">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">
-                Empowering Liberia Through Digital Education
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                Bridging global knowledge with local opportunity.
-              </p>
+        <section className="bg-secondary py-20 md:py-32">
+          <div className="container mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="text-left">
+                <h1 className="text-4xl md:text-6xl font-bold font-headline mb-4">
+                  Empowering Liberia Through Digital Education
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground max-w-3xl">
+                  Bridging global knowledge with local opportunity.
+                </p>
+              </div>
+              <div className="flex justify-center">
+                 <Image
+                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=600&h=400&fit=crop"
+                    alt="African students learning"
+                    width={600}
+                    height={400}
+                    className="rounded-lg shadow-2xl"
+                    data-ai-hint="african students learning"
+                  />
+              </div>
             </div>
           </div>
         </section>
