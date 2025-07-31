@@ -91,7 +91,9 @@ export default function HomePage() {
                             </div>
                             <Input id="password-signin" type="password" required />
                         </div>
-                        <Button type="submit" className="w-full">Sign in</Button>
+                        <Button asChild className="w-full">
+                            <Link href="/dashboard">Sign in</Link>
+                        </Button>
                         <div className="relative my-2">
                             <div className="absolute inset-0 flex items-center">
                                 <span className="w-full border-t" />
