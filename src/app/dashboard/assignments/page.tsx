@@ -1,15 +1,32 @@
+'use client';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useEffect, useState } from 'react';
 
-const assignments = [
-  { id: 1, title: 'Project Proposal', course: 'Intro to Machine Learning', dueDate: '2024-05-01', status: 'Submitted', grade: 'A' },
-  { id: 2, title: 'Data Analysis Report', course: 'Data Visualization', dueDate: '2024-05-10', status: 'Pending', grade: '-' },
-  { id: 3, title: 'Final Project', course: 'Intro to Machine Learning', dueDate: '2024-06-01', status: 'Pending', grade: '-' },
-];
+interface Assignment {
+  id: number;
+  title: string;
+  course: string;
+  dueDate: string;
+  status: string;
+  grade: string | null;
+}
 
 export default function AssignmentsPage() {
+  const [assignments, setAssignments] = useState<Assignment[]>([]);
+
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      const res = await fetch('/api/assignments');
+      const data = await res.json();
+      setAssignments(data);
+    };
+
+    fetchAssignments();
+  }, []);
+
   return (
     <div>
         <div className="mb-6">

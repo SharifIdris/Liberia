@@ -5,18 +5,103 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { MessageSquare, FileText, Receipt, ArrowRight, Video, AlertCircle } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-const myCourses = [
-  { id: 1, title: 'Intro to Machine Learning', progress: 75, href: '/dashboard/courses/1' },
-  { id: 2, title: 'Data Visualization', progress: 45, href: '/dashboard/courses/2' },
-];
+const ZoomMeeting = dynamic(() => import('@/components/shared/zoom-meeting'), { ssr: false });
 
-const upcomingSessions = [
-    { title: 'Data Visualization Live Q&A', date: 'April 25, 2024', time: '10:00 AM' },
-    { title: 'Machine Learning Workshop', date: 'April 28, 2024', time: '2:00 PM' },
-]
+interface Course {
+  id: number;
+  title: string;
+  progress: number;
+  href: string;
+}
+
+interface Session {
+  title: string;
+  date: string;
+  time: string;
+}
+
+interface PaymentDue {
+  amount: number;
+  dueDate: string;
+  course: string;
+}
+
+interface Assignment {
+  id: number;
+  title: string;
+  status: string;
+  statusColor: string;
+}
 
 export default function DashboardPage() {
+  const [myCourses, setMyCourses] = useState<Course[]>([]);
+  const [upcomingSessions, setUpcomingSessions] = useState<Session[]>([]);
+  const [paymentDue, setPaymentDue] = useState<PaymentDue | null>(null);
+  const [recentAssignments, setRecentAssignments] = useState<Assignment[]>([]);
+  const [showZoom, setShowZoom] = useState(false);
+  const [zoomSignature, setZoomSignature] = useState('');
+  const [meetingNumber, setMeetingNumber] = useState('');
+
+  const handleJoinMeeting = async (meetingId: string) => {
+    setMeetingNumber(meetingId);
+    const res = await fetch('/api/zoom/signature', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ meetingNumber: meetingId, role: 0 }),
+    });
+    const { signature } = await res.json();
+    setZoomSignature(signature);
+    setShowZoom(true);
+  };
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const res = await fetch('/api/courses');
+      const data = await res.json();
+      setMyCourses(data.map((course: any) => ({ ...course, href: `/dashboard/courses/${course.id}` })));
+    };
+
+    const fetchSessions = async () => {
+      const res = await fetch('/api/sessions');
+      const data = await res.json();
+      setUpcomingSessions(data);
+    };
+
+    const fetchPaymentDue = async () => {
+      const res = await fetch('/api/payments/due');
+      const data = await res.json();
+      setPaymentDue(data);
+    };
+
+    const fetchRecentAssignments = async () => {
+      const res = await fetch('/api/assignments/recent');
+      const data = await res.json();
+      setRecentAssignments(data);
+    };
+
+    fetchCourses();
+    fetchSessions();
+    fetchPaymentDue();
+    fetchRecentAssignments();
+  }, []);
+
+  if (showZoom) {
+    return (
+      <ZoomMeeting
+        signature={zoomSignature}
+        meetingNumber={meetingNumber}
+        userName="Student"
+        userEmail="student@example.com"
+        apiKey={process.env.NEXT_PUBLIC_ZOOM_SDK_KEY!}
+      />
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       
@@ -60,7 +145,7 @@ export default function DashboardPage() {
                         <p className="font-semibold">{session.title}</p>
                         <p className="text-sm text-muted-foreground">{session.date} at {session.time}</p>
                     </div>
-                    <Button variant="secondary" size="sm"><Video className="mr-2 h-4 w-4"/>Join</Button>
+                    <Button variant="secondary" size="sm" onClick={() => handleJoinMeeting(session.title)}><Video className="mr-2 h-4 w-4"/>Join</Button>
                  </div>
                ))}
             </CardContent>
@@ -69,26 +154,32 @@ export default function DashboardPage() {
       
       {/* Right Column */}
       <div className="space-y-6">
-         <Card className="bg-primary text-primary-foreground">
-            <CardHeader>
-                <CardTitle className="flex items-center gap-2"><AlertCircle/>Payment Due</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <p className="text-3xl font-bold">$150.00</p>
-                <p className="text-primary-foreground/80">Next installment for Intro to ML is due on May 1, 2024.</p>
-            </CardContent>
-            <CardFooter>
-                 <Button variant="secondary" className="w-full" asChild><Link href="/dashboard/payments">Pay Now</Link></Button>
-            </CardFooter>
-        </Card>
+        {paymentDue && (
+          <Card className="bg-primary text-primary-foreground">
+              <CardHeader>
+                  <CardTitle className="flex items-center gap-2"><AlertCircle/>Payment Due</CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <p className="text-3xl font-bold">${paymentDue.amount.toFixed(2)}</p>
+                  <p className="text-primary-foreground/80">Next installment for {paymentDue.course} is due on {paymentDue.dueDate}.</p>
+              </CardContent>
+              <CardFooter>
+                  <Button variant="secondary" className="w-full" asChild><Link href="/dashboard/payments">Pay Now</Link></Button>
+              </CardFooter>
+          </Card>
+        )}
          <Card>
             <CardHeader>
                 <CardTitle>Recent Assignments</CardTitle>
             </CardHeader>
             <CardContent>
                 <ul className="space-y-2 text-sm">
-                    <li className="flex justify-between"><span>Project Proposal</span> <span className="font-bold text-green-600">Graded: A</span></li>
-                    <li className="flex justify-between"><span>Data Analysis Report</span> <span className="text-muted-foreground">Pending</span></li>
+                    {recentAssignments.map((assignment) => (
+                        <li key={assignment.id} className="flex justify-between">
+                            <span>{assignment.title}</span>
+                            <span className={`font-bold ${assignment.statusColor}`}>{assignment.status}</span>
+                        </li>
+                    ))}
                 </ul>
             </CardContent>
              <CardFooter>

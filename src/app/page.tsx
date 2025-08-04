@@ -16,49 +16,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { useEffect, useState } from 'react';
 
-const popularCourses = [
-  {
-    id: '1',
-    title: 'Diploma in Digital Marketing',
-    image: 'https://images.unsplash.com/photo-1557862921-37829c790f19?q=80&w=300&h=200&fit=crop',
-    dataAiHint: 'digital marketing',
-    rating: 4.8,
-    reviews: 120,
-  },
-  {
-    id: '2',
-    title: 'Certificate in Project Management',
-    image: 'https://images.unsplash.com/photo-1516534775068-ba3e7458af70?q=80&w=300&h=200&fit=crop',
-    dataAiHint: 'project management',
-    rating: 4.9,
-    reviews: 250,
-  },
-  {
-    id: '3',
-    title: 'Professional Graphic Design',
-    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=300&h=200&fit=crop',
-    dataAiHint: 'graphic design',
-    rating: 4.7,
-    reviews: 95,
-  },
-  {
-    id: '4',
-    title: 'Web Development Bootcamp',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=300&h=200&fit=crop',
-    dataAiHint: 'web development',
-    rating: 4.9,
-    reviews: 450,
-  },
-   {
-    id: '5',
-    title: 'Introduction to Data Science',
-    image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=300&h=200&fit=crop',
-    dataAiHint: 'data science',
-    rating: 4.8,
-    reviews: 310,
-  },
-];
+interface Course {
+  id: string;
+  title: string;
+  image: string;
+  dataAiHint: string;
+  rating: number;
+  reviews: number;
+}
 
 const teachers = [
   {
@@ -109,6 +76,18 @@ const learningFeatures = [
 ]
 
 export default function HomePage() {
+  const [popularCourses, setPopularCourses] = useState<Course[]>([]);
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      const res = await fetch('/api/courses');
+      const data = await res.json();
+      setPopularCourses(data);
+    };
+
+    fetchCourses();
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
@@ -300,5 +279,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    

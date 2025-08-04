@@ -1,4 +1,5 @@
 
+'use client';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Users, Edit, Clock, BarChart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -12,19 +13,91 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
-const recentSubmissions = [
-    { student: 'John Doe', assignment: 'Project Proposal', course: 'Machine Learning A-Z'},
-    { student: 'Jane Smith', assignment: 'Final Component Library', course: 'Advanced React & GraphQL' },
-    { student: 'Peter Jones', assignment: 'Project Proposal', course: 'Machine Learning A-Z' },
-];
+const ZoomMeeting = dynamic(() => import('@/components/shared/zoom-meeting'), { ssr: false });
 
-const upcomingClasses = [
-    { topic: 'Live Q&A: ML Basics', course: 'Machine Learning A-Z', time: '2:00 PM'},
-    { topic: 'Workshop: State Management', course: 'Advanced React & GraphQL', time: '4:00 PM' },
-];
+interface Submission {
+    id: number;
+    student: string;
+    assignment: string;
+    course: string;
+}
+
+interface Class {
+    id: number;
+    topic: string;
+    course: string;
+    time: string;
+}
 
 export default function TeacherDashboardPage() {
+    const [recentSubmissions, setRecentSubmissions] = useState<Submission[]>([]);
+    const [upcomingClasses, setUpcomingClasses] = useState<Class[]>([]);
+    const [coursesTaught, setCoursesTaught] = useState(0);
+    const [activeStudents, setActiveStudents] = useState(0);
+    const [showZoom, setShowZoom] = useState(false);
+    const [zoomSignature, setZoomSignature] = useState('');
+    const [meetingNumber, setMeetingNumber] = useState('');
+
+    const handleStartMeeting = async (meetingId: number) => {
+        setMeetingNumber(meetingId.toString());
+        const res = await fetch('/api/zoom/signature', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ meetingNumber: meetingId.toString(), role: 1 }),
+        });
+        const { signature } = await res.json();
+        setZoomSignature(signature);
+        setShowZoom(true);
+    };
+
+    useEffect(() => {
+        const fetchSubmissions = async () => {
+            const res = await fetch('/api/teacher/submissions');
+            const data = await res.json();
+            setRecentSubmissions(data);
+        };
+
+        const fetchClasses = async () => {
+            const res = await fetch('/api/teacher/classes');
+            const data = await res.json();
+            setUpcomingClasses(data);
+        };
+
+        const fetchCoursesTaught = async () => {
+            const res = await fetch('/api/teacher/courses');
+            const data = await res.json();
+            setCoursesTaught(data.length);
+        };
+
+        const fetchActiveStudents = async () => {
+            const res = await fetch('/api/teacher/students');
+            const data = await res.json();
+            setActiveStudents(data.length);
+        };
+
+        fetchSubmissions();
+        fetchClasses();
+        fetchCoursesTaught();
+        fetchActiveStudents();
+    }, []);
+
+    if (showZoom) {
+        return (
+            <ZoomMeeting
+                signature={zoomSignature}
+                meetingNumber={meetingNumber}
+                userName="Teacher"
+                userEmail="teacher@example.com"
+                apiKey={process.env.NEXT_PUBLIC_ZOOM_SDK_KEY!}
+            />
+        );
+    }
+
     return (
         <div className="grid auto-rows-max items-start gap-4 md:gap-8">
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
@@ -34,7 +107,7 @@ export default function TeacherDashboardPage() {
                         <BookOpen className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">3</div>
+                        <div className="text-2xl font-bold">{coursesTaught}</div>
                         <p className="text-xs text-muted-foreground">Active Courses</p>
                     </CardContent>
                 </Card>
@@ -44,7 +117,7 @@ export default function TeacherDashboardPage() {
                         <Users className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">195</div>
+                        <div className="text-2xl font-bold">{activeStudents}</div>
                          <p className="text-xs text-muted-foreground">Across all courses</p>
                     </CardContent>
                 </Card>
@@ -54,7 +127,7 @@ export default function TeacherDashboardPage() {
                         <Edit className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">12</div>
+                        <div className="text-2xl font-bold">{recentSubmissions.length}</div>
                          <p className="text-xs text-muted-foreground">Submissions pending</p>
                     </CardContent>
                 </Card>
@@ -64,7 +137,7 @@ export default function TeacherDashboardPage() {
                         <Clock className="h-4 w-4 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">2</div>
+                        <div className="text-2xl font-bold">{upcomingClasses.length}</div>
                          <p className="text-xs text-muted-foreground">Scheduled this week</p>
                     </CardContent>
                 </Card>
@@ -86,7 +159,7 @@ export default function TeacherDashboardPage() {
                             </TableHeader>
                             <TableBody>
                                 {recentSubmissions.map(submission => (
-                                     <TableRow key={submission.student}>
+                                     <TableRow key={submission.id}>
                                         <TableCell>{submission.student}</TableCell>
                                         <TableCell>{submission.assignment}</TableCell>
                                         <TableCell><Button variant="outline" size="sm">Grade</Button></TableCell>
@@ -112,10 +185,12 @@ export default function TeacherDashboardPage() {
                             </TableHeader>
                             <TableBody>
                                 {upcomingClasses.map(session => (
-                                     <TableRow key={session.topic}>
+                                     <TableRow key={session.id}>
                                         <TableCell>{session.topic}</TableCell>
                                         <TableCell>{session.time}</TableCell>
-                                        <TableCell><Button variant="secondary" size="sm">Start</Button></TableCell>
+                                        <TableCell>
+                                            <Button variant="secondary" size="sm" onClick={() => handleStartMeeting(session.id)}>Start</Button>
+                                        </TableCell>
                                      </TableRow>
                                 ))}
                             </TableBody>

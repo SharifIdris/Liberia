@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardContent,
@@ -20,44 +20,71 @@ import { Button } from '@/components/ui/button';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { DollarSign, Users, BookOpen, UserCheck, ArrowUp, Activity } from 'lucide-react';
 
-const initialTeacherData = [
-  { name: 'Alex Johnson', email: 'alex.johnson@example.com', status: 'Approved' },
-  { name: 'Sarah Williams', email: 'sarah.williams@example.com', status: 'Approved' },
-  { name: 'Mark Davis', email: 'mark.davis@example.com', status: 'Pending' },
-  { name: 'Jennifer Lee', email: 'jennifer.lee@example.com', status: 'Pending' },
-];
-
-const courseManagementData = [
-  { name: 'Intro to Python', status: 'Published', price: '$49.00' },
-  { name: 'Web Development', status: 'Draft', price: '$129.00' },
-];
-
-const studentProgressData = [
-  { name: 'Jan', progress: 45 },
-  { name: 'Feb', progress: 50 },
-  { name: 'Mar', progress: 70 },
-  { name: 'Apr', progress: 48 },
-  { name: 'May', progress: 51 },
-  { name: 'Jun', progress: 55 },
-  { name: 'Jul', progress: 42 },
-];
-
-const financialOverviewData = [
-  { name: 'Installments', value: 400 },
-  { name: 'Full', value: 600 },
-];
 const COLORS = ['#0088FE', '#00C49F'];
 
-const enrollmentsData = [
-    { student: 'Emma Wilson', course: 'Machine Learning A...', status: 'In Progress', payment: 'Full Payment' },
-    { student: 'Liam Brown', course: 'React for Beginners', status: 'Completed', payment: 'Full Payment' },
-    { student: 'Olivia Taylor', course: 'Data Science with R', status: 'Payment Failed', payment: 'Installments' },
-    { student: 'Noah Miller', course: 'Advanced CSS Techniques', status: 'In Progress', payment: 'Full Payment' },
-]
+interface TeacherApplication {
+    id: number;
+    name: string;
+    email: string;
+    status: string;
+}
 
+interface StudentProgress {
+    id: number;
+    month: string;
+    progress: number;
+}
+
+interface FinancialOverview {
+    id: number;
+    name: string;
+    value: number;
+}
+
+interface Enrollment {
+    id: number;
+    student: string;
+    course: string;
+    status: string;
+    payment: string;
+}
 
 export default function AdminDashboard() {
-  const [teacherData, setTeacherData] = useState(initialTeacherData);
+  const [teacherData, setTeacherData] = useState<TeacherApplication[]>([]);
+  const [studentProgressData, setStudentProgressData] = useState<StudentProgress[]>([]);
+  const [financialOverviewData, setFinancialOverviewData] = useState<FinancialOverview[]>([]);
+  const [enrollmentsData, setEnrollmentsData] = useState<Enrollment[]>([]);
+
+  useEffect(() => {
+    const fetchTeacherApplications = async () => {
+        const res = await fetch('/api/admin/teachers/applications');
+        const data = await res.json();
+        setTeacherData(data);
+    };
+
+    const fetchStudentProgress = async () => {
+        const res = await fetch('/api/admin/students/progress');
+        const data = await res.json();
+        setStudentProgressData(data);
+    };
+
+    const fetchFinancialOverview = async () => {
+        const res = await fetch('/api/admin/financials/overview');
+        const data = await res.json();
+        setFinancialOverviewData(data);
+    };
+
+    const fetchEnrollments = async () => {
+        const res = await fetch('/api/admin/enrollments');
+        const data = await res.json();
+        setEnrollmentsData(data);
+    };
+
+    fetchTeacherApplications();
+    fetchStudentProgress();
+    fetchFinancialOverview();
+    fetchEnrollments();
+  }, []);
 
   const handleTeacherStatusChange = (email: string, newStatus: 'Approved' | 'Rejected') => {
     setTeacherData(teacherData.filter(teacher => teacher.email !== email));
@@ -141,8 +168,8 @@ export default function AdminDashboard() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {pendingTeachers.map((teacher, index) => (
-                    <TableRow key={index}>
+                    {pendingTeachers.map((teacher) => (
+                    <TableRow key={teacher.id}>
                         <TableCell>{teacher.name}</TableCell>
                         <TableCell>
                             <div className="flex gap-2">
@@ -196,8 +223,8 @@ export default function AdminDashboard() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {enrollmentsData.map((enrollment, index) => (
-                            <TableRow key={index}>
+                        {enrollmentsData.map((enrollment) => (
+                            <TableRow key={enrollment.id}>
                                 <TableCell>{enrollment.student}</TableCell>
                                 <TableCell>{enrollment.course}</TableCell>
                                 <TableCell>
