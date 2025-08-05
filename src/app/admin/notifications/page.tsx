@@ -5,8 +5,32 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useState } from 'react';
 
 export default function AdminNotificationsPage() {
+  const [recipient, setRecipient] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSendNotification = async () => {
+    const response = await fetch('/api/admin/notifications', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ recipient, subject, message }),
+    });
+
+    if (response.ok) {
+      alert('Notification sent successfully!');
+      setRecipient('');
+      setSubject('');
+      setMessage('');
+    } else {
+      alert('Failed to send notification.');
+    }
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
         <div className="md:col-span-2 space-y-8">
@@ -18,7 +42,7 @@ export default function AdminNotificationsPage() {
                 <CardContent className="space-y-4">
                     <div className="space-y-2">
                         <Label htmlFor="recipient">Recipient Group</Label>
-                        <Select>
+                        <Select onValueChange={setRecipient} value={recipient}>
                             <SelectTrigger id="recipient">
                                 <SelectValue placeholder="Select a group" />
                             </SelectTrigger>
@@ -32,15 +56,15 @@ export default function AdminNotificationsPage() {
                     </div>
                      <div className="space-y-2">
                         <Label htmlFor="subject">Subject</Label>
-                        <Input id="subject" placeholder="e.g. Upcoming Maintenance" />
+                        <Input id="subject" placeholder="e.g. Upcoming Maintenance" value={subject} onChange={(e) => setSubject(e.target.value)} />
                     </div>
                     <div className="space-y-2">
                         <Label htmlFor="message">Message</Label>
-                        <Textarea id="message" placeholder="Your message..." rows={6} />
+                        <Textarea id="message" placeholder="Your message..." rows={6} value={message} onChange={(e) => setMessage(e.target.value)} />
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <Button>Send Message</Button>
+                    <Button onClick={handleSendNotification}>Send Message</Button>
                 </CardFooter>
             </Card>
         </div>

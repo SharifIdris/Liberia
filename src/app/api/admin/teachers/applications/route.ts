@@ -47,7 +47,12 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
     }
 
-    const updatedApplication = await db.update(teacherApplications).set(validation.data).where(eq(teacherApplications.id, id));
+    const { name, email, status } = validation.data;
+
+    const updatedApplication = await db.update(teacherApplications)
+      .set({ status })
+      .where(eq(teacherApplications.id, id));
+      
     return NextResponse.json(updatedApplication);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update application' }, { status: 500 });

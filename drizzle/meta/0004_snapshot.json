@@ -1,6 +1,6 @@
 {
-  "id": "bfa66fc2-0e69-4507-8da4-aa1b48c9a9e1",
-  "prevId": "1ff60b85-c445-4990-b6f0-9b230173f606",
+  "id": "ca042578-b6be-42c1-8ace-6467cb3195ec",
+  "prevId": "a88ba15a-90e5-4ee7-8573-66456e5e0c11",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -443,6 +443,92 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.reports": {
+      "name": "reports",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "month": {
+          "name": "month",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "revenue": {
+          "name": "revenue",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expenses": {
+          "name": "expenses",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "enrollments": {
+          "name": "enrollments",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.settings": {
+      "name": "settings",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "orange_money_api_key": {
+          "name": "orange_money_api_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mtn_momo_api_key": {
+          "name": "mtn_momo_api_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "stripe_secret_key": {
+          "name": "stripe_secret_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "zoom_api_key": {
+          "name": "zoom_api_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         }
       },
       "indexes": {},

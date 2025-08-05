@@ -1,5 +1,5 @@
-'use client';
-
+import { db } from '@/lib/db';
+import { reports } from '@/lib/schema';
 import {
   Card,
   CardContent,
@@ -12,24 +12,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 import { Download } from 'lucide-react';
 
-const financialData = [
-  { month: 'Jan', revenue: 4000, expenses: 2400 },
-  { month: 'Feb', revenue: 3000, expenses: 1398 },
-  { month: 'Mar', revenue: 9800, expenses: 2000 },
-  { month: 'Apr', revenue: 3908, expenses: 2780 },
-  { month: 'May', revenue: 4800, expenses: 1890 },
-  { month: 'Jun', revenue: 3800, expenses: 2390 },
-];
-
-const enrollmentTrendsData = [
-    { date: '2024-01', count: 65 },
-    { date: '2024-02', count: 59 },
-    { date: '2024-03', count: 80 },
-    { date: '2024-04', count: 81 },
-    { date: '2024-05', count: 56 },
-    { date: '2024-06', count: 55 },
-];
-
 const coursePopularityData = [
   { name: 'Digital Marketing', value: 400 },
   { name: 'Project Management', value: 300 },
@@ -38,7 +20,9 @@ const coursePopularityData = [
 ];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-export default function AdminReportsPage() {
+export default async function AdminReportsPage() {
+  const allReports = await db.select().from(reports);
+
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
        <div className="flex justify-between items-center">
@@ -60,7 +44,7 @@ export default function AdminReportsPage() {
             </CardHeader>
             <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
-                <BarChart data={financialData}>
+                <BarChart data={allReports}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="month" />
                     <YAxis />
@@ -122,13 +106,13 @@ export default function AdminReportsPage() {
         </CardHeader>
         <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={enrollmentTrendsData}>
+                <LineChart data={allReports}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
+                    <XAxis dataKey="month" />
                     <YAxis />
                     <Tooltip contentStyle={{ backgroundColor: 'hsl(var(--background))', border: '1px solid hsl(var(--border))' }}/>
                     <Legend />
-                    <Line type="monotone" dataKey="count" stroke="hsl(var(--primary))" name="New Enrollments" />
+                    <Line type="monotone" dataKey="enrollments" stroke="hsl(var(--primary))" name="New Enrollments" />
                 </LineChart>
             </ResponsiveContainer>
         </CardContent>

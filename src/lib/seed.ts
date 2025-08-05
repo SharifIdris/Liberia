@@ -1,24 +1,18 @@
 import { db } from './db';
-import { courses, teachers, testimonials, learningFeatures, upcomingSessions, paymentDue, recentAssignments, assignments, recentSubmissions, upcomingClasses, teacherApplications, studentProgress, financialOverview, enrollments } from './schema';
+import * as schema from './schema';
+import { courses, teachers, testimonials, learningFeatures, upcomingSessions, paymentDue, recentAssignments, assignments, recentSubmissions, upcomingClasses, teacherApplications, studentProgress, financialOverview, enrollments, certificates, payments, reports, students } from './schema';
 import * as dotenv from 'dotenv';
+import { migrate } from 'drizzle-orm/postgres-js/migrator';
+
 dotenv.config();
 
 async function main() {
-    await db.delete(courses);
-    await db.delete(teachers);
-    await db.delete(testimonials);
-    await db.delete(learningFeatures);
-    await db.delete(upcomingSessions);
-    await db.delete(paymentDue);
-    await db.delete(recentAssignments);
-    await db.delete(assignments);
-    await db.delete(recentSubmissions);
-    await db.delete(upcomingClasses);
-    await db.delete(teacherApplications);
-    await db.delete(studentProgress);
-    await db.delete(financialOverview);
-    await db.delete(enrollments);
+    console.log('Running migrations...');
+    // @ts-ignore
+    await migrate(db, { migrationsFolder: './drizzle' });
+    console.log('Migrations completed.');
 
+    console.log('Seeding data...');
     await db.insert(courses).values([
         {
             id: 1,
@@ -175,6 +169,36 @@ async function main() {
         { id: 3, student: 'Olivia Taylor', course: 'Data Science with R', status: 'Payment Failed', payment: 'Installments' },
         { id: 4, student: 'Noah Miller', course: 'Advanced CSS Techniques', status: 'In Progress', payment: 'Full Payment' },
     ]);
+
+    await db.insert(certificates).values([
+        { id: 1, student: "Liam Brown", course: "React for Beginners", status: "Issued", date: "2024-02-20" },
+        { id: 2, student: "Sophia Garcia", course: "UX/UI Design", status: "Issued", date: "2023-12-01" },
+        { id: 3, student: "Emma Wilson", course: "Machine Learning", status: "Pending Completion", date: "-" },
+    ]);
+
+    await db.insert(payments).values([
+        { id: 1, student: "Emma Wilson", course: "Machine Learning", amount: 150.00, status: "Paid", method: "Orange Money", date: "2024-03-01" },
+        { id: 2, student: "Liam Brown", course: "React for Beginners", amount: 350.00, status: "Paid", method: "Visa", date: "2024-02-20" },
+        { id: 3, student: "Olivia Taylor", course: "Data Science with R", amount: 125.00, status: "Failed", method: "MTN MoMo", date: "2024-01-15" },
+        { id: 4, student: "Noah Miller", course: "Advanced CSS", amount: 75.00, status: "Paid", method: "Orange Money", date: "2024-03-05" },
+    ]);
+
+    await db.insert(reports).values([
+        { id: 1, month: 'Jan', revenue: 4000, expenses: 2400, enrollments: 65 },
+        { id: 2, month: 'Feb', revenue: 3000, expenses: 1398, enrollments: 59 },
+        { id: 3, month: 'Mar', revenue: 9800, expenses: 2000, enrollments: 80 },
+        { id: 4, month: 'Apr', revenue: 3908, expenses: 2780, enrollments: 81 },
+        { id: 5, month: 'May', revenue: 4800, expenses: 1890, enrollments: 56 },
+        { id: 6, month: 'Jun', revenue: 3800, expenses: 2390, enrollments: 55 },
+    ]);
+
+    await db.insert(students).values([
+        { id: 1, name: "Emma Wilson", email: "emma.w@example.com", courses: 2, status: "Active", joined: "2024-03-10" },
+        { id: 2, name: "Liam Brown", email: "liam.b@example.com", courses: 1, status: "Active", joined: "2024-02-20" },
+        { id: 3, name: "Olivia Taylor", email: "olivia.t@example.com", courses: 1, status: "Locked", joined: "2024-01-15" },
+        { id: 4, name: "Noah Miller", email: "noah.m@example.com", courses: 3, status: "Active", joined: "2024-03-05" },
+    ]);
+    console.log('Seeding completed.');
 }
 
 main();

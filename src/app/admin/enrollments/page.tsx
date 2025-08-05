@@ -1,3 +1,5 @@
+import { db } from '@/lib/db';
+import { enrollments } from '@/lib/schema';
 import {
   File,
   ListFilter,
@@ -41,15 +43,9 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
-const mockEnrollments = [
-  { id: "1", student: "Emma Wilson", course: "Machine Learning Essentials", status: "In Progress", paymentStatus: "Paid", enrollmentDate: "2024-03-10" },
-  { id: "2", student: "Liam Brown", course: "React for Beginners", status: "Completed", paymentStatus: "Paid", enrollmentDate: "2024-02-20" },
-  { id: "3", student: "Olivia Taylor", course: "Data Science with R", status: "Payment Failed", paymentStatus: "Failed", enrollmentDate: "2024-01-15" },
-  { id: "4", student: "Noah Miller", course: "Advanced CSS Techniques", status: "In Progress", paymentStatus: "Paid", enrollmentDate: "2024-03-05" },
-  { id: "5", student: "Sophia Garcia", course: "UX/UI Design Fundamentals", status: "Completed", paymentStatus: "Paid", enrollmentDate: "2023-12-01" },
-];
+export default async function AdminEnrollmentsPage() {
+  const allEnrollments = await db.select().from(enrollments);
 
-export default function AdminEnrollmentsPage() {
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
       <div className="flex items-center gap-4">
@@ -109,7 +105,7 @@ export default function AdminEnrollmentsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockEnrollments.map(enrollment => (
+              {allEnrollments.map(enrollment => (
                 <TableRow key={enrollment.id}>
                   <TableCell className="font-medium">{enrollment.student}</TableCell>
                   <TableCell>{enrollment.course}</TableCell>
@@ -119,11 +115,11 @@ export default function AdminEnrollmentsPage() {
                     </Badge>
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
-                     <Badge variant={enrollment.paymentStatus === 'Failed' ? 'destructive' : 'default'} className="bg-opacity-20">
-                      {enrollment.paymentStatus}
+                     <Badge variant={enrollment.payment === 'Failed' ? 'destructive' : 'default'} className="bg-opacity-20">
+                      {enrollment.payment}
                     </Badge>
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">{enrollment.enrollmentDate}</TableCell>
+                  <TableCell className="hidden md:table-cell">2024-03-10</TableCell>
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
@@ -156,7 +152,7 @@ export default function AdminEnrollmentsPage() {
         <CardFooter>
             <div className="flex w-full justify-between items-center">
                 <div className="text-xs text-muted-foreground">
-                    Showing <strong>1-5</strong> of <strong>{mockEnrollments.length}</strong> enrollments
+                    Showing <strong>1-5</strong> of <strong>{allEnrollments.length}</strong> enrollments
                 </div>
                 <Pagination>
                     <PaginationContent>

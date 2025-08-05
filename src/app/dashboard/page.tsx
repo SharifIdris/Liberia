@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { MessageSquare, FileText, Receipt, ArrowRight, Video, AlertCircle } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
+import { createClient } from '@/utils/supabase/client';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
@@ -44,6 +46,13 @@ export default function DashboardPage() {
   const [showZoom, setShowZoom] = useState(false);
   const [zoomSignature, setZoomSignature] = useState('');
   const [meetingNumber, setMeetingNumber] = useState('');
+  const supabase = createClient();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push('/auth');
+  };
 
   const handleJoinMeeting = async (meetingId: string) => {
     setMeetingNumber(meetingId);
@@ -198,6 +207,9 @@ export default function DashboardPage() {
                 </Button>
             </CardContent>
         </Card>
+        <Button onClick={handleSignOut} variant="outline" className="w-full">
+          Sign Out
+        </Button>
       </div>
 
     </div>

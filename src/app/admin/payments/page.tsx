@@ -1,3 +1,5 @@
+import { db } from '@/lib/db';
+import { payments } from '@/lib/schema';
 import {
   File,
   ListFilter,
@@ -41,14 +43,9 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
-const mockPayments = [
-  { id: "txn_1", student: "Emma Wilson", course: "Machine Learning", amount: 150.00, status: "Paid", method: "Orange Money", date: "2024-03-01" },
-  { id: "txn_2", student: "Liam Brown", course: "React for Beginners", amount: 350.00, status: "Paid", method: "Visa", date: "2024-02-20" },
-  { id: "txn_3", student: "Olivia Taylor", course: "Data Science with R", amount: 125.00, status: "Failed", method: "MTN MoMo", date: "2024-01-15" },
-  { id: "txn_4", student: "Noah Miller", course: "Advanced CSS", amount: 75.00, status: "Paid", method: "Orange Money", date: "2024-03-05" },
-];
+export default async function AdminPaymentsPage() {
+  const allPayments = await db.select().from(payments);
 
-export default function AdminPaymentsPage() {
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
       <div className="flex items-center gap-4">
@@ -109,7 +106,7 @@ export default function AdminPaymentsPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockPayments.map(payment => (
+              {allPayments.map(payment => (
                 <TableRow key={payment.id}>
                   <TableCell className="font-medium">{payment.student}</TableCell>
                   <TableCell>{payment.course}</TableCell>
@@ -148,7 +145,7 @@ export default function AdminPaymentsPage() {
         <CardFooter>
             <div className="flex w-full justify-between items-center">
                 <div className="text-xs text-muted-foreground">
-                    Showing <strong>1-4</strong> of <strong>{mockPayments.length}</strong> payments
+                    Showing <strong>1-4</strong> of <strong>{allPayments.length}</strong> payments
                 </div>
                 <Pagination>
                     <PaginationContent>

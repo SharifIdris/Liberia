@@ -1,4 +1,6 @@
 
+import { db } from '@/lib/db';
+import { courses } from '@/lib/schema';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -52,16 +54,9 @@ import {
   PaginationPrevious,
 } from '@/components/ui/pagination';
 
+export default async function AdminCoursesPage() {
+  const allCourses = await db.select().from(courses);
 
-const mockCourses = [
-    { id: "1", name: "Diploma in Digital Marketing", status: "Active", price: 500.00, totalSales: 150, createdAt: "2023-10-01" },
-    { id: "2", name: "Certificate in Project Management", status: "Active", price: 350.00, totalSales: 250, createdAt: "2023-09-15" },
-    { id: "3", name: "Professional Graphic Design", status: "Archived", price: 400.00, totalSales: 95, createdAt: "2023-08-20" },
-    { id: "4", name: "Web Development Bootcamp", status: "Active", price: 1200.00, totalSales: 450, createdAt: "2023-11-05" },
-    { id: "5", name: "Introduction to Data Science", status: "Draft", price: 600.00, totalSales: 0, createdAt: "2024-01-10" },
-];
-
-export default function AdminCoursesPage() {
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
       <div className="relative flex-1 md:grow-0">
@@ -152,34 +147,33 @@ export default function AdminCoursesPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {mockCourses.map(course => (
+                  {allCourses.map(course => (
                     <TableRow key={course.id}>
                       <TableCell className="hidden sm:table-cell">
                         <Image
                           alt="Course image"
                           className="aspect-square rounded-md object-cover"
                           height="64"
-                          src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?q=80&w=64&h=64&fit=crop"
-                          data-ai-hint="online course"
+                          src={course.image}
                           width="64"
                         />
                       </TableCell>
                       <TableCell className="font-medium">
-                        {course.name}
+                        {course.title}
                       </TableCell>
                       <TableCell>
-                        <Badge variant={course.status === 'Active' ? 'default' : 'secondary'}>
-                          {course.status}
+                        <Badge variant={'default'}>
+                          Active
                         </Badge>
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        ${course.price.toFixed(2)}
+                        ${course.rating}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        {course.totalSales}
+                        {course.reviews}
                       </TableCell>
                       <TableCell className="hidden md:table-cell">
-                        {course.createdAt}
+                        2023-10-01
                       </TableCell>
                       <TableCell>
                         <DropdownMenu>
@@ -212,7 +206,7 @@ export default function AdminCoursesPage() {
             <CardFooter>
                 <div className="flex w-full justify-between items-center">
                     <div className="text-xs text-muted-foreground">
-                    Showing <strong>1-5</strong> of <strong>{mockCourses.length}</strong> courses
+                    Showing <strong>1-5</strong> of <strong>{allCourses.length}</strong> courses
                     </div>
                     <Pagination>
                         <PaginationContent>

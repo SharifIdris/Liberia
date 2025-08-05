@@ -1,160 +1,49 @@
-# 🎓 Custom Online School Platform (Liberia-Based)
+# Liberia Learn Backend
 
-A full-featured Learning Management System (LMS) designed to support certificate and diploma programs for adult learners in Liberia. The platform supports local payments (MTN MoMo, Orange Money), installment plans, live and recorded classes, assignment submission, and certificates. Built with Supabase, React, TypeScript, and Next.js.
+This document provides an overview of the backend implementation for the Liberia Learn application.
 
----
+## Backend Structure
 
-## 📌 Key Features
+The backend is built using Next.js API routes and is located in the `src/app/api` directory. The structure is as follows:
 
-### 👩‍🎓 Student Features
-- Register and enroll in courses (full or installment payment)
-- Dashboard access after payment confirmation
-- Payment reminders and access lockout if overdue
-- Join live Zoom or Jitsi classes
-- Access session recordings anytime
-- Submit assignments, view grades, download certificates
-- View teacher profiles and course details
-- Class chat via built-in module or Telegram/Slack
+- `src/app/api/admin`: Routes for admin-specific functionality.
+- `src/app/api/assignments`: Routes for managing assignments.
+- `src/app/api/courses`: Routes for managing courses.
+- `src/app/api/payments`: Routes for managing payments.
+- `src/app/api/sessions`: Routes for managing sessions.
+- `src/app/api/teacher`: Routes for teacher-specific functionality.
+- `src/app/api/zoom`: Routes for Zoom integration.
 
-### 👨‍🏫 Teacher Features
-- Upload or record video content
-- Attach lesson notes (PDF or text)
-- Schedule and run live classes
-- Grade submitted assignments
-- Track attendance and student submissions
-- Manage course content (excluding pricing)
-- Update bio, profile picture, and credentials
+## Database
 
-### 👨‍💼 Admin Features
-- Create and manage courses
-- Approve teacher accounts
-- Set prices and payment structures (full/installments)
-- Monitor student activity, payments, submissions
-- Issue or override certificates
-- View reports (enrollments, payments, engagement)
-- Configure automated notifications (email/SMS/in-app)
+The application uses a PostgreSQL database with Drizzle ORM. The database configuration, schema, and utility scripts are located in the `src/lib` directory.
 
----
+- `drizzle.config.ts`: Drizzle ORM configuration.
+- `src/lib/schema.ts`: Database schema definition.
+- `src/lib/db.ts`: Database connection setup.
+- `src/lib/seed.ts`: Script for seeding the database with initial data.
+- `src/lib/reset-db.ts`: Script for resetting the database.
+- `src/lib/test-db.ts`: Script for testing the database connection.
 
-## 💳 Payment System
+## Database Connection Issue
 
-- **Gateways Supported**:
-  - Orange Money Liberia
-  - Lonestar Cell MTN MoMo
-  - Stripe, Flutterwave, DPO for cards
+When running the `src/lib/test-db.ts` script, the following error occurs:
 
-- **Installment Support**:
-  - Admin defines plans (e.g. 2x, 3x)
-  - System sends auto-reminders before each due date
-  - Course access is locked if payment is overdue
-  - Access auto-restores upon payment
+`ECONNREFUSED: Connection refused`
 
----
+This error indicates that the application cannot connect to the database server specified in the `.env` file:
 
-## 🎥 Live & Recorded Learning
+`DATABASE_URL="postgresql://postgres.fftbtualrhyulgfpqtfa:H%2Eu%2Em%2Eb%2El%2Ee%2E254@aws-0-eu-north-1.pooler.supabase.com:6543/postgres"`
 
-- Live sessions via **Zoom** or **Jitsi**
-- Sessions are automatically recorded
-- Recordings available to all enrolled students
-- Playback secured inside student dashboard
+This is likely because the Supabase project is paused or there is a network issue.
 
----
+### How to Fix
 
-## 🔔 Notifications
+1.  **Check Supabase Project Status**: Ensure that the Supabase project is running and not paused.
+2.  **Verify Database Credentials**: Double-check that the `DATABASE_URL` in the `.env` file is correct.
+3.  **Check Network Configuration**: Make sure there are no firewall rules or network issues preventing the connection to the Supabase server.
 
-- In-app + optional email/SMS notifications for:
-  - Payment deadlines
-  - Upcoming live classes
-  - Assignment deadlines
-  - Lockout warnings if overdue
+Once the database connection is resolved, you can test it by running:
 
----
-
-## 🧑‍💻 Tech Stack
-
-| Layer            | Technology                            |
-|------------------|----------------------------------------|
-| Frontend         | React + TypeScript + Tailwind CSS      |
-| Backend          | Next.js (API Routes)                   |
-| Authentication   | Supabase Auth                          |
-| Database         | Supabase PostgreSQL                    |
-| File Storage     | Supabase Storage                       |
-| Payments         | Orange API, MTN MoMo API, Stripe, Flutterwave |
-| Video Streaming  | Zoom SDK / Jitsi / WebRTC              |
-| Notifications    | Supabase Edge Functions + Email API    |
-| Hosting          | Vercel (Frontend/API), Supabase (DB/Storage) |
-
----
-
-## 📁 Project Structure
-
-Liberia/
-├── public/                     # Public assets (images, icons, recordings)
-│
-├── src/
-│   ├── components/             # Reusable UI components (Navbar, Sidebar, CourseCard, etc.)
-│   ├── layouts/                # Shared layouts (Dashboard layout, Auth layout)
-│   ├── pages/                  # Next.js routes
-│   │   ├── index.tsx           # Landing page
-│   │   ├── dashboard/          # Role-based dashboards (student, teacher, admin)
-│   │   ├── courses/            # Course listing & details
-│   │   ├── auth/               # Auth pages (login, register)
-│   │   └── api/                # API routes (Next.js backend logic)
-│   │       ├── courses.ts      # CRUD for courses
-│   │       ├── payments.ts     # Payment webhook or API integration
-│   │       ├── users.ts        # User profile actions
-│   │       └── auth.ts         # Supabase auth logic
-│   ├── lib/                    # Supabase client, API helpers, utilities
-│   │   ├── supabaseClient.ts   # Initialize Supabase client
-│   │   ├── api.ts              # Fetch/post helpers
-│   │   └── auth.ts             # Auth helpers
-│   ├── hooks/                  # Custom React hooks (e.g., useUser, usePaymentStatus)
-│   ├── context/                # Global context providers (auth, user, notifications)
-│   ├── types/                  # Global TypeScript type definitions
-│   ├── styles/                 # Tailwind CSS and global styles
-│   │   └── globals.css
-│   └── constants/              # Static config (e.g., roles, plan settings, reminder intervals)
-│
-├── .env.local                  # Your environment variables (Supabase keys, API secrets)
-├── .gitignore
-├── README.md
-├── next.config.js              # Next.js configuration
-├── tailwind.config.js          # Tailwind CSS configuration
-├── tsconfig.json               # TypeScript config
-├── package.json                # Project dependencies and scripts
-🚀 Phased Launch Plan
-Phase 1: MVP
-Student registration & payments
-
-Admin-created courses
-
-Local payment support (MTN/Orange)
-
-Live classes (Zoom/Jitsi)
-
-Phase 2: Core LMS
-Installment logic & access control
-
-Assignment grading & certificates
-
-Student and teacher dashboards
-
-Phase 3: Enhanced UX
-Notifications, chat, progress tracking
-
-Certificate designer + print module
-
-Full analytics & exportable reports
-
-👥 User Roles
-Student: Pays, learns, submits assignments, downloads certificates
-
-Teacher: Uploads/records lessons, grades, interacts with students
-
-Admin: Manages system, creates courses, configures payment/installments, oversees reports
-
-📞 Contact
-Project Owner: Sharif Abubakar Angole
-📧 Email: sharifidris8@gmail.com
-📱 Phone: +256765721427
-🌍 Location:  Uganda
+```bash
+npx tsx src/lib/test-db.ts

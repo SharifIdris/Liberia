@@ -86,8 +86,19 @@ export default function AdminDashboard() {
     fetchEnrollments();
   }, []);
 
-  const handleTeacherStatusChange = (email: string, newStatus: 'Approved' | 'Rejected') => {
-    setTeacherData(teacherData.filter(teacher => teacher.email !== email));
+  const handleTeacherStatusChange = async (id: number, newStatus: 'Approved' | 'Rejected') => {
+    const teacher = teacherData.find(t => t.id === id);
+    if (!teacher) return;
+
+    const updatedTeacher = { ...teacher, status: newStatus };
+
+    await fetch(`/api/admin/teachers/applications?id=${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedTeacher),
+    });
+
+    setTeacherData(teacherData.map(t => t.id === id ? updatedTeacher : t));
   };
 
   const pendingTeachers = teacherData.filter(t => t.status === 'Pending');
@@ -173,8 +184,8 @@ export default function AdminDashboard() {
                         <TableCell>{teacher.name}</TableCell>
                         <TableCell>
                             <div className="flex gap-2">
-                            <Button size="sm" onClick={() => handleTeacherStatusChange(teacher.email, 'Approved')}>Approve</Button>
-                            <Button size="sm" variant="destructive" onClick={() => handleTeacherStatusChange(teacher.email, 'Rejected')}>Reject</Button>
+<Button size="sm" onClick={() => handleTeacherStatusChange(teacher.id, 'Approved')}>Approve</Button>
+<Button size="sm" variant="destructive" onClick={() => handleTeacherStatusChange(teacher.id, 'Rejected')}>Reject</Button>
                             </div>
                         </TableCell>
                     </TableRow>

@@ -1,3 +1,5 @@
+import { db } from '@/lib/db';
+import { certificates } from '@/lib/schema';
 import {
   File,
   ListFilter,
@@ -31,13 +33,9 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
-const mockCertificates = [
-  { id: "cert_01", student: "Liam Brown", course: "React for Beginners", status: "Issued", date: "2024-02-20" },
-  { id: "cert_02", student: "Sophia Garcia", course: "UX/UI Design", status: "Issued", date: "2023-12-01" },
-  { id: "cert_03", student: "Emma Wilson", course: "Machine Learning", status: "Pending Completion", date: "-" },
-];
+export default async function AdminCertificatesPage() {
+  const allCertificates = await db.select().from(certificates);
 
-export default function AdminCertificatesPage() {
   return (
     <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2">
       <div className="flex items-center gap-4">
@@ -79,7 +77,7 @@ export default function AdminCertificatesPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {mockCertificates.map(cert => (
+              {allCertificates.map(cert => (
                 <TableRow key={cert.id}>
                   <TableCell className="font-medium">{cert.student}</TableCell>
                   <TableCell>{cert.course}</TableCell>

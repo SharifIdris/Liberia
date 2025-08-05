@@ -101,3 +101,53 @@ export const enrollments = pgTable('enrollments', {
     status: text('status').notNull(),
     payment: text('payment').notNull(),
 });
+
+export const certificates = pgTable('certificates', {
+  id: serial('id').primaryKey(),
+  student: text('student').notNull(),
+  course: text('course').notNull(),
+  status: text('status').notNull(),
+  date: text('date').notNull(),
+});
+
+export const notifications = pgTable('notifications', {
+  id: serial('id').primaryKey(),
+  recipient: text('recipient').notNull(),
+  subject: text('subject').notNull(),
+  message: text('message').notNull(),
+});
+
+export const payments = pgTable('payments', {
+  id: serial('id').primaryKey(),
+  student: text('student').notNull(),
+  course: text('course').notNull(),
+  amount: real('amount').notNull(),
+  status: text('status').notNull(),
+  method: text('method').notNull(),
+  date: text('date').notNull(),
+});
+
+export const reports = pgTable('reports', {
+  id: serial('id').primaryKey(),
+  month: text('month').notNull(),
+  revenue: real('revenue').notNull(),
+  expenses: real('expenses').notNull(),
+  enrollments: integer('enrollments').notNull(),
+});
+
+export const settings = pgTable('settings', {
+  id: serial('id').primaryKey(),
+  orangeMoneyApiKey: text('orange_money_api_key'),
+  mtnMoMoApiKey: text('mtn_momo_api_key'),
+  stripeSecretKey: text('stripe_secret_key'),
+  zoomApiKey: text('zoom_api_key'),
+});
+
+export const students = pgTable('students', {
+  id: serial('id').primaryKey(),
+  name: text('name').notNull(),
+  email: text('email').notNull(),
+  courses: integer('courses').notNull(),
+  status: text('status').notNull(),
+  joined: text('joined').notNull(),
+});
